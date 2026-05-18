@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e74d6192225dc48bd5442cfd3d67a0, type: 3}
+  m_Name: Menu_1
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  id: menu1
+  displayName: "\uBCC4\uBE5B \uC0CC\uB4DC\uC704\uCE58"
+  basicIngredients:
+  - {fileID: 11400000, guid: 385813a0ca10d334fa8135af91a84d88, type: 2}
+  - {fileID: 11400000, guid: 86777297db3704d46a8541b40c61ad85, type: 2}
+  - {fileID: 11400000, guid: 75619d66ff07f2d47983d923c0bb4bff, type: 2}
+  - {fileID: 11400000, guid: cb958768bea36194dbd6358c13b6ffc7, type: 2}
+  - {fileID: 11400000, guid: 385813a0ca10d334fa8135af91a84d88, type: 2}
+  icon: {fileID: 21300000, guid: d5e6f949355ea174ab0f488837b91851, type: 3}
+  cookTime: 8
+  sellPrice: 30
+  unlockRank: 0
+  isSignatureMenu: 0
+  ownerGhost: {fileID: 0}
+  special_Ingredient: {fileID: 0}
+  normalLast_Ing: {fileID: 0}
+  dialogueID: 

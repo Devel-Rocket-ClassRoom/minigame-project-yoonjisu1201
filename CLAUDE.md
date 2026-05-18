@@ -68,22 +68,35 @@ Assets/
 신규 필드 추가 시 기존 SO와 일관성 유지. v1.1 대화 시스템 대비 `dialogueID` 필드는 미리 포함.
 
 ```csharp
+// IngredientCategory: 재료 분류 (재료 패널 탭 분리 + 특수재료 식별 겸용)
+public enum IngredientCategory {
+    Base,    // 베이스 (빵, 반죽, 우유 등)
+    Fresh,   // 과일/신선 (딸기, 바나나, 양상추 등)
+    Sauce,   // 소스 (초코시럽, 꿀, 잼 등)
+    Special  // 특수재료 (단골 시그니처 — 영혼모닥불, 서류더미 설탕 등)
+}
+
 // IngredientSO: 재료 1종
 public class IngredientSO : ScriptableObject {
     public string id;
     public string displayName;
     public Sprite icon;
+    public IngredientCategory category;  // 탭 분리 + 검증 분기 겸용 (Special == 특수재료)
 }
 
 // RecipeSO: 레시피 1종
 public class RecipeSO : ScriptableObject {
     public string id;
     public string displayName;
-    public List<IngredientSO> ingredients; // 순서 중요
+    public List<IngredientSO> baseIngredients;       // 공통 재료 (마지막 재료 제외), 순서 중요
     public float cookTime;
     public int sellPrice;
-    public int unlockRank;       // 이 등급에서 해금
-    public string dialogueID;    // v1.1 대비 (현재 미사용)
+    public int unlockRank;                           // 이 등급에서 해금
+    public bool isSignatureMenu;                     // 전용 메뉴 여부
+    public GhostSO ownerGhost;                       // 전용 메뉴가 아니면 null
+    public IngredientSO requiredSpecialIngredient;   // 단골 본인 주문 시 정답 마지막 재료 (Special 카테고리)
+    public IngredientSO normalCounterpart;           // 다른 손님 주문 시 정답 마지막 재료 (일반 카테고리)
+    public string dialogueID;                        // v1.1 대비 (현재 미사용)
 }
 
 // GhostSO: 유령 손님 1종
@@ -135,8 +148,40 @@ public enum CookingSlotState {
 ```
 
 - 활성 슬롯은 한 번에 하나. 슬롯 탭 = 활성 전환.
-- 레시피 검증은 **수령 시점**에 `SequenceEqual` 일괄 비교. 조리 중 비교 금지.
+- 레시피 검증은 **수령 시점**에 일괄 판정. 조리 중 비교 금지.
+  1. 일반 메뉴(`!isSignatureMenu`)이면 `slotIngredients`를 `recipe.baseIngredients`와 그대로 `SequenceEqual` 비교
+  2. 전용 메뉴이면 마지막 재료 분기:
+     - `recipe.ownerGhost == currentGuest` → 정답 = `baseIngredients + [requiredSpecialIngredient]`
+     - 그 외 → 정답 = `baseIngredients + [normalCounterpart]`
+  3. 슬롯 재료가 위 정답 리스트와 `SequenceEqual` 일치 시 성공, 아니면 망한 음식 (Soft Fail)
 - 조리 타이머는 코루틴.
+
+**표준 검증 함수 시그니처** (Day 5에 구현):
+
+```csharp
+// Cooking/RecipeValidator.cs
+public static bool ValidateRecipe(
+    List<IngredientSO> slotIngredients,
+    RecipeSO recipe,
+    GhostSO currentGuest)
+{
+    // 일반 메뉴: baseIngredients 그대로 비교
+    if (!recipe.isSignatureMenu) {
+        return slotIngredients.SequenceEqual(recipe.baseIngredients);
+    }
+
+    // 전용 메뉴: 손님이 ownerGhost인지에 따라 마지막 재료 결정
+    IngredientSO lastIngredient = (recipe.ownerGhost == currentGuest)
+        ? recipe.requiredSpecialIngredient
+        : recipe.normalCounterpart;
+
+    // baseIngredients + [lastIngredient]가 정답
+    var expected = new List<IngredientSO>(recipe.baseIngredients) { lastIngredient };
+    return slotIngredients.SequenceEqual(expected);
+}
+```
+
+> 💡 `SequenceEqual`은 LINQ 메서드로, 두 시퀀스의 **개수와 순서가 모두 같은지** 비교합니다. `using System.Linq;` 필요.
 
 ### 5.2 유물 드롭 표준 처리 패턴
 
@@ -267,8 +312,8 @@ GDD에서 곡선 조정 결정이 나면 이 배열만 수정.
 |---|---|---|
 | **1주차** | | |
 | Day 1 | Unity 6.3 프로젝트 생성, 폴더 구조 정리, Git 셋업, 메인 씬 골격(영업/도감/업그레이드) | Unity 프로젝트 구조, Scene 관리 |
-| Day 2 | SO 정의: IngredientSO, RecipeSO, GhostSO, ArtifactSO, DialogueSO(빈 껍데기). GhostSO/RecipeSO에 dialogueID 필드 미리 추가. 더미 데이터 3~5개씩 입력 | SO 설계, Asset 생성 워크플로우 |
-| Day 3 | 재료 패널 UI, 슬롯 UI 프리팹, 활성 슬롯 전환 로직, 슬롯 강조 표현 | UI Canvas, Button 이벤트, 상태 관리 |
+| Day 2 | SO 정의: IngredientSO(+`IngredientCategory` enum), RecipeSO(+`normalCounterpart` 필드), GhostSO, ArtifactSO, DialogueSO(빈 껍데기). GhostSO/RecipeSO에 dialogueID 필드 미리 추가. 더미 데이터 3~5개씩 입력 (재료는 카테고리별 안배) | SO 설계, enum, Asset 생성 워크플로우 |
+| Day 3 | 재료 패널 UI (**카테고리 탭 분리: Base/Fresh/Sauce/Special**), 슬롯 UI 프리팹, 활성 슬롯 전환 로직, 슬롯 강조 표현 | UI Canvas, Button 이벤트, 탭 패널 전환, 상태 관리 |
 | Day 4 | CookingSlot 클래스 — 재료 List push, '조리 시작' → 코루틴 타이머, 슬롯 상태머신(Empty/Filling/Cooking/Ready/Spoiled) | List\<T\>, Coroutine, enum 상태 |
 | Day 5 | 레시피 검증 로직 (SequenceEqual), 완성/실패 분기, 망한 음식 팝업 UI, 통통 튀는 재료 연출 | LINQ, UI 팝업, Animator/Tween |
 | **2주차** | | |
