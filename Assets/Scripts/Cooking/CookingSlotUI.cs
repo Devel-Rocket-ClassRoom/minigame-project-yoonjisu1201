@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 //조리대 슬롯의 비주얼, 입력
 [RequireComponent(typeof(Collider2D))] //필수 컴포넌트
-public class CookingSlotUI : MonoBehaviour
+public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private CookingSlot _slot; //얘가 로직담당
     [SerializeField] private SpriteRenderer _stateRenderer;
@@ -17,6 +17,7 @@ public class CookingSlotUI : MonoBehaviour
     [SerializeField] private Sprite _spriteSpoiled;
 
     public CookingSlot Slot => _slot;
+    private float _testCookTime = 5f;
 
     private void Awake()
     {
@@ -32,8 +33,9 @@ public class CookingSlotUI : MonoBehaviour
     {
         _slot.OnStateChanged -= HandleStateChanged;
     }
-    private void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData) //이건 꼭 퍼블릭으로
     {
+        Debug.Log($"{gameObject.name} 클릭됨");
         CookingSlotManager.Instance.SetActiveSlot(this);
     }
     public void SetHighlight(bool active)
@@ -51,6 +53,10 @@ public class CookingSlotUI : MonoBehaviour
             CookingSlotState.Spoiled => _spriteSpoiled,
             _                        => _spriteEmpty,
         };
+    }
+    public void OnStartCookingButtonClicked()
+    {
+        _slot.StartCooking(_testCookTime);
     }
 
 }

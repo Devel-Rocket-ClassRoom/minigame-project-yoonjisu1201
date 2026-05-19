@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.iOS;
 using System.Collections;
 
 public enum CookingSlotState

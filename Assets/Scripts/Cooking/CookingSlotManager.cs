@@ -20,9 +20,10 @@ public class CookingSlotManager : MonoBehaviour
     {
         if (_slots.Count > 0)
         {
-            _slots[0].SetHighlight(true);
+            SetActiveSlot(_slots[0]);
         }
     }
+  
     public void SetActiveSlot(CookingSlotUI slotUI)
     {
         _activeSlotUI?.SetHighlight(false);
@@ -33,6 +34,10 @@ public class CookingSlotManager : MonoBehaviour
     {
         //재료추가는 슬롯에 접근해야함
         ActiveSlot?.AddIngredient(ingredient);
+    }
+    public void OnCancelCooking()
+    {
+        ActiveSlot?.CancelCooking();
     }
 
 
