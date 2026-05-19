@@ -17,7 +17,6 @@ public class IngredientPanelUI : MonoBehaviour
     [SerializeField] private List<IngredientSO> _allIngredients;
 
     private IngredientCategory _currentCategory;
-    [SerializeField] private CookingSlot _activeSlot;
 
     public void Start()
     {
@@ -52,14 +51,7 @@ public class IngredientPanelUI : MonoBehaviour
     private void OnIngredientButtonClicked(IngredientSO ingredient)
     {
         //재료 눌렀을때 조리대에 재료 추가
-        if (_activeSlot == null)
-            return;
-        _activeSlot.AddIngredient(ingredient);
+        CookingSlotManager.Instance.AddIngredient(ingredient);
         Debug.Log($"{ingredient.displayName} 선택");
-    }
-    public void SetActiveSlot(CookingSlot slot)
-    {
-        //조리대에서 활성슬롯이 변경됬을때 호출해줄 용도
-        _activeSlot = slot;
     }
 }

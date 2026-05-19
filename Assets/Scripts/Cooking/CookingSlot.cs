@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.iOS;
 using System.Collections;
 
 public enum CookingSlotState
@@ -30,7 +29,7 @@ public class CookingSlot : MonoBehaviour
         _state = CookingSlotState.Empty;
     }
 
-    //조리대에 재료 추가
+    //조리대에 재료 추가 -> 버튼 UI에서 직접참조 하던거 매니저제어로 변경
     public void AddIngredient(IngredientSO ingredient)
     {
         if (_state != CookingSlotState.Empty && _state != CookingSlotState.Filling)
@@ -50,7 +49,7 @@ public class CookingSlot : MonoBehaviour
         }
         _state = CookingSlotState.Cooking;
         OnStateChanged?.Invoke(_state);
-        StartCoroutine(CoCookingRoutine(cookTime));
+        _cookingCoroutine = StartCoroutine(CoCookingRoutine(cookTime));
         Debug.Log($"요리 중 . . .{_state}");
     }
 
@@ -87,7 +86,8 @@ public class CookingSlot : MonoBehaviour
     {
         if (_state != CookingSlotState.Ready)
             return null;
-        List<IngredientSO> recipe = _ingredients;
+        // 원본 리스트를 복사 — Clear() 전에 새 리스트로 복사하지 않으면 반환 후 빈 리스트가 됨
+        List<IngredientSO> recipe = new List<IngredientSO>(_ingredients);
         _ingredients.Clear();
         _state = CookingSlotState.Empty;
         OnStateChanged?.Invoke(_state);
