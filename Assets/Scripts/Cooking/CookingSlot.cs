@@ -17,8 +17,11 @@ public class CookingSlot : MonoBehaviour
     private List<IngredientSO> _ingredients;
     private Coroutine _cookingCoroutine;
     [SerializeField] private float spoilTime = 10f;
+    [SerializeField] private List<RecipeSO> _availableRecipes; //활성화된 레시피
+    private RecipeSO _cookedRecipe;
 
     public CookingSlotState State => _state;
+    public RecipeSO CookedRecipe => _cookedRecipe;
     public IReadOnlyList<IngredientSO> Ingredients => _ingredients;
 
     public event System.Action<CookingSlotState> OnStateChanged;
@@ -58,6 +61,11 @@ public class CookingSlot : MonoBehaviour
         yield return new WaitForSeconds(cookTime);
 
         //요리가 실패했을때는?
+        _cookedRecipe = RecipeValidator.FindMatchingRecipe(
+            new List<IngredientSO>(_ingredients), _availableRecipes);
+
+        Debug.Log(_cookedRecipe != null ? $"완성: {_cookedRecipe.displayName}" : "망한 음식");
+
         _state = CookingSlotState.Ready;
         OnStateChanged?.Invoke(_state);
         StartCoroutine(CoSpoilRoutine(spoilTime));
@@ -82,16 +90,16 @@ public class CookingSlot : MonoBehaviour
         Debug.Log($"모든 재료를 버렸습니다. 현재{_ingredients.Count}개");
     }
     //완성된 음식 서빙. 레시피 반환받아서 검증에 사용
-     public List<IngredientSO> CollectAndReset()
+     public RecipeSO CollectAndReset()
     {
         if (_state != CookingSlotState.Ready)
             return null;
-        // 원본 리스트를 복사 — Clear() 전에 새 리스트로 복사하지 않으면 반환 후 빈 리스트가 됨
-        List<IngredientSO> recipe = new List<IngredientSO>(_ingredients);
+        RecipeSO result = _cookedRecipe;
         _ingredients.Clear();
+        _cookedRecipe = null;
         _state = CookingSlotState.Empty;
         OnStateChanged?.Invoke(_state);
-        return recipe;
+        return result;
     }
 
 }

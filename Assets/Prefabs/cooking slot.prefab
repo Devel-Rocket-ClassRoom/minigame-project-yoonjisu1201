@@ -108,6 +108,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CookingSlot
   spoilTime: 10
+  _availableRecipes:
+  - {fileID: 11400000, guid: 0e7e52370ac3f7c4fbc2bfece5554724, type: 2}
+  - {fileID: 11400000, guid: 6d43ab5cc1b062f4a958f2e621e21901, type: 2}
+  - {fileID: 11400000, guid: 1fedc78ff1ff9a74aaacf0e60bdb82c5, type: 2}
+  - {fileID: 11400000, guid: f0bea6dbf8a9b3d40b13fb8742f6a98d, type: 2}
 --- !u!58 &3069829255316778392
 CircleCollider2D:
   m_ObjectHideFlags: 0
