@@ -93,16 +93,15 @@ public class CookingSlot : MonoBehaviour
         Debug.Log($"모든 재료를 버렸습니다. 현재{_ingredients.Count}개");
     }
     //완성된 음식 서빙. 레시피 반환받아서 검증에 사용
-     public RecipeSO CollectAndReset()
+     public void CollectAndReset()
     {
         if (_state != CookingSlotState.Ready)
-            return null;
-        RecipeSO result = _cookedRecipe;
+            return;
+
         _ingredients.Clear();
         _cookedRecipe = null;
         _state = CookingSlotState.Empty;
         OnStateChanged?.Invoke(_state);
-        return result;
     }
 
 }
