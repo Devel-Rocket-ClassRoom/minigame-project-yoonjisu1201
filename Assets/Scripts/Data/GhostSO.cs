@@ -12,4 +12,5 @@ public class GhostSO : ScriptableObject
     public ArtifactSO artifact;
     public string firstMeetDialogueID; //임시(대화)
     public string memoirDialogueID; //방명록id
+    public bool isStoryGuest;
 }

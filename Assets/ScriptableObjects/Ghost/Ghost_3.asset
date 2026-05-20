@@ -20,3 +20,4 @@ MonoBehaviour:
   artifact: {fileID: 11400000, guid: 269fe8f64f7384e4e8d1ff51af46860d, type: 2}
   firstMeetDialogueID: 
   memoirDialogueID: 
+  isStoryGuest: 1
