@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e89f28c6b6db6043a62784a03703efe, type: 3}
-  m_Name: Ghost_2
+  m_Name: Ghost_1
   m_EditorClassIdentifier: Assembly-CSharp::GhostSO
-  id: ghost_2
-  displayName: "\uBC14\uC05C \uC9C1\uC7A5\uC778 \uC601\uD63C"
-  icon: {fileID: 0}
+  id: ghost_1
+  displayName: "\uBD80\uB044\uB7EC\uC6B4 \uAF2C\uB9C8 \uC720\uB839"
+  icon: {fileID: 21300000, guid: 756db49d8e3fcbc4994c80b05ac90139, type: 3}
   patienceSeconds: 20
-  unlockRank: 2
-  artifact: {fileID: 11400000, guid: ec7f30cfdfe131f45b92ad52d524651e, type: 2}
+  unlockRank: 1
+  artifact: {fileID: 11400000, guid: 77d9bdc4842e0004f83853c871802972, type: 2}
   firstMeetDialogueID: 
   memoirDialogueID: 
+  isStoryGuest: 1

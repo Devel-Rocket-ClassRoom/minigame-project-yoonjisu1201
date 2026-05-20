@@ -114,6 +114,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6d43ab5cc1b062f4a958f2e621e21901, type: 2}
   - {fileID: 11400000, guid: 1fedc78ff1ff9a74aaacf0e60bdb82c5, type: 2}
   - {fileID: 11400000, guid: f0bea6dbf8a9b3d40b13fb8742f6a98d, type: 2}
+  - {fileID: 11400000, guid: 3ffba11e0edaa4944ac52db4a5ad40a0, type: 2}
 --- !u!58 &3069829255316778392
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,8 +172,8 @@ MonoBehaviour:
   _spriteCooking: {fileID: 21300000, guid: e79edeec541b72b4ea443712dee42d11, type: 3}
   _spriteReady: {fileID: 21300000, guid: d5349d6eff624f2439070049e139f4cc, type: 3}
   _spriteSpoiled: {fileID: 21300000, guid: ad1728c3e52939e41ab433a66efe75b8, type: 3}
-  _spriteSuccess: {fileID: 21300000, guid: 205dc89cee37ae949a2e88614f98eacf, type: 3}
   _spriteFail: {fileID: 21300000, guid: 204db3fa2c0f2b44cae1e8e9114864fd, type: 3}
+  _resultSize: 1
 --- !u!1 &7183917158501147553
 GameObject:
   m_ObjectHideFlags: 0

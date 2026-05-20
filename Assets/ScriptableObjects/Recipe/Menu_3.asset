@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   id: menu3
   displayName: "\uB530\uB048 \uBCC4\uBE5B \uC2A4\uD504"
-  basicIngredients: []
+  basicIngredients:
+  - {fileID: 11400000, guid: 07d425141b9a22e4bae63d16a3ccf827, type: 2}
+  - {fileID: 11400000, guid: e40951e6730ea5c4880ad6f98727c162, type: 2}
+  - {fileID: 11400000, guid: 2587f9cf24ecb144bb1959b96fc26168, type: 2}
+  - {fileID: 11400000, guid: f1238180def684f439469a1b4e415772, type: 2}
   icon: {fileID: 21300000, guid: 915138f23fe7b884ba9ec88d456f124b, type: 3}
   cookTime: 8
   sellPrice: 30
