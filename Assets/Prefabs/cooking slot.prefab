@@ -167,6 +167,7 @@ MonoBehaviour:
   _stateRenderer: {fileID: 9176690806103384530}
   _highlightRenderer: {fileID: 2872470701742439791}
   _resultRenderer: {fileID: 5403137624704481695}
+  _draggableFood: {fileID: 5461979747226897921}
   _spriteEmpty: {fileID: 21300000, guid: c18d9f641ba00654e962fc3e4e085a6c, type: 3}
   _spriteFilling: {fileID: 21300000, guid: b977d16acb842124a92cbe65ef16d25c, type: 3}
   _spriteCooking: {fileID: 21300000, guid: e79edeec541b72b4ea443712dee42d11, type: 3}
@@ -258,7 +259,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6509804}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.80784315}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -315,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87fc9e5d76b7c2548b29f220e4a0036f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableFood
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8294595229007205755
 GameObject:
   m_ObjectHideFlags: 0
