@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,6 +9,7 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private CookingSlot _slot; //얘가 로직담당
     [SerializeField] private SpriteRenderer _stateRenderer;
     [SerializeField] private SpriteRenderer _highlightRenderer;
+    [SerializeField] private SpriteRenderer _resultRenderer;
 
     //상태별 스프라이트 -> 나중에 애니메이션 교체
     [SerializeField] private Sprite _spriteEmpty;
@@ -15,6 +17,8 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Sprite _spriteCooking;
     [SerializeField] private Sprite _spriteReady;
     [SerializeField] private Sprite _spriteSpoiled;
+    [SerializeField] private Sprite _spriteFail;
+    [SerializeField] private float _resultSize = 1f;
 
     public CookingSlot Slot => _slot;
     private float _testCookTime = 5f;
@@ -23,6 +27,7 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     {
         _slot = GetComponent<CookingSlot>();
         _highlightRenderer.enabled = false;
+        _resultRenderer.enabled = false;
     }
     private void OnEnable()
     {
@@ -46,13 +51,35 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     {
         _stateRenderer.sprite = state switch
         {
-            CookingSlotState.Empty   => _spriteEmpty,
+            CookingSlotState.Empty => _spriteEmpty,
             CookingSlotState.Filling => _spriteFilling,
             CookingSlotState.Cooking => _spriteCooking,
-            CookingSlotState.Ready   => _spriteReady,
+            CookingSlotState.Ready => _spriteReady,
             CookingSlotState.Spoiled => _spriteSpoiled,
-            _                        => _spriteEmpty,
+            _ => _spriteEmpty,
         };
+        if (state == CookingSlotState.Ready)
+        {
+            _resultRenderer.enabled = true;
+            if (_slot.CookedRecipe != null)
+            {
+                Sprite icon = _slot.CookedRecipe.icon;
+                _resultRenderer.sprite = icon;
+                //스프라이트 사이즈 조절 (icon.bounds.size는 스프라이트의 실제크기) 
+                float maxDim = Mathf.Max(icon.bounds.size.x, icon.bounds.size.y);
+                _resultRenderer.transform.localScale = Vector3.one * (_resultSize/maxDim);
+            }
+            else
+            {
+                _resultRenderer.sprite = _spriteFail;
+                float maxDim = Mathf.Max(_spriteFail.bounds.size.x, _spriteFail.bounds.size.y);
+                _resultRenderer.transform.localScale = Vector3.one * (_resultSize / maxDim);
+            }
+        }
+        else
+        {
+            _resultRenderer.enabled = false;
+        }
     }
     public void OnStartCookingButtonClicked()
     {
