@@ -32,7 +32,7 @@ public class CookingSlot : MonoBehaviour
         _state = CookingSlotState.Empty;
     }
 
-    //조리대에 재료 추가 -> 버튼 UI에서 직접참조 하던거 매니저제어로 변경
+    
     public void AddIngredient(IngredientSO ingredient)
     {
         if (_state != CookingSlotState.Empty && _state != CookingSlotState.Filling)

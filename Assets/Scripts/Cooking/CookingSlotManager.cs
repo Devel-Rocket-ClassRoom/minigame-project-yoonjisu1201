@@ -32,12 +32,15 @@ public class CookingSlotManager : MonoBehaviour
     }
     public void AddIngredient(IngredientSO ingredient)
     {
-        //재료추가는 슬롯에 접근해야함
         ActiveSlot?.AddIngredient(ingredient);
     }
     public void OnCancelCooking()
     {
         ActiveSlot?.CancelCooking();
+    }
+    public void OnCollectAndReset()
+    {
+        ActiveSlot?.CollectAndReset();
     }
 
 
