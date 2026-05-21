@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//손님 이동
+//손님 이동, 인내심 타이머 관리
 public class GuestController : MonoBehaviour
 {
     [SerializeField] private GhostSO _ghostData;
     [SerializeField] private OrderPopup _orderPopup;
-    [SerializeField] private float _moveSpeed = 2f;
+    [SerializeField] private float _entrySpeed = 2.5f;
+    [SerializeField] private float _exitSpeed = 5f;
 
 
     public event System.Action OnExited; //GuestSpawner가 구독
+    private Coroutine _patienceCoroutine;
 
     private Vector3 _stopPos;
     private Vector3 _exitPos;
@@ -30,13 +32,14 @@ public class GuestController : MonoBehaviour
         while (Vector2.Distance(transform.position, _stopPos) > 0.05f)
         {
             transform.position = Vector2.MoveTowards(transform.position, _stopPos,
-                _moveSpeed * Time.deltaTime);
+                _entrySpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = _stopPos;
         //이동이 멈춘 다음에 주문팝업 노출
         CurrentOrder = PickOrder();
         _orderPopup.Show(CurrentOrder);
+        _patienceCoroutine = StartCoroutine(CoPatienceRoutine());
     }
     private RecipeSO PickOrder()
     {
@@ -55,14 +58,35 @@ public class GuestController : MonoBehaviour
         while (Vector2.Distance(transform.position, _exitPos) > 0.05f)
         {
             transform.position = Vector2.MoveTowards(transform.position, _exitPos,
-                _moveSpeed * Time.deltaTime);
+                _exitSpeed * Time.deltaTime);
             yield return null;
         }
         OnExited?.Invoke();
     }
+    private IEnumerator CoPatienceRoutine()
+    {
+        float timer = _ghostData.patienceSeconds;
+        while (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            _orderPopup.SetGauge(timer / _ghostData.patienceSeconds);
+            yield return null;
+        }
+
+        _patienceCoroutine = null;
+        CurrentOrder = null;
+        _orderPopup.Hide();
+        StartCoroutine(CoExitRoutine());
+    }
     //DraggableFood에서 호출
     public void ReceiveFood()
     {
+        if (_patienceCoroutine != null)
+        {
+            StopCoroutine(_patienceCoroutine);
+            _patienceCoroutine = null;
+        }
+    
         CurrentOrder = null;
         _orderPopup.Hide();
         StartCoroutine(CoExitRoutine());

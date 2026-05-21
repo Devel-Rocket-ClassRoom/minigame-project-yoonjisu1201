@@ -108,7 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   _ghostData: {fileID: 11400000, guid: 265d00444297aeb4bb4ba28f16bff3cc, type: 2}
   _orderPopup: {fileID: 729249931944809741}
-  _moveSpeed: 2
+  _entrySpeed: 2.5
+  _exitSpeed: 4
 --- !u!70 &355769908563621223
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -201,6 +202,10 @@ PrefabInstance:
     - target: {fileID: 3858704537154102194, guid: 672e3a6244284cb41a651893b2c02519, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237230277356657836, guid: 672e3a6244284cb41a651893b2c02519, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
