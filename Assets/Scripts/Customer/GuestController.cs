@@ -10,21 +10,32 @@ public class GuestController : MonoBehaviour
     [SerializeField] private OrderPopup _orderPopup;
     [SerializeField] private float _entrySpeed = 2.5f;
     [SerializeField] private float _exitSpeed = 5f;
-
+    [SerializeField] private bool _defaultFacingLeft = false;
 
     public event System.Action OnExited; //GuestSpawner가 구독
+    private SpriteRenderer _renderer;
     private Coroutine _patienceCoroutine;
 
     private Vector3 _stopPos;
     private Vector3 _exitPos;
     public GhostSO GhostData => _ghostData;
-    public RecipeSO CurrentOrder {  get; private set; }
+    public RecipeSO CurrentOrder { get; private set; }
     //손님 입장. GuestSpawner에서 호출
+    private void Awake()
+    {
+        _renderer = GetComponent<SpriteRenderer>();
+    }
     public void Enter(Vector3 entryPos, Vector3 stopPos, Vector3 exitPos)
     {
         _stopPos = stopPos;
         _exitPos = exitPos;
         transform.position = entryPos;
+
+        if (_defaultFacingLeft) 
+            _renderer.flipX = entryPos.x < stopPos.x;
+        else 
+            _renderer.flipX = entryPos.x > stopPos.x;
+
         StartCoroutine(CoEntryRoutine());
     }
     private IEnumerator CoEntryRoutine()
@@ -45,7 +56,7 @@ public class GuestController : MonoBehaviour
     {
         CookingSlot slot = CookingSlotManager.Instance.ActiveSlot;
         //만약 나중에 빈공간 눌렀을때 활성화된 슬롯이 없게 만든다면 이 로직도 수정
-        if (slot == null) return null;  
+        if (slot == null) return null;
 
         List<RecipeSO> candidates = slot.AllRecipes.ToList();
         if (candidates.Count == 0) return null;
@@ -55,6 +66,12 @@ public class GuestController : MonoBehaviour
     private IEnumerator CoExitRoutine()
     {
         yield return new WaitForSeconds(1f);
+
+        if (_defaultFacingLeft)
+            _renderer.flipX = transform.position.x < _exitPos.x;
+        else
+            _renderer.flipX = transform.position.x > _exitPos.x;
+
         while (Vector2.Distance(transform.position, _exitPos) > 0.05f)
         {
             transform.position = Vector2.MoveTowards(transform.position, _exitPos,
@@ -86,7 +103,7 @@ public class GuestController : MonoBehaviour
             StopCoroutine(_patienceCoroutine);
             _patienceCoroutine = null;
         }
-    
+
         CurrentOrder = null;
         _orderPopup.Hide();
         StartCoroutine(CoExitRoutine());
