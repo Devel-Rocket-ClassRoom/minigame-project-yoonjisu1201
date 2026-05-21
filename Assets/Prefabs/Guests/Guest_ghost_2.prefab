@@ -158,6 +158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrderPopup
       objectReference: {fileID: 0}
+    - target: {fileID: 3811749152637006818, guid: 672e3a6244284cb41a651893b2c02519, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3858704537154102194, guid: 672e3a6244284cb41a651893b2c02519, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.04

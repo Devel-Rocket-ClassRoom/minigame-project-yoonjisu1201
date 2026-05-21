@@ -9,15 +9,14 @@ public class GuestSpawner : MonoBehaviour
     [SerializeField] private Transform _stopPoint;
     [SerializeField] private Transform _exitPoint;
     [SerializeField] public float _spawnDelay = 2f;
-    public float _startSpawnDelay = 2f;
+    public float _startSpawnDelay;
 
     private bool _isGuestPresent; //현재 손님이 있는지
-    private bool _isStart; //처음 시작할때만 생성되는 딜레이시간 다르게
+    private bool _isStart = true; //처음 시작할때만 생성되는 딜레이시간 다르게
 
     private void Start()
     {
         StartCoroutine(SpawnLoop());
-        _isStart = true;
     }
     private IEnumerator SpawnLoop()
     {
