@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GhostSO
   id: ghost_0
   displayName: "\uAE38 \uC783\uC740 \uC601\uD63C"
-  icon: {fileID: -9027037273965745500, guid: 1cace73e9ff18e347bdd34a831704dd4, type: 3}
+  icon: {fileID: 21300000, guid: 1cace73e9ff18e347bdd34a831704dd4, type: 3}
   patienceSeconds: 20
   unlockRank: 0
   artifact: {fileID: 0}
   firstMeetDialogueID: 
   memoirDialogueID: 
+  isStoryGuest: 0

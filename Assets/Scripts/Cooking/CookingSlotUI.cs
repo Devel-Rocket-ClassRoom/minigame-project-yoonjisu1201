@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,6 +9,7 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private SpriteRenderer _stateRenderer;
     [SerializeField] private SpriteRenderer _highlightRenderer;
     [SerializeField] private SpriteRenderer _resultRenderer;
+    [SerializeField] private DraggableFood _draggableFood;
 
     //상태별 스프라이트 -> 나중에 애니메이션 교체
     [SerializeField] private Sprite _spriteEmpty;
@@ -63,11 +63,13 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
             _resultRenderer.enabled = true;
             if (_slot.CookedRecipe != null)
             {
+                _draggableFood.Setup(_slot.CookedRecipe, _slot);
                 Sprite icon = _slot.CookedRecipe.icon;
                 _resultRenderer.sprite = icon;
                 //스프라이트 사이즈 조절 (icon.bounds.size는 스프라이트의 실제크기) 
                 float maxDim = Mathf.Max(icon.bounds.size.x, icon.bounds.size.y);
                 _resultRenderer.transform.localScale = Vector3.one * (_resultSize/maxDim);
+
             }
             else
             {

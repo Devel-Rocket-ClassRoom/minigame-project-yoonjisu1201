@@ -38,10 +38,6 @@ public class CookingSlotManager : MonoBehaviour
     {
         ActiveSlot?.CancelCooking();
     }
-    public void OnCollectAndReset()
-    {
-        ActiveSlot?.CollectAndReset();
-    }
 
 
 }
