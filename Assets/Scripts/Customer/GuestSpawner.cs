@@ -13,12 +13,21 @@ public class GuestSpawner : MonoBehaviour
 
     private bool _isGuestPresent; //현재 손님이 있는지
     private bool _isStart = true; //처음 시작할때만 생성되는 딜레이시간 다르게
-
+    private Coroutine _spawnLoopCoroutine;
+    public bool IsGuestPresent => _isGuestPresent;
     private void Start()
     {
-        StartCoroutine(SpawnLoop());
+        _spawnLoopCoroutine = StartCoroutine(CoSpawnLoop());
     }
-    private IEnumerator SpawnLoop()
+    public void StopSpawning()
+    {
+        if (_spawnLoopCoroutine != null)
+        {
+            StopCoroutine(_spawnLoopCoroutine);
+            _spawnLoopCoroutine = null;
+        }
+    }
+    private IEnumerator CoSpawnLoop()
     {
         while (true) //영업마감 오픈 시스템 만들기 전까지 ture로 사용
         {
