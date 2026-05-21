@@ -41,7 +41,7 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
         Vector2 dropPos = _cam.ScreenToWorldPoint(eventData.position);
         Collider2D[] hits = Physics2D.OverlapPointAll(dropPos);
 
-        Debug.Log($"드롭 위치: {dropPos}, 감지된 콜라이더 수: {hits.Length}");
+        Debug.Log($"감지된 콜라이더 수: {hits.Length}");
 
         foreach (var hit in hits)
         {
@@ -49,7 +49,7 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
             if (hit.gameObject == gameObject) continue;
 
             var guest = hit.GetComponent<GuestController>();
-            Debug.Log($"GuestController 있음: {guest != null}");
+            //Debug.Log($"GuestController 있음: {guest != null}");
             if (guest == null) continue;
 
             if (guest.CurrentOrder != _recipe) continue;

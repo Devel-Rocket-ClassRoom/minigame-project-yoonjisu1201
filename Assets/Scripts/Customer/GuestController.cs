@@ -1,37 +1,71 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//손님 주문 담당, 주문팝업 보이고 숨기는 메서드 호출
+//손님 이동
 public class GuestController : MonoBehaviour
 {
     [SerializeField] private GhostSO _ghostData;
-    [SerializeField] private CookingSlot _cookingSlot;
-    [SerializeField] private OrderPopup _orderPopup; 
+    [SerializeField] private OrderPopup _orderPopup;
+    [SerializeField] private float _moveSpeed = 2f;
 
+
+    public event System.Action OnExited; //GuestSpawner가 구독
+
+    private Vector3 _stopPos;
+    private Vector3 _exitPos;
     public GhostSO GhostData => _ghostData;
-
     public RecipeSO CurrentOrder {  get; private set; }
-    private void Start()
+    //손님 입장. GuestSpawner에서 호출
+    public void Enter(Vector3 entryPos, Vector3 stopPos, Vector3 exitPos)
     {
-        CurrentOrder = RandomOrder();
+        _stopPos = stopPos;
+        _exitPos = exitPos;
+        transform.position = entryPos;
+        StartCoroutine(CoEntryRoutine());
+    }
+    private IEnumerator CoEntryRoutine()
+    {
+        while (Vector2.Distance(transform.position, _stopPos) > 0.05f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, _stopPos,
+                _moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = _stopPos;
+        //이동이 멈춘 다음에 주문팝업 노출
+        CurrentOrder = PickOrder();
         _orderPopup.Show(CurrentOrder);
     }
-
-    private RecipeSO RandomOrder()
+    private RecipeSO PickOrder()
     {
-        //지금은 테스트로 모든 레시피 열어둠
-        List<RecipeSO> candidates = _cookingSlot.AllRecipes.ToList();
+        CookingSlot slot = CookingSlotManager.Instance.ActiveSlot;
+        //만약 나중에 빈공간 눌렀을때 활성화된 슬롯이 없게 만든다면 이 로직도 수정
+        if (slot == null) return null;  
 
-        if (candidates.Count == 0)
-            return null;
-        return candidates[UnityEngine.Random.Range(0, candidates.Count)];
+        List<RecipeSO> candidates = slot.AllRecipes.ToList();
+        if (candidates.Count == 0) return null;
+        return candidates[Random.Range(0, candidates.Count)];
     }
-    //호출은 DraggableFood에서
+    //손님 퇴장, 이벤트로 DraggableFood에서 구독
+    private IEnumerator CoExitRoutine()
+    {
+        yield return new WaitForSeconds(1f);
+        while (Vector2.Distance(transform.position, _exitPos) > 0.05f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, _exitPos,
+                _moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        OnExited?.Invoke();
+    }
+    //DraggableFood에서 호출
     public void ReceiveFood()
     {
         CurrentOrder = null;
         _orderPopup.Hide();
+        StartCoroutine(CoExitRoutine());
     }
 
 }
