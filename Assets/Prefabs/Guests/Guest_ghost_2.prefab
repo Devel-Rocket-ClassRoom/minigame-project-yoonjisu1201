@@ -110,6 +110,7 @@ MonoBehaviour:
   _orderPopup: {fileID: 729249931944809741}
   _entrySpeed: 2.5
   _exitSpeed: 4
+  _defaultFacingLeft: 1
 --- !u!70 &355769908563621223
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
