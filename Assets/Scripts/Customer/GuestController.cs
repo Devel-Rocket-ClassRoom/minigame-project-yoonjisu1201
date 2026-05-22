@@ -82,11 +82,12 @@ public class GuestController : MonoBehaviour
     }
     private IEnumerator CoPatienceRoutine()
     {
-        float timer = _ghostData.patienceSeconds;
+        float totalTimer = _ghostData.patienceSeconds * GameContext.customerPatienceMultiplier;
+        float timer = totalTimer;
         while (timer > 0f)
         {
             timer -= Time.deltaTime;
-            _orderPopup.SetGauge(timer / _ghostData.patienceSeconds);
+            _orderPopup.SetGauge(timer / totalTimer);
             yield return null;
         }
 
