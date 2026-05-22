@@ -18,6 +18,7 @@ public class GuestController : MonoBehaviour
 
     private Vector3 _stopPos;
     private Vector3 _exitPos;
+    public Vector3 StopPos => _stopPos;
     public GhostSO GhostData => _ghostData;
     public RecipeSO CurrentOrder { get; private set; }
     //손님 입장. GuestSpawner에서 호출
@@ -82,11 +83,12 @@ public class GuestController : MonoBehaviour
     }
     private IEnumerator CoPatienceRoutine()
     {
-        float timer = _ghostData.patienceSeconds;
+        float totalTimer = _ghostData.patienceSeconds * GameContext.customerPatienceMultiplier;
+        float timer = totalTimer;
         while (timer > 0f)
         {
             timer -= Time.deltaTime;
-            _orderPopup.SetGauge(timer / _ghostData.patienceSeconds);
+            _orderPopup.SetGauge(timer / totalTimer);
             yield return null;
         }
 

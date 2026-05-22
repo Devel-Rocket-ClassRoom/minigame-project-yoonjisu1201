@@ -7,6 +7,7 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 {
     private RecipeSO _recipe; //조리대 슬롯에서 만든 레시피
     private CookingSlot _slot;
+    private float _goldDropOfset = 1.1f;
     public Vector3 _originPosition;
     private Camera _cam;
 
@@ -33,6 +34,7 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
     public void OnEndDrag(PointerEventData eventData)
     {
+
         if (_recipe == null)
         {
             transform.position = _originPosition;
@@ -63,6 +65,11 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
                 _slot.CollectAndReset();
                 gameObject.SetActive(false);
                 transform.position = _originPosition;
+
+                Vector3 goldPos = guest.StopPos + Vector3.down * _goldDropOfset;
+                int earnedGold = Mathf.RoundToInt(_recipe.sellPrice * GameContext.foodPriceMultiplier);
+                GoldPool.instance.Spawn(goldPos, earnedGold);
+                GoldManager.Instance.AddGold(earnedGold);
                 return;
             }
         }

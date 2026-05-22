@@ -8,7 +8,6 @@ public class GuestSpawner : MonoBehaviour
     [SerializeField] private Transform _entryPoint;
     [SerializeField] private Transform _stopPoint;
     [SerializeField] private Transform _exitPoint;
-    [SerializeField] public float _spawnDelay = 2f;
     public float _startSpawnDelay;
 
     private bool _isGuestPresent; //현재 손님이 있는지
@@ -38,7 +37,7 @@ public class GuestSpawner : MonoBehaviour
             }
             else
             {
-                yield return new WaitForSeconds(_spawnDelay);
+                yield return new WaitForSeconds(GameContext.customerSpawnInterval);
             }
 
             GuestController prefab = _guestPrefabs[Random.Range(0, _guestPrefabs.Count)];
