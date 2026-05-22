@@ -18,6 +18,7 @@ public class GuestController : MonoBehaviour
 
     private Vector3 _stopPos;
     private Vector3 _exitPos;
+    public Vector3 StopPos => _stopPos;
     public GhostSO GhostData => _ghostData;
     public RecipeSO CurrentOrder { get; private set; }
     //손님 입장. GuestSpawner에서 호출
