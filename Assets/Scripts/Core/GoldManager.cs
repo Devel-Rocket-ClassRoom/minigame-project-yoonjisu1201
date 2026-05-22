@@ -16,6 +16,7 @@ public class GoldManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     public void AddGold(int amount)
     {

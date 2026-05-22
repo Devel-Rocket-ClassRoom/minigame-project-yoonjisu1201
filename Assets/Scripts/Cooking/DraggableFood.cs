@@ -69,6 +69,7 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
                 Vector3 goldPos = guest.StopPos + Vector3.down * _goldDropOfset;
                 int earnedGold = Mathf.RoundToInt(_recipe.sellPrice * GameContext.foodPriceMultiplier);
                 GoldPool.instance.Spawn(goldPos, earnedGold);
+                GoldManager.Instance.AddGold(earnedGold);
                 return;
             }
         }

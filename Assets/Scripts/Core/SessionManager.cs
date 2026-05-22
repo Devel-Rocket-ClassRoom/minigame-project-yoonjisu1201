@@ -23,6 +23,7 @@ public class SessionManager : MonoBehaviour
         RemainingTime = _sessionDuration;
         IsSessionActive = true;
         StartCoroutine(CoSessionTimer());
+        GoldManager.Instance.ResetSession();
     }
     private IEnumerator CoSessionTimer()
     {
