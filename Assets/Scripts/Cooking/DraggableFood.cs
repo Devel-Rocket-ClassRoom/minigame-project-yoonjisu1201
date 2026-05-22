@@ -59,10 +59,11 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
             if (isValid)
             {
-                    guest.ReceiveFood();
-                    _slot.CollectAndReset();
-                    gameObject.SetActive(false);
-                    return;
+                guest.ReceiveFood();
+                _slot.CollectAndReset();
+                gameObject.SetActive(false);
+                transform.position = _originPosition;
+                return;
             }
         }
         transform.position = _originPosition;
