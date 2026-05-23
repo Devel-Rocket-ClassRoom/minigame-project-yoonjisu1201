@@ -24,6 +24,7 @@ public class SessionManager : MonoBehaviour
         IsSessionActive = true;
         StartCoroutine(CoSessionTimer());
         GoldManager.Instance.ResetSession();
+        TruckRankManager.instance.ResetSession();
     }
     private IEnumerator CoSessionTimer()
     {
