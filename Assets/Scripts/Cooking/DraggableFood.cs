@@ -70,6 +70,7 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
                 int earnedGold = Mathf.RoundToInt(_recipe.sellPrice * GameContext.foodPriceMultiplier);
                 GoldPool.instance.Spawn(goldPos, earnedGold);
                 GoldManager.Instance.AddGold(earnedGold);
+                TruckRankManager.instance.AddExp(RankThresholds.EXP_PER_SERVE);
                 return;
             }
         }
