@@ -11,8 +11,10 @@ public class GuestController : MonoBehaviour
     [SerializeField] private float _entrySpeed = 2.5f;
     [SerializeField] private float _exitSpeed = 5f;
     [SerializeField] private bool _defaultFacingLeft = false;
+    [SerializeField] private ContentRegistrySO _registry;
 
     public event System.Action OnExited; //GuestSpawner가 구독
+    private const float SIGNATURE_ORDER_CHANCE = 0.8f;
     private SpriteRenderer _renderer;
     private Coroutine _patienceCoroutine;
 
@@ -55,13 +57,30 @@ public class GuestController : MonoBehaviour
     }
     private RecipeSO PickOrder()
     {
-        CookingSlot slot = CookingSlotManager.Instance.ActiveSlot;
-        //만약 나중에 빈공간 눌렀을때 활성화된 슬롯이 없게 만든다면 이 로직도 수정
-        if (slot == null) return null;
+        List<RecipeSO> unlockedRecipes = new List<RecipeSO>();
+        RecipeSO signatureRecipe = null;
+        foreach (var recipe in _registry.allRecipes)
+        {
+            if (UnlockManager.instance.IsRecipeUnlocked(recipe))
+                unlockedRecipes.Add(recipe);
+        }
+        if (unlockedRecipes.Count == 0) return null;
 
-        List<RecipeSO> candidates = slot.AllRecipes.ToList();
-        if (candidates.Count == 0) return null;
-        return candidates[Random.Range(0, candidates.Count)];
+        foreach (var recipe in unlockedRecipes)
+        {
+            if (recipe.isSignatureMenu && recipe.ownerGhost == GhostData)
+            {
+                signatureRecipe = recipe;
+                break;
+            }
+        }
+
+        if (signatureRecipe != null && Random.value < SIGNATURE_ORDER_CHANCE)
+            return signatureRecipe;
+
+        return unlockedRecipes[Random.Range(0, unlockedRecipes.Count)];
+
+
     }
     //손님 퇴장, 이벤트로 DraggableFood에서 구독
     private IEnumerator CoExitRoutine()

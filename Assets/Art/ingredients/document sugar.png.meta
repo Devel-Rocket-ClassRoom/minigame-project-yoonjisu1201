@@ -116,10 +116,10 @@ TextureImporter:
       name: document sugar_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 5
-        width: 120
-        height: 110
+        x: 1
+        y: 11
+        width: 125
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

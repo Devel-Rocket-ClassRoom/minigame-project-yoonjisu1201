@@ -10,7 +10,9 @@ public class GhostSO : ScriptableObject
     public float patienceSeconds;
     public int unlockRank;
     public ArtifactSO artifact;
+    [Range(0f, 1f)] public float ArtifactDropChance;
     public string firstMeetDialogueID; //임시(대화)
     public string memoirDialogueID; //방명록id
     public bool isStoryGuest;
+    
 }

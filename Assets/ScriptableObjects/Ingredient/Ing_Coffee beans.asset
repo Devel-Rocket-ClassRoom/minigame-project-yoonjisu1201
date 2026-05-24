@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d40823c78e2db41997eaaf4602bf7e, type: 3}
   m_Name: Ing_coffee beans
   m_EditorClassIdentifier: Assembly-CSharp::IngredientSO
-  id: Ing_Coffee beans
+  id: Ing_coffee beans
   displayName: "\uC6D0\uB450"
   icon: {fileID: 21300000, guid: c1656cedf1c2a7b4fb99b21084dd02ab, type: 3}
   category: 0
