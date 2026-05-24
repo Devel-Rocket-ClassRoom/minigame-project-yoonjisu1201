@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e89f28c6b6db6043a62784a03703efe, type: 3}
+  m_Name: Ghost_5
+  m_EditorClassIdentifier: Assembly-CSharp::GhostSO
+  id: ghost_5
+  displayName: "\uBC29\uB791\uD558\uB294 \uC5EC\uD589\uAC00"
+  icon: {fileID: 21300000, guid: c0dc65d3f1d90104c96ea493d9a8ba31, type: 3}
+  patienceSeconds: 20
+  unlockRank: 5
+  artifact: {fileID: 11400000, guid: c7a9fa6c1fec90a42941e40c7cf7f7b4, type: 2}
+  ArtifactDropChance: 1
+  firstMeetDialogueID: 
+  memoirDialogueID: 
+  isStoryGuest: 1

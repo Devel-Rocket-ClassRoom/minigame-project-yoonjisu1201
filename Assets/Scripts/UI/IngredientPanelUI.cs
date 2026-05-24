@@ -13,13 +13,19 @@ public class IngredientPanelUI : MonoBehaviour
     [SerializeField] private Transform _buttonContainer;
 
     [SerializeField] private GameObject _ingredientPrefab;
-    //현재 해금된 재료 리스트
     [SerializeField] private List<IngredientSO> _allIngredients;
 
+    private List<IngredientSO> _sessionIngredients = new List<IngredientSO>();
     private IngredientCategory _currentCategory;
 
     public void Start()
     {
+        foreach (var ingredient in _allIngredients)
+        {
+            if (UnlockManager.instance.IsIngredientUnlocked(ingredient))
+                _sessionIngredients.Add(ingredient);
+        }
+
         _currentCategory = IngredientCategory.Base;
         ShowCategory(IngredientCategory.Base);
         //나중에 깔끔하게 바꾸기
@@ -38,7 +44,7 @@ public class IngredientPanelUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        foreach (var Ingredient in _allIngredients)
+        foreach (var Ingredient in _sessionIngredients)
         {
             if (Ingredient.category != category)
                 continue;
@@ -52,6 +58,6 @@ public class IngredientPanelUI : MonoBehaviour
     {
         //재료 눌렀을때 조리대에 재료 추가
         CookingSlotManager.Instance.AddIngredient(ingredient);
-        Debug.Log($"{ingredient.displayName} 선택");
+        //Debug.Log($"{ingredient.displayName} 선택");
     }
 }

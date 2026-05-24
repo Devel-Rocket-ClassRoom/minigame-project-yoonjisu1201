@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Ghost_3
   m_EditorClassIdentifier: Assembly-CSharp::GhostSO
   id: ghost_3
-  displayName: "\uBBF8\uB828\uC774 \uB0A8\uC740 \uD654\uAC00"
-  icon: {fileID: 21300000, guid: 6f1c4f69fea144c48908ec380c69963b, type: 3}
+  displayName: "\uBC14\uC05C \uC9C1\uC7A5\uC778 \uC601\uD63C"
+  icon: {fileID: 21300000, guid: 40838c902b32b8543b2474ec10c87c6a, type: 3}
   patienceSeconds: 20
   unlockRank: 3
-  artifact: {fileID: 11400000, guid: 269fe8f64f7384e4e8d1ff51af46860d, type: 2}
+  artifact: {fileID: 11400000, guid: ec7f30cfdfe131f45b92ad52d524651e, type: 2}
+  ArtifactDropChance: 1
   firstMeetDialogueID: 
   memoirDialogueID: 
   isStoryGuest: 1

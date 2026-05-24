@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Artifact_2
   m_EditorClassIdentifier: Assembly-CSharp::ArtifactSO
   id: artifact_2
-  displayName: "\uB0A1\uC740 \uC11C\uB958\uAC00\uBC29"
+  displayName: "\uBE5B\uB098\uB294 \uAD6C\uC2AC"
   icon: {fileID: 0}
   memoirText: 
   functionalDesc: 

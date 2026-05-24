@@ -42,21 +42,21 @@ public class CookingSlot : MonoBehaviour
         _ingredients.Add(ingredient);
         _state = CookingSlotState.Filling;
         OnStateChanged?.Invoke(_state);
-        Debug.Log($"조리대 재료 추가: 현재{_ingredients.Count}개, 조리대 상태: {_state}");
+        //Debug.Log($"조리대 재료 추가: 현재{_ingredients.Count}개, 조리대 상태: {_state}");
         string ingredientList = string.Join(", ", _ingredients.ConvertAll(i => i.displayName));
-        Debug.Log($"[{gameObject.name}] 재료 목록({_ingredients.Count}개): {ingredientList}");
+        //Debug.Log($"[{gameObject.name}] 재료 목록({_ingredients.Count}개): {ingredientList}");
     }
     public void StartCooking(float cookTime)
     {
         if (_state != CookingSlotState.Filling)
         {
-            Debug.Log($"조리대 상태: {_state}");
+            //Debug.Log($"조리대 상태: {_state}");
             return;
         }
         _state = CookingSlotState.Cooking;
         OnStateChanged?.Invoke(_state);
         _cookingCoroutine = StartCoroutine(CoCookingRoutine(cookTime));
-        Debug.Log($"요리 중 . . .{_state}");
+        //Debug.Log($"요리 중 . . .{_state}");
     }
 
     private IEnumerator CoCookingRoutine(float cookTime)
@@ -67,7 +67,7 @@ public class CookingSlot : MonoBehaviour
         _cookedRecipe = RecipeValidator.FindMatchingRecipe(
             new List<IngredientSO>(_ingredients), _availableRecipes);
 
-        Debug.Log(_cookedRecipe != null ? $"완성: {_cookedRecipe.displayName}" : "망한 음식");
+        //Debug.Log(_cookedRecipe != null ? $"완성: {_cookedRecipe.displayName}" : "망한 음식");
 
         _state = CookingSlotState.Ready;
         OnStateChanged?.Invoke(_state);
@@ -90,7 +90,7 @@ public class CookingSlot : MonoBehaviour
         _ingredients.Clear();
         _state = CookingSlotState.Empty;
         OnStateChanged?.Invoke(_state);
-        Debug.Log($"모든 재료를 버렸습니다. 현재{_ingredients.Count}개");
+        //Debug.Log($"모든 재료를 버렸습니다. 현재{_ingredients.Count}개");
     }
     //완성된 음식 서빙. 레시피 반환받아서 검증에 사용
      public void CollectAndReset()
