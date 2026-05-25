@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4c187f4d43f03514aa1ed7a92239c2ba
+guid: d8232f4de2924a54190ceef6e71462a0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 752041388917863795
-    second: lobbyBackground_0
+      213: -5525462932456349082
+    second: trukBackground 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lobbyBackground_0
+      name: trukBackground 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1672
-        height: 941
+        width: 1870
+        height: 841
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 37537d2a8a9cf6a00800000000000000
-      internalID: 752041388917863795
+      spriteID: 662e953fcbc9153b0800000000000000
+      internalID: -5525462932456349082
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lobbyBackground_0: 752041388917863795
+      trukBackground 1_0: -5525462932456349082
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

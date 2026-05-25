@@ -1,0 +1,38 @@
+{
+    "asset": "aeb7752b120407c4f80a613641cdc164",
+    "fileName": "019e5ebb-9a69-7c45-8ba9-6c502f806c1e.jpg",
+    "prompt": "Remove the three square bowls and all the food inside them (green vegetables, black olives, zucchini slices). Leave only the long horizontal wooden board that they were sitting on. The result should be a single, clean wooden plank. Remove any clutter behind or around the board.",
+    "negativePrompt": "",
+    "model": "flux-2-pro",
+    "modelName": "Flux 2 (Pro)",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 7,
+                "doodle": [],
+                "label": "Image",
+                "strength": 0.25,
+                "invertStrength": false,
+                "assetReferenceGuid": "aeb7752b120407c4f80a613641cdc164",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

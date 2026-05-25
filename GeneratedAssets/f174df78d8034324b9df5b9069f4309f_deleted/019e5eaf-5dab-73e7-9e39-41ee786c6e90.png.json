@@ -1,0 +1,38 @@
+{
+    "asset": "f174df78d8034324b9df5b9069f4309f",
+    "fileName": "019e5eaf-5dab-73e7-9e39-41ee786c6e90.png",
+    "prompt": "A single empty wooden tray compartment or slot, matching the art style and wooden texture of the reference image. The compartment is empty, with no ingredients. High quality game asset, 2D top-down perspective, matching the perspective and lighting of the reference image. Hand-painted stylized texture. Minimalist and clean.",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 7,
+                "doodle": [],
+                "label": "Image",
+                "strength": 0.25,
+                "invertStrength": false,
+                "assetReferenceGuid": "715f5aaf81fe53c448c74d7961475fd8",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

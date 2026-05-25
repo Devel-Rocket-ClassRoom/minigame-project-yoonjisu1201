@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c18d9f641ba00654e962fc3e4e085a6c
+guid: 9d961a09600ac4846b5cc1ab495c4d13
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4318672776030105150
-    second: cooking slot2_0
+      213: 3431994748983684211
+    second: "\uC7AC\uB8CC\uC2AC\uB86F2_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cooking slot2_0
+      name: "\uC7AC\uB8CC\uC2AC\uB86F2_0"
       rect:
         serializedVersion: 2
         x: 0
-        y: 8
-        width: 128
-        height: 115
+        y: 0
+        width: 256
+        height: 107
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e3eac6c22020feb30800000000000000
-      internalID: 4318672776030105150
+      spriteID: 37cad2c6a05e0af20800000000000000
+      internalID: 3431994748983684211
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cooking slot2_0: 4318672776030105150
+      "\uC7AC\uB8CC\uC2AC\uB86F2_0": 3431994748983684211
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

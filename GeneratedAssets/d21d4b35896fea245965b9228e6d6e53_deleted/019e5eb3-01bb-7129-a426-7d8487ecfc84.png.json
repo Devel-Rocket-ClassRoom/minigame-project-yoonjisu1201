@@ -1,0 +1,38 @@
+{
+    "asset": "d21d4b35896fea245965b9228e6d6e53",
+    "fileName": "019e5eb3-01bb-7129-a426-7d8487ecfc84.png",
+    "prompt": "A tiered wooden ingredient display stand with four steps, exactly matching the structure and perspective of the reference image. Each tier contains several empty rectangular trays or compartments. The trays are completely empty, with no ingredients, buns, vegetables, or sauces inside. Hand-painted stylized art style, warm wooden texture, isometric perspective, game asset quality. Transparent background.",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 7,
+                "doodle": [],
+                "label": "Image",
+                "strength": 0.25,
+                "invertStrength": false,
+                "assetReferenceGuid": "7562bb3970e42a5479b51d54c13780fb",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

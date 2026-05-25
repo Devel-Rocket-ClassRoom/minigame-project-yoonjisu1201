@@ -1,10 +1,12 @@
 fileFormatVersion: 2
-guid: 4c187f4d43f03514aa1ed7a92239c2ba
+guid: 902b1d1d345f15244bb8d38940ff610d
+labels:
+- UnityAI
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 752041388917863795
-    second: lobbyBackground_0
+      213: -5438346966275675916
+    second: f53be4c19b2a16bc098aca6ebec6efbd636e0f4b_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +54,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 95, y: 92, z: 87, w: 83}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -72,7 +74,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,23 +115,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lobbyBackground_0
+      name: f53be4c19b2a16bc098aca6ebec6efbd636e0f4b_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1672
-        height: 941
+        width: 526
+        height: 431
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 37537d2a8a9cf6a00800000000000000
-      internalID: 752041388917863795
+      spriteID: 4f8a0dd6f3c1784b0800000000000000
+      internalID: -5438346966275675916
       vertices: []
       indices: 
       edges: []
@@ -139,7 +141,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -148,7 +150,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lobbyBackground_0: 752041388917863795
+      f53be4c19b2a16bc098aca6ebec6efbd636e0f4b_0: -5438346966275675916
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
