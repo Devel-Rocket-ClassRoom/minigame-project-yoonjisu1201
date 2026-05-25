@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+//EXP / 등급 계산
 public class TruckRankManager : MonoBehaviour
 {
     public static TruckRankManager instance { get; private set; }
@@ -10,8 +11,7 @@ public class TruckRankManager : MonoBehaviour
     public float SessionExp { get; private set; } = 0f;
 
     //해금 관리하는곳에서 고둑
-    public event System.Action<int> OnRankUp = 
-        (x) => Debug.Log($"레벨업 {TruckRankManager.instance.CurrentRank}");
+    public event System.Action<int> OnRankUp;
 
     private void Awake()
     {

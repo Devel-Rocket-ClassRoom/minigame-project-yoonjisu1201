@@ -32,8 +32,6 @@ public static class RecipeValidator
         var expectedSpecial = new List<IngredientSO>(recipe.basicIngredients);
         expectedSpecial.Add(recipe.special_Ingredient);
 
-        Debug.Log($"[전용] {recipe.displayName}\n슬롯:       {string.Join(", ", slotIngredients.ConvertAll(i => i.displayName))}\n기대(일반): {string.Join(", ", expectedNormal.ConvertAll(i => i.displayName))}\n기대(스페셜): {string.Join(", ", expectedSpecial.ConvertAll(i => i.displayName))}");
-
         return slotIngredients.SequenceEqual(expectedNormal) || slotIngredients.SequenceEqual(expectedSpecial);
     }
     //Case 1 - 손님 서빙 시 - 주문한 메뉴와 일치하는지

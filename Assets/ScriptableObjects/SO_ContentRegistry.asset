@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f456cbee07ba9eb479b9168c956ff464, type: 3}
+  m_Name: SO_ContentRegistry
+  m_EditorClassIdentifier: Assembly-CSharp::ContentRegistrySO
+  allGhosts:
+  - {fileID: 11400000, guid: 4664bc7978310d5468eae710482e4710, type: 2}
+  - {fileID: 11400000, guid: 8150bc92cac558741b4778566fba3759, type: 2}
+  - {fileID: 11400000, guid: 265d00444297aeb4bb4ba28f16bff3cc, type: 2}
+  - {fileID: 11400000, guid: dcf6c695c97136e4d8351efa41d1b74e, type: 2}
+  allRecipes:
+  - {fileID: 11400000, guid: 0e7e52370ac3f7c4fbc2bfece5554724, type: 2}
+  - {fileID: 11400000, guid: 6d43ab5cc1b062f4a958f2e621e21901, type: 2}
+  - {fileID: 11400000, guid: 1fedc78ff1ff9a74aaacf0e60bdb82c5, type: 2}
+  - {fileID: 11400000, guid: f0bea6dbf8a9b3d40b13fb8742f6a98d, type: 2}
+  - {fileID: 11400000, guid: 3ffba11e0edaa4944ac52db4a5ad40a0, type: 2}

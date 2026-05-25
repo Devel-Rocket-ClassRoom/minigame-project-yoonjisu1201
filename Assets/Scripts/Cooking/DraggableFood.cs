@@ -71,9 +71,26 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
                 GoldPool.instance.Spawn(goldPos, earnedGold);
                 GoldManager.Instance.AddGold(earnedGold);
                 TruckRankManager.instance.AddExp(RankThresholds.EXP_PER_SERVE);
+
+                if (_recipe.isSignatureMenu && _recipe.ownerGhost == guest.GhostData)
+                {
+                    TryDropArtifact(guest.GhostData);
+                }
                 return;
             }
         }
         transform.position = _originPosition;
+    }
+
+    //유물 드롭 확률
+    private void TryDropArtifact(GhostSO ghost)
+    {
+        if (ghost.artifact == null) return;
+
+        float dropChance = ghost.ArtifactDropChance + GameContext.artifactDropChanceBonus;
+        float randomvalue = Random.value;
+        if (randomvalue < dropChance)
+            UnlockManager.instance.CollectArtifact(ghost.artifact);
+        Debug.Log($"{randomvalue}");
     }
 }

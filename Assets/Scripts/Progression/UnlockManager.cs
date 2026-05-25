@@ -52,6 +52,7 @@ public class UnlockManager : MonoBehaviour
         if (_unlockedRecipes.Add(recipe.id))
         {
             Debug.Log($"레시피 해금: {recipe.displayName}");
+            OnRecipeUnlocked?.Invoke (recipe);
             UnlockIngredientsFrom(recipe);
         }
     }
@@ -69,8 +70,12 @@ public class UnlockManager : MonoBehaviour
     public void UnlockIngredient(IngredientSO ing)
     {
         if (_unlockedIngredients.Add(ing.id))
+        {
             OnIngredientUnlocked?.Invoke(ing);
+            Debug.Log($"재료 해금: {ing.displayName}");
+        }
     }
+    //유물 개수, 해금만 관리. 
     public void CollectArtifact(ArtifactSO artifact)
     {
         if (!_artifactCounts.ContainsKey(artifact.id))
@@ -80,7 +85,7 @@ public class UnlockManager : MonoBehaviour
 
         if (count >= ARTIFACT_ABILITY_THRESHOLD)
         {
-            GoldManager.Instance.AddGold(ARTIFACT_ABILITY_THRESHOLD);
+            GoldManager.Instance.AddGold(_artifactOverflowGold);
             return;
         }
 
@@ -90,12 +95,14 @@ public class UnlockManager : MonoBehaviour
         {
             _unlockedArifacts.Add(artifact.id);
             OnArtifactUnlocked?.Invoke(artifact);
+            Debug.Log($"유물 해금: {IsArtifactUnlocked(artifact)}");
         }
 
         if (count + 1 == ARTIFACT_ABILITY_THRESHOLD)
         {
             _unlockedAbilities.Add(artifact.id);
             OnAbilityUnlocked?.Invoke(artifact);
+            Debug.Log($"능력 해금: {IsAbilityUnlocked(artifact)}");
         }
 
 

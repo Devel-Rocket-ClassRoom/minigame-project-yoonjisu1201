@@ -40,8 +40,15 @@ public class GuestSpawner : MonoBehaviour
                 yield return new WaitForSeconds(GameContext.customerSpawnInterval);
             }
 
-            GuestController prefab = _guestPrefabs[Random.Range(0, _guestPrefabs.Count)];
-            GuestController guest = Instantiate(prefab);
+            List<GuestController> unlockedPrefabs = new List<GuestController> ();
+            foreach (var prefab in _guestPrefabs)
+            {
+                if (UnlockManager.instance.IsGhostUnlocked(prefab.GhostData))
+                    unlockedPrefabs.Add(prefab);
+            }
+            if (unlockedPrefabs.Count == 0) continue;
+
+            GuestController guest = Instantiate(unlockedPrefabs[Random.Range(0, unlockedPrefabs.Count)]);
 
             _isGuestPresent = true;
 
