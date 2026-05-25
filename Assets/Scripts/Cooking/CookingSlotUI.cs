@@ -40,7 +40,7 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData) //이건 꼭 퍼블릭으로
     {
-        //Debug.Log($"{gameObject.name} 클릭됨");
+        Debug.Log($"{gameObject.name} 클릭됨");
         CookingSlotManager.Instance.SetActiveSlot(this);
     }
     public void SetHighlight(bool active)

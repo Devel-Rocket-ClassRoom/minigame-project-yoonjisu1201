@@ -5,10 +5,16 @@ public class RankUnlockHandler : MonoBehaviour
 {
     [SerializeField] private ContentRegistrySO _registry;
 
+    private void Awake()
+    {
+        if (true)
+        {
+            UnlockForRank(1);
+        }
+    }
+
     private void Start()
     {
-        UnlockForRank(1);
-
         TruckRankManager.instance.OnRankUp += UnlockForRank;
     }
     private void OnDestroy()

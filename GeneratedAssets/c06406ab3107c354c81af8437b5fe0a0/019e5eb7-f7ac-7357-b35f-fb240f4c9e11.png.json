@@ -1,0 +1,38 @@
+{
+    "asset": "c06406ab3107c354c81af8437b5fe0a0",
+    "fileName": "019e5eb7-f7ac-7357-b35f-fb240f4c9e11.png",
+    "prompt": "A single tier wooden base plate with one rectangular wooden tray on top, exactly matching the art style, warm wood texture, and isometric perspective of the reference image. The tray is completely empty. The base plate and tray must be perfectly aligned horizontally in isometric view. Minimalist game asset, 2D sprite, hand-painted stylized texture, transparent background. Remove all other tiers, flowers, and decorations.",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 7,
+                "doodle": [],
+                "label": "Image",
+                "strength": 0.25,
+                "invertStrength": false,
+                "assetReferenceGuid": "7562bb3970e42a5479b51d54c13780fb",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

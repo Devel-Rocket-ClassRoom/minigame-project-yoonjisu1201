@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "\uBCC4\uBE5B \uC0CC\uB4DC\uC704\uCE58"
   basicIngredients:
   - {fileID: 11400000, guid: 6702ed6c5b6d6f5408c1e8702b8ed0ce, type: 2}
-  - {fileID: 11400000, guid: 86777297db3704d46a8541b40c61ad85, type: 2}
+  - {fileID: 11400000, guid: 2e402a19a31a7f547b8300fca4326184, type: 2}
   - {fileID: 11400000, guid: cb958768bea36194dbd6358c13b6ffc7, type: 2}
   icon: {fileID: 21300000, guid: d5e6f949355ea174ab0f488837b91851, type: 3}
   cookTime: 8
