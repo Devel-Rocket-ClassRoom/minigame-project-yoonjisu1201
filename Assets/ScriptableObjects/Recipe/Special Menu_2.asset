@@ -17,8 +17,8 @@ MonoBehaviour:
   basicIngredients:
   - {fileID: 11400000, guid: 6702ed6c5b6d6f5408c1e8702b8ed0ce, type: 2}
   - {fileID: 11400000, guid: f0e6a26dc1c53ce46984571b7fc96363, type: 2}
-  - {fileID: 11400000, guid: b1fc54829cd6e6c4c873b5370d5b08ab, type: 2}
-  icon: {fileID: 21300000, guid: 14c8cead8c05467478b7ea631326b993, type: 3}
+  - {fileID: 11400000, guid: 2aa1d8a1e59686c44b0bb5575075f668, type: 2}
+  icon: {fileID: 21300000, guid: 5ec682fae0299ff449388309356ddecd, type: 3}
   cookTime: 12
   sellPrice: 50
   unlockRank: 2

@@ -25,5 +25,5 @@ MonoBehaviour:
   isSignatureMenu: 1
   ownerGhost: {fileID: 11400000, guid: f5382a3912ad3dd4a84a1e9206c4d2aa, type: 2}
   special_Ingredient: {fileID: 11400000, guid: bfa70f582d7180b4dae7a4fc5a260874, type: 2}
-  normalLast_Ing: {fileID: 11400000, guid: b1fc54829cd6e6c4c873b5370d5b08ab, type: 2}
+  normalLast_Ing: {fileID: 11400000, guid: cc826e8f78c30b241996136d249c3dcb, type: 2}
   dialogueID: 

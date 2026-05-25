@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1250af0ef79aaba48a63ab1338279f02, type: 2}
   - {fileID: 11400000, guid: f1238180def684f439469a1b4e415772, type: 2}
   - {fileID: 11400000, guid: c90f2b78fee065a48abbcfa84315c909, type: 2}
-  icon: {fileID: 21300000, guid: 3fa2e39835be80647938b59574bfe63b, type: 3}
+  icon: {fileID: 21300000, guid: 489a1f7201a840d458ef7b2abd6d9ddc, type: 3}
   cookTime: 12
   sellPrice: 50
   unlockRank: 3

@@ -42,9 +42,9 @@ public class CookingSlot : MonoBehaviour
         _ingredients.Add(ingredient);
         _state = CookingSlotState.Filling;
         OnStateChanged?.Invoke(_state);
-        //Debug.Log($"조리대 재료 추가: 현재{_ingredients.Count}개, 조리대 상태: {_state}");
+        Debug.Log($"조리대 재료 추가: 현재{_ingredients.Count}개, 조리대 상태: {_state}");
         string ingredientList = string.Join(", ", _ingredients.ConvertAll(i => i.displayName));
-        //Debug.Log($"[{gameObject.name}] 재료 목록({_ingredients.Count}개): {ingredientList}");
+        Debug.Log($"[{gameObject.name}] 재료 목록({_ingredients.Count}개): {ingredientList}");
     }
     public void StartCooking(float cookTime)
     {

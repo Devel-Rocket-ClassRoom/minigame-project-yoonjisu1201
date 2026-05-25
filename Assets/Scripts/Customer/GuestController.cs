@@ -11,12 +11,13 @@ public class GuestController : MonoBehaviour
     [SerializeField] private float _entrySpeed = 2.5f;
     [SerializeField] private float _exitSpeed = 5f;
     [SerializeField] private bool _defaultFacingLeft = false;
-    [SerializeField] private ContentRegistrySO _registry;
 
     public event System.Action OnExited; //GuestSpawner가 구독
     private const float SIGNATURE_ORDER_CHANCE = 0.8f;
+    private List<RecipeSO> _sessionRecipes = new List<RecipeSO>();
     private SpriteRenderer _renderer;
     private Coroutine _patienceCoroutine;
+
 
     private Vector3 _stopPos;
     private Vector3 _exitPos;
@@ -28,6 +29,7 @@ public class GuestController : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
     }
+
     public void Enter(Vector3 entryPos, Vector3 stopPos, Vector3 exitPos)
     {
         _stopPos = stopPos;
@@ -57,16 +59,11 @@ public class GuestController : MonoBehaviour
     }
     private RecipeSO PickOrder()
     {
-        List<RecipeSO> unlockedRecipes = new List<RecipeSO>();
-        RecipeSO signatureRecipe = null;
-        foreach (var recipe in _registry.allRecipes)
-        {
-            if (UnlockManager.instance.IsRecipeUnlocked(recipe))
-                unlockedRecipes.Add(recipe);
-        }
-        if (unlockedRecipes.Count == 0) return null;
+        if (_sessionRecipes.Count == 0) return null;
 
-        foreach (var recipe in unlockedRecipes)
+        RecipeSO signatureRecipe = null;
+
+        foreach (var recipe in _sessionRecipes)
         {
             if (recipe.isSignatureMenu && recipe.ownerGhost == GhostData)
             {
@@ -78,9 +75,7 @@ public class GuestController : MonoBehaviour
         if (signatureRecipe != null && Random.value < SIGNATURE_ORDER_CHANCE)
             return signatureRecipe;
 
-        return unlockedRecipes[Random.Range(0, unlockedRecipes.Count)];
-
-
+        return _sessionRecipes[Random.Range(0, _sessionRecipes.Count)];
     }
     //손님 퇴장, 이벤트로 DraggableFood에서 구독
     private IEnumerator CoExitRoutine()
@@ -128,6 +123,10 @@ public class GuestController : MonoBehaviour
         CurrentOrder = null;
         _orderPopup.Hide();
         StartCoroutine(CoExitRoutine());
+    }
+    public void SetSessionRecipes(List<RecipeSO> recipes)
+    {
+        _sessionRecipes = recipes;
     }
 
 }
