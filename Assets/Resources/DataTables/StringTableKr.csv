@@ -1,0 +1,106 @@
+﻿key,ko
+ghost_1_name,길 잃은 영혼
+ghost_2_name,부끄러운 꼬마 유령
+ghost_3_name,바쁜 직장인 영혼
+ghost_4_name,미련이 남은 화가
+ghost_5_name,방랑하는 여행가
+ghost_6_name,어린 베이커
+ghost_7_name,숲을 가꾸는 정령
+ghost_8_name,밤의 연주자
+ghost_9_name,책을 읽는 학자
+ghost_10_name,기다리는 할머니
+artifact_2_name,빛나는 구슬
+artifact_3_name,낡은 서류가방
+artifact_4_name,빛바랜 이젤
+artifact_5_name,낡은 지팡이
+artifact_6_name,은은한 밀대
+artifact_7_name,꿈틀거리는 새싹
+artifact_8_name,은빛 플루트
+artifact_9_name,낡은 돋보기
+artifact_10_name,황금빛 골무
+artifact_2_passive,음식을 다 먹은 손님이 퇴장하는 이동 속도가 15% 빨라져, 다음 대기 손님이 더 빨리 진입해요.
+artifact_3_passive,'망한 음식' 판정을 받았을 때, 30%의 확률로 위로금 10골드를 획득해요.
+artifact_4_passive,완성 후 방치된 음식이 상하기 시작하는 대기 시간이 15% 연장돼요.
+artifact_5_passive,손님들의 초기 인내심 게이지가 5% 증가한 상태로 시작해요.
+artifact_6_passive,영업이 종료되었을 때, 서빙에 성공한 총 음식 개수당 5골드의 보너스 정산금을 받아요.
+artifact_7_passive,영업 시작 시, 모든 슬롯의 첫 번째 조리 시간에 한해서만 조리 속도가 80% 빨라져요.
+artifact_8_passive,10%의 확률로 인내심 게이지가 일반 손님의 1.5배인 '느긋한 손님'이 등장해요.
+artifact_9_passive,손님 인내심이 바닥났을때 50% 확률로 인내심이 가득 채워져요.
+artifact_10_passive,???
+ghost_1_desc,안개 속을 헤매다 푸드트럭 불빛에 이끌려온 순수한 영혼.
+ghost_2_desc,트럭 뒤에 숨어 맛있는 냄새를 맡는 소심하고 귀여운 유령.
+ghost_3_desc,영혼이 되어서도 서류 가방을 놓지 못하는 바쁜 직장인.
+ghost_4_desc,미완성 캔버스에 미련이 남아 숲을 맴도는 고독한 화가.
+ghost_5_desc,낡은 지팡이와 함께 평생 세계를 유랑해 온 노련한 여행가.
+ghost_6_desc,달콤한 소보로 빵 향기를 좋아하는 꿈 많은 꼬마 베이커.
+ghost_7_desc,새싹과 소통하며 안개 낀 숲의 기운을 가꾸는 신비로운 정령.
+ghost_8_desc,달빛 아래서 외롭게 플루트를 연주하는 고독한 음악가.
+ghost_9_desc,낡은 돋보기로 책 속의 진리만을 탐구해 온 외고집 학자.
+ghost_10_desc,평생의 온기가 담긴 골무를 주인공에게 남겨준 트럭 주인.
+artifact_1_memoir,안개 속에서 길을 잃었는데 이 트럭의 따뜻한 불빛 덕분에 살았어요.
+artifact_2_memoir,저기... 음식이 너무 맛있어서 나도 모르게 용기 내서 숨바꼭질을 끝냈어...!
+artifact_3_memoir,가방 내려놓고 진한 라떼 한 잔 마시니까 이제야 진짜 숨을 쉬는 것 같네요.
+artifact_4_memoir,이 카나페의 완벽한 색감... 멈췄던 내 예술 혼을 다시 깨우는 맛이로군!
+artifact_5_memoir,낡은 지팡이 하나 짚고 전 세계를 돌았지만 이 마시멜로보다 달콤한 쉼터는 없었소.
+artifact_6_memoir,내가 구운 빵보다 훨씬 맛있어요! 저도 더 열심히 연습해서 멋진 요리사가 될래요.
+artifact_7_memoir,자연의 온기가 가득한 요리구나. 고마움의 표시로 작은 새싹을 두고 갈게.
+artifact_8_memoir,제 플루트 연주에 맞춰 와플을 구워주시던 그 다정한 소리를 잊지 못할 겁니다.
+artifact_9_memoir,수천 권의 책을 읽는 것보다 이 허브 티 한 잔을 음미하는 것이 진정한 지혜요.
+artifact_10_memoir,우리 푸드트럭을 이렇게 따뜻하게 지켜줘서 고맙다. 참 장하고 대견해.
+recipe_basic_1_name,별빛 샌드위치
+recipe_basic_2_name,달콤 과일 꼬치
+recipe_basic_3_name,따끈 별빛 스프
+recipe_special_2_name,달콤 크레페
+recipe_special_3_name,고농축 샷 라떼
+recipe_special_4_name,무지개 카나페
+recipe_special_5_name,영혼 충전 스모어 딥
+recipe_special_6_name,별 가루 소보로
+recipe_special_7_name,숲속 롤케이크
+recipe_special_8_name,은빛 선율 와플
+recipe_special_9_name,지혜의 허브 티
+recipe_special_10_name,황금빛 약과 타르트
+ing_a_bonfire_name,영혼모닥불
+ing_a_musical_note_chocolate_name,음표초콜릿
+ing_a_shining_ball_name,빛나는 구슬
+ing_banana_name,바나나
+ing_blueberry_name,블루베리
+ing_butter_name,버터
+ing_butterfly_candy_name,버터플라이 캔디
+ing_chocolate_syrup_name,초코릿 시럽
+ing_chocolate_name,초콜릿
+ing_coffee_beans_name,원두
+ing_corn_name,옥수수
+ing_cracker_name,크래커
+ing_document_sugar_name,서류더미 설탕
+ing_dough_name,반죽
+ing_gold_dust_name,금가루
+ing_hamcheese_name,햄치즈
+ing_honey_name,꿀
+ing_hot_water_name,뜨거운 물
+ing_hub_name,허브
+ing_ice_name,얼음
+ing_lemon_name,레몬
+ing_marshmallow_name,마시멜로우
+ing_matcha_cream_name,말차크림
+ing_milk_name,우유
+ing_pretzel_name,프레첼
+ing_sesame_name,깨
+ing_star_flower_name,별꽃
+ing_star_sprinkle_name,별가루
+ing_strawberry_name,딸기
+ing_sugar_name,설탕
+ing_three-colored_fruit_name,삼색과일
+ing_tomato_name,토마토
+ing_vegetable_name,야채
+ing_whipped_cream_name,휩핑크림
+ing_yakgwa_name,약과
+ui_ending_text,도감을 완성하여 할머니의 영광스러운 후계자 칭호를 얻었습니다.
+ui_label_fav_menu,좋아하는 메뉴
+ui_label_passive,패시브 능력
+ui_label_memoir,방명록
+ui_label_artifact,유물 수집 현황
+ui_label_locked,???
+ui_label_memoir_locked,방문 기록은 유물 1개를 획득하면 잠금 해제돼요!
+ui_label_special_ingredient,전용 재료
+
+
