@@ -14,20 +14,17 @@ public class GhostDetailPanelUI : MonoBehaviour
     [Header("좋아하는 메뉴")]
     [SerializeField] private Image _menuIcon;
     [SerializeField] private TextMeshProUGUI _menuNameText;
+    [SerializeField] private Image _specialIngredientIcon;
+    [SerializeField] private TextMeshProUGUI _specialIngredientText;
 
     [Header("유물")]
     [SerializeField] private Image _artifactIcon;
     [SerializeField] private TextMeshProUGUI _artifactNameText;
     [SerializeField] private TextMeshProUGUI _artifactDescText;
     [SerializeField] private Image[] _artifactStars;
-
-    [Header("메모")]
-    [SerializeField] private TextMeshProUGUI _likeMenuText;
-    [SerializeField] private TextMeshProUGUI _specialIngredientText;
-    [SerializeField] private TextMeshProUGUI _specialIngredientText2;
-    [SerializeField] private TextMeshProUGUI _artifactCountText;
     [SerializeField] private TextMeshProUGUI _guestBookText;
-    [SerializeField] private TextMeshProUGUI _passiveText;
+
+
 
     private static readonly Color STAR_ON = new Color(1f, 0.85f, 0.1f, 1f);
     private static readonly Color STAR_OFF = new Color(0.6f, 0.6f, 0.6f, 0.4f);
@@ -49,8 +46,8 @@ public class GhostDetailPanelUI : MonoBehaviour
     private void ShowUnlocked(GhostSO ghost, ContentRegistrySO registry)
     {
         _ghostIcon.sprite = ghost.icon;
-        _ghostNameText.text = ghost.displayName;
-        //_ghostDescText.text = ghost.description; 설명이 아직 없음
+        _ghostNameText.text = LocalizationManager.GetGhostName(ghost.id);
+        _ghostDescText.text = LocalizationManager.GetGhostDesc(ghost.id);
 
         //메뉴
         RecipeSO signature = FindSignatureRecipe(ghost, registry);
@@ -58,7 +55,13 @@ public class GhostDetailPanelUI : MonoBehaviour
         {
             _menuIcon.sprite = signature.icon;
             _menuIcon.color = Color.white;
-            _menuNameText.text = signature.displayName;
+            _menuNameText.text = LocalizationManager.GetRecipeName(signature.id);
+
+            if (signature.special_Ingredient != null)
+            {
+                _specialIngredientIcon.sprite = signature.special_Ingredient.icon;
+                _specialIngredientText.text = LocalizationManager.GetIngredientName(signature.special_Ingredient.id);
+            }
         }
         else
         {
@@ -71,9 +74,9 @@ public class GhostDetailPanelUI : MonoBehaviour
         {
             _artifactIcon.sprite = ghost.artifact.icon;
             _artifactIcon.color = Color.white;
-            _artifactNameText.text = ghost.artifact.displayName;
+            _artifactNameText.text = LocalizationManager.GetArtifactName(ghost.artifact.id);
 
-            _artifactDescText.text = ghost.artifact.functionalDesc;
+            _artifactDescText.text = LocalizationManager.GetArtifactPassive(ghost.artifact.id);
 
             int count = UnlockManager.instance.GetArtifacCount(ghost.artifact);
             for (int i = 0; i < _artifactStars.Length; i++)
@@ -88,9 +91,9 @@ public class GhostDetailPanelUI : MonoBehaviour
         bool _guestBookUnlocked = ghost.artifact != null
             && UnlockManager.instance.IsArtifactUnlocked(ghost.artifact);
         if (_guestBookUnlocked)
-            _guestBookText.text = "방명록 해제";
+            _guestBookText.text = LocalizationManager.GetArtifactMemoir(ghost.artifact.id);
         else
-            _guestBookText.text = "방명록 잠김";
+            _guestBookText.text = LocalizationManager.Get("ui_label_memoir_locked");
     }
     private void ShowLocked(GhostSO ghost)
     {

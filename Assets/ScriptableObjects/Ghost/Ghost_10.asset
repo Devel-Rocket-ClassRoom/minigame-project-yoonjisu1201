@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: "\uAE30\uB2E4\uB9AC\uB294 \uD560\uBA38\uB2C8"
   icon: {fileID: 21300000, guid: 5929e94ef82a93a4a9b4774ac35eb81e, type: 3}
   patienceSeconds: 20
-  unlockRank: 5
+  unlockRank: 10
   artifact: {fileID: 11400000, guid: 8c299126c69cada4eb162518dab08500, type: 2}
   ArtifactDropChance: 1
   firstMeetDialogueID: 

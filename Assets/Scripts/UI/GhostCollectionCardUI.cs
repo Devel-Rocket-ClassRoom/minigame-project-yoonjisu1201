@@ -17,6 +17,7 @@ public class GhostCollectionCardUI : MonoBehaviour
 
     private void Awake()
     {
+        _button = GetComponent<Button>();
         _button.onClick.AddListener(OnClicked);
     }
 
@@ -36,7 +37,7 @@ public class GhostCollectionCardUI : MonoBehaviour
 
         _ghostimage.sprite = _ghostData.icon;
         _ghostimage.color = unlocked ? UNLOCKED_COLOR : LOCKED_COLOR;
-        _ghostNameText.text = unlocked ? _ghostData.displayName : "???";
+        _ghostNameText.text = unlocked ? LocalizationManager.GetGhostName(_ghostData.id) : "???";
         _button.interactable = true;
 
     }
