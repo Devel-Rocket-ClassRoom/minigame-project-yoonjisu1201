@@ -1,0 +1,63 @@
+# Unity YAML 파일 - 줄바꿈 정규화 + merge driver 설정
+*.meta           merge=unityyamlmerge eol=lf
+*.unity          merge=unityyamlmerge eol=lf
+*.prefab         merge=unityyamlmerge eol=lf
+*.asset          merge=unityyamlmerge eol=lf
+*.anim           merge=unityyamlmerge eol=lf
+*.controller     merge=unityyamlmerge eol=lf
+*.overrideController merge=unityyamlmerge eol=lf
+*.physicsMaterial2D  merge=unityyamlmerge eol=lf
+*.playable       merge=unityyamlmerge eol=lf
+*.mat            merge=unityyamlmerge eol=lf
+*.cubemap        merge=unityyamlmerge eol=lf
+*.flare          merge=unityyamlmerge eol=lf
+*.renderTexture  merge=unityyamlmerge eol=lf
+*.spriteatlas    merge=unityyamlmerge eol=lf
+*.spriteatlasv2  merge=unityyamlmerge eol=lf
+*.terrainlayer   merge=unityyamlmerge eol=lf
+*.mixer          merge=unityyamlmerge eol=lf
+*.shadergraph    merge=unityyamlmerge eol=lf
+*.shadersubgraph merge=unityyamlmerge eol=lf
+*.inputactions   merge=unityyamlmerge eol=lf
+
+# 스크립트 - 줄바꿈 정규화
+*.cs             text eol=lf
+*.js             text eol=lf
+*.json           text eol=lf
+*.xml            text eol=lf
+*.csv            text eol=lf
+*.txt            text eol=lf
+*.md             text eol=lf
+*.shader         text eol=lf
+*.cginc          text eol=lf
+*.hlsl           text eol=lf
+
+# 바이너리 파일 - 변환 금지
+*.png            binary
+*.jpg            binary
+*.jpeg           binary
+*.gif            binary
+*.bmp            binary
+*.tga            binary
+*.tiff           binary
+*.psd            binary
+*.svg            binary
+*.ico            binary
+*.mp3            binary
+*.ogg            binary
+*.wav            binary
+*.mp4            binary
+*.mov            binary
+*.avi            binary
+*.fbx            binary
+*.obj            binary
+*.blend          binary
+*.ttf            binary
+*.otf            binary
+*.dll            binary
+*.so             binary
+*.a              binary
+*.zip            binary
+*.unitypackage   binary
+*.apk            binary
+*.aab            binary
