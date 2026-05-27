@@ -23,7 +23,7 @@ MonoBehaviour:
   sellPrice: 50
   unlockRank: 3
   isSignatureMenu: 1
-  ownerGhost: {fileID: 11400000, guid: dcf6c695c97136e4d8351efa41d1b74e, type: 2}
+  ownerGhost: {fileID: 11400000, guid: 265d00444297aeb4bb4ba28f16bff3cc, type: 2}
   special_Ingredient: {fileID: 11400000, guid: 9ab2c5755dcf64a40b216caf5ef1f4f0, type: 2}
   normalLast_Ing: {fileID: 11400000, guid: b6dda1ae708cef643925a4cae3590a85, type: 2}
   dialogueID: 

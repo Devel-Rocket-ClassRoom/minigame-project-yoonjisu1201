@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SO_ContentRegistry
   m_EditorClassIdentifier: Assembly-CSharp::ContentRegistrySO
   allGhosts:
+  - {fileID: 11400000, guid: 4664bc7978310d5468eae710482e4710, type: 2}
   - {fileID: 11400000, guid: 8150bc92cac558741b4778566fba3759, type: 2}
   - {fileID: 11400000, guid: 265d00444297aeb4bb4ba28f16bff3cc, type: 2}
-  - {fileID: 11400000, guid: dcf6c695c97136e4d8351efa41d1b74e, type: 2}
   - {fileID: 11400000, guid: 96e3ddbddc8f692468a0f92627c05312, type: 2}
   - {fileID: 11400000, guid: 84d6ca3aba0da8c4c80285ca2db82bb2, type: 2}
   - {fileID: 11400000, guid: 00ef8dfde00b205499e7de97d5ed8919, type: 2}
@@ -36,3 +36,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b8bf6d1808cc34245bdb4de4665f6e05, type: 2}
   - {fileID: 11400000, guid: bd1c44fec7364dd44bec52f42bf135c2, type: 2}
   - {fileID: 11400000, guid: 8432274865c80a44d9192121fd541be1, type: 2}
+  allArtifacts:
+  - {fileID: 11400000, guid: 77d9bdc4842e0004f83853c871802972, type: 2}
+  - {fileID: 11400000, guid: ec7f30cfdfe131f45b92ad52d524651e, type: 2}
+  - {fileID: 11400000, guid: 77183bbfeb0baef4c970156178d1871d, type: 2}
+  - {fileID: 11400000, guid: c7a9fa6c1fec90a42941e40c7cf7f7b4, type: 2}
+  - {fileID: 11400000, guid: ad481109af7be9d44b903302e511f193, type: 2}
+  - {fileID: 11400000, guid: cb205214e3e899e45b4d570ce9589c65, type: 2}
+  - {fileID: 11400000, guid: 7d53e991811c6ba4a84f955941693204, type: 2}
+  - {fileID: 11400000, guid: 17416e2f7b923c44e8694dbe9b0d46e4, type: 2}
+  - {fileID: 11400000, guid: 8c299126c69cada4eb162518dab08500, type: 2}

@@ -17,7 +17,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 40838c902b32b8543b2474ec10c87c6a, type: 3}
   patienceSeconds: 20
   unlockRank: 3
-  artifact: {fileID: 11400000, guid: 269fe8f64f7384e4e8d1ff51af46860d, type: 2}
+  artifact: {fileID: 11400000, guid: ec7f30cfdfe131f45b92ad52d524651e, type: 2}
   ArtifactDropChance: 1
   firstMeetDialogueID: 
   memoirDialogueID: 

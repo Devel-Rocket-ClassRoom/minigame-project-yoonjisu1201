@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.Collections;
-using System.Resources;
-using UnityEngine.iOS;
 
 public class LocalizationManager : MonoBehaviour
 {
@@ -19,6 +16,7 @@ public class LocalizationManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+
         LoadCSV("DataTables/StringTableKr");
     }
 
@@ -28,6 +26,7 @@ public class LocalizationManager : MonoBehaviour
         if (csv == null)
         {
             Debug.LogError($"[LocalizationManager] CSV 파일을 찾을 수 없음 : {resourcePath}");
+            return;
         }
 
         string[] lines = csv.text.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -48,8 +47,12 @@ public class LocalizationManager : MonoBehaviour
 
     public static string Get(string key)
     {
-        if (instance == null) return key; //?
-        if (instance._table.TryGetValue(key, out string value)) return value;
+        if (instance == null) return key;
+
+        if (instance._table.TryGetValue(key, out string value))
+        {
+            return value.Replace("\\n", "\n");
+        }
         Debug.LogWarning($"[LocalizationManager] 키 없음: '{key}'");
         return key;
     }
@@ -61,8 +64,11 @@ public class LocalizationManager : MonoBehaviour
     public static string GetGhostDesc(string id) => Get(NormalizeId(id) + "_desc");
     public static string GetArtifactName(string id) => Get(NormalizeId(id) + "_name");
     public static string GetArtifactPassive(string id) => Get(NormalizeId(id) + "_passive");
+    public static string GetArtifactDesc(string id) => Get(NormalizeId(id) + "_desc");
+    public static string GetArtifactPassiveName(string id) => Get(NormalizeId(id) + "_passive_name");
     public static string GetArtifactMemoir(string id) => Get(NormalizeId(id) + "_memoir");
     public static string GetRecipeName(string id) => Get(NormalizeId(id) + "_name");
     public static string GetRecipeDesc(string id) => Get(NormalizeId(id) + "_desc");
+    public static string GetRecipeMemo(string id) => Get(NormalizeId(id) + "_memo");
     public static string GetIngredientName(string id) => Get(NormalizeId(id) + "_name");
 }

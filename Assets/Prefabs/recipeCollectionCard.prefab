@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.399, y: 10}
-  m_SizeDelta: {x: 170.7594, y: 50}
+  m_AnchoredPosition: {x: 0.403, y: 10}
+  m_SizeDelta: {x: 153.604, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2661953667151519320
 CanvasRenderer:
@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 4906998876020587298}
   - component: {fileID: 5084348057462252455}
   - component: {fileID: 5342272788464634118}
-  - component: {fileID: 6216951444713536530}
   - component: {fileID: 2770592353959104864}
   - component: {fileID: 3416989186489484173}
   m_Layer: 5
@@ -156,20 +155,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6216951444713536530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4762085366710805018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a924dfd25170e04abc13bdc46a001bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GhostCollectionCardUI
-  _ghostimage: {fileID: 1739995517920007696}
-  _ghostNameText: {fileID: 7843364488331800710}
 --- !u!114 &2770592353959104864
 MonoBehaviour:
   m_ObjectHideFlags: 0

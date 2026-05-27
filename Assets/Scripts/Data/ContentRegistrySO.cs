@@ -9,6 +9,7 @@ public class ContentRegistrySO : ScriptableObject
 {
     public List<GhostSO> allGhosts;
     public List<RecipeSO> allRecipes;
+    public List<ArtifactSO> allArtifacts;
 
     public List<GhostSO> GetGhostsForRank(int rank)
     {
