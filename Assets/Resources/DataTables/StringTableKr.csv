@@ -10,14 +10,14 @@ ghost_8_name,밤의 연주자
 ghost_9_name,책을 읽는 학자
 ghost_10_name,기다리는 할머니
 artifact_2_name,빛나는 구슬
-artifact_3_name,낡은 서류가방
-artifact_4_name,빛바랜 이젤
-artifact_5_name,낡은 지팡이
+artifact_3_name,샐러리맨의 가방
+artifact_4_name,물감 묻은 붓
+artifact_5_name,여행자의 나침반
 artifact_6_name,은은한 밀대
 artifact_7_name,꿈틀거리는 새싹
 artifact_8_name,은빛 플루트
-artifact_9_name,낡은 돋보기
-artifact_10_name,황금빛 골무
+artifact_9_name,학자의 안경
+artifact_10_name,손뜨개 양말
 artifact_2_passive,음식을 다 먹은 손님이 퇴장하는 이동 속도가 15% 빨라져, 다음 대기 손님이 더 빨리 진입해요.
 artifact_3_passive,'망한 음식' 판정을 받았을 때, 30%의 확률로 위로금 10골드를 획득해요.
 artifact_4_passive,완성 후 방치된 음식이 상하기 시작하는 대기 시간이 15% 연장돼요.

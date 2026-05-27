@@ -8,7 +8,7 @@ public class GhostCollectionCardUI : MonoBehaviour
     [SerializeField] private Image _ghostimage;
     [SerializeField] private TextMeshProUGUI _ghostNameText;
 
-    private static readonly Color LOCKED_COLOR = new Color(0.25f, 0.25f, 0.25f, 1f);
+    private static readonly Color LOCKED_COLOR = Color.black;
     private static readonly Color UNLOCKED_COLOR = Color.white;
 
     private GhostSO _ghostData;

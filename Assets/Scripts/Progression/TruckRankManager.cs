@@ -6,6 +6,9 @@ public class TruckRankManager : MonoBehaviour
 {
     public static TruckRankManager instance { get; private set; }
 
+    [Header("DEBUG")]
+    [SerializeField] private int _debugStartRank = 1;
+
     public int CurrentRank { get; private set; } = 1;
     public float TotalExp { get; private set; } = 0f;
     public float SessionExp { get; private set; } = 0f;
@@ -22,6 +25,11 @@ public class TruckRankManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+#if UNITY_EDITOR
+        if (_debugStartRank > 1)
+            CurrentRank = _debugStartRank;
+#endif
     }
 
     public void AddExp(int amount)

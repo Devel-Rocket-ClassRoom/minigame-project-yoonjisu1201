@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e74d6192225dc48bd5442cfd3d67a0, type: 3}
   m_Name: Special Menu_8
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
-  id: special menu_8
+  id: recipe_special_8
   displayName: "\uC740\uBE5B \uC120\uC728 \uC640\uD50C"
   basicIngredients:
   - {fileID: 11400000, guid: 6702ed6c5b6d6f5408c1e8702b8ed0ce, type: 2}
