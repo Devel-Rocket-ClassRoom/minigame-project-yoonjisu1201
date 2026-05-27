@@ -51,7 +51,6 @@ public class UnlockManager : MonoBehaviour
     {
         if (_unlockedRecipes.Add(recipe.id))
         {
-            Debug.Log($"레시피 해금: {recipe.displayName}");
             OnRecipeUnlocked?.Invoke (recipe);
             UnlockIngredientsFrom(recipe);
         }

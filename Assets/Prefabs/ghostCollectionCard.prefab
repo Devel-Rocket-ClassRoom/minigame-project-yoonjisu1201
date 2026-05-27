@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5086394934552999462}
   - component: {fileID: 1023129637615477742}
   m_Layer: 5
-  m_Name: ghostCollection
+  m_Name: ghostCollectionCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

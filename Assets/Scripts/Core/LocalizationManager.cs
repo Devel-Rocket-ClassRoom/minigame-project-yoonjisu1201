@@ -63,5 +63,6 @@ public class LocalizationManager : MonoBehaviour
     public static string GetArtifactPassive(string id) => Get(NormalizeId(id) + "_passive");
     public static string GetArtifactMemoir(string id) => Get(NormalizeId(id) + "_memoir");
     public static string GetRecipeName(string id) => Get(NormalizeId(id) + "_name");
+    public static string GetRecipeDesc(string id) => Get(NormalizeId(id) + "_desc");
     public static string GetIngredientName(string id) => Get(NormalizeId(id) + "_name");
 }

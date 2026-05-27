@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Special Menu_7
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   id: recipe_special_7
-  displayName: "\uC232\uC18D \uB864\uCF00\uC774\uD06C"
   basicIngredients:
   - {fileID: 11400000, guid: 6702ed6c5b6d6f5408c1e8702b8ed0ce, type: 2}
   - {fileID: 11400000, guid: 5d391ffdb51406c4db63643b80937b1c, type: 2}
   - {fileID: 11400000, guid: 32ec5dcd2fb0c08428ecc108d5b10ed7, type: 2}
-  icon: {fileID: 21300000, guid: 8dade799afb99fe4083ca0bcc7def848, type: 3}
+  icon: {fileID: 21300000, guid: dd81bed07716d0a48a86d31cdb6a1498, type: 3}
+  specialIcon: {fileID: 21300000, guid: 8dade799afb99fe4083ca0bcc7def848, type: 3}
   cookTime: 12
   sellPrice: 50
   unlockRank: 7
