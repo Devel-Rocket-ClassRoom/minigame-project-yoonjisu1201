@@ -13,7 +13,7 @@ public class GuestController : MonoBehaviour
     [SerializeField] private bool _defaultFacingLeft = false;
 
     public event System.Action OnExited; //GuestSpawner가 구독
-    private const float SIGNATURE_ORDER_CHANCE = 0.8f;
+    private const float SIGNATURE_ORDER_CHANCE = 0.5f;
     private List<RecipeSO> _sessionRecipes = new List<RecipeSO>();
     private SpriteRenderer _renderer;
     private Coroutine _patienceCoroutine;
@@ -54,7 +54,7 @@ public class GuestController : MonoBehaviour
         transform.position = _stopPos;
         //이동이 멈춘 다음에 주문팝업 노출
         CurrentOrder = PickOrder();
-        _orderPopup.Show(CurrentOrder);
+        _orderPopup.Show(CurrentOrder, _ghostData);
         _patienceCoroutine = StartCoroutine(CoPatienceRoutine());
     }
     private RecipeSO PickOrder()

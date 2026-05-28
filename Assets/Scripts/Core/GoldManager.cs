@@ -23,6 +23,16 @@ public class GoldManager : MonoBehaviour
         TotalGold += amount;
         SessionGold += amount;
     }
+
+    public bool TrySpendGold(int amount)
+    {
+        if (TotalGold >= amount)
+        {
+            TotalGold -= amount;
+            return true;
+        }
+        return false;
+    }
     public void ResetSession()
     {
         SessionGold = 0;

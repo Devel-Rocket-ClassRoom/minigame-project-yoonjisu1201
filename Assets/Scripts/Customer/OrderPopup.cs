@@ -9,11 +9,15 @@ public class OrderPopup : MonoBehaviour
 
 
     //손님 컨트롤러에서 사용
-     public void Show(RecipeSO recipe)
+    public void Show(RecipeSO recipe, GhostSO ghostData)
     {
         if (recipe == null) return;
 
-        _menuIcon.sprite = recipe.icon;
+        if (recipe.isSignatureMenu && recipe.ownerGhost == ghostData)
+            _menuIcon.sprite = recipe.specialIcon;
+        else
+            _menuIcon.sprite = recipe.icon;
+
         SetGauge(1f);
         gameObject.SetActive(true);
     }

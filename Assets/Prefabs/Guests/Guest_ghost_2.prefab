@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e396a1503d73f478f4526b29a670cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  _ghostData: {fileID: 11400000, guid: 265d00444297aeb4bb4ba28f16bff3cc, type: 2}
+  _ghostData: {fileID: 11400000, guid: 8150bc92cac558741b4778566fba3759, type: 2}
   _orderPopup: {fileID: 3743839872323970747}
   _entrySpeed: 2.5
   _exitSpeed: 4
