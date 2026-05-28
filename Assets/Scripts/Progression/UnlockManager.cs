@@ -150,4 +150,11 @@ public class UnlockManager : MonoBehaviour
         return artifact != null &&
             _artifactCounts.TryGetValue(artifact.id, out int c) ? c : 0;
     }
+    public List<RecipeSO> GetUnlockedRecipes(ContentRegistrySO registry)
+    {
+        var result = new List<RecipeSO>();
+        foreach (var recipe in registry.allRecipes)
+            if (IsRecipeUnlocked(recipe)) result.Add(recipe);
+        return result;
+    }
 }

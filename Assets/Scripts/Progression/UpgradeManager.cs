@@ -5,11 +5,11 @@ public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager instance { get; private set; }
     //비용테이블 상수 - 실제 비용은 3주차에 조정
-    private static readonly int[] COOKSLOT_COSTS = { 200, 300 };
-    private static readonly int[] SPEEDUP_COSTS = { 100, 200, 350 };
-    private static readonly int[] COOK_BOARD_COSTS = { 150, 300 };
-    private static readonly int[] ORDER_HINT_COSTS = { 100, 200, 300 };
-    private static readonly int[] FAVORITE_SLOT_COSTS = { 200, 350 };
+    private static readonly int[] COOKSLOT_COSTS = { 101, 102 };
+    private static readonly int[] SPEEDUP_COSTS = { 201, 202, 203 };
+    private static readonly int[] COOK_BOARD_COSTS = { 301, 302 };
+    private static readonly int[] ORDER_HINT_COSTS = { 401, 402, 403 };
+    private static readonly int[] FAVORITE_SLOT_COSTS = { 501, 502 };
 
     private int _cookSlotLevel = 0;
     private int _speedUpLevel = 0;

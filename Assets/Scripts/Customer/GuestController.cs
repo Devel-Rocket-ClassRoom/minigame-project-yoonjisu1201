@@ -11,6 +11,7 @@ public class GuestController : MonoBehaviour
     [SerializeField] private float _entrySpeed = 2.5f;
     [SerializeField] private float _exitSpeed = 5f;
     [SerializeField] private bool _defaultFacingLeft = false;
+    [SerializeField] private int _stoppedSortingOrder = 0;
 
     public event System.Action OnExited; //GuestSpawner가 구독
     private const float SIGNATURE_ORDER_CHANCE = 0.5f;
@@ -45,6 +46,7 @@ public class GuestController : MonoBehaviour
     }
     private IEnumerator CoEntryRoutine()
     {
+        _renderer.sortingOrder = _stoppedSortingOrder - 10; // 이동 중 뒤로
         while (Vector2.Distance(transform.position, _stopPos) > 0.05f)
         {
             transform.position = Vector2.MoveTowards(transform.position, _stopPos,
@@ -52,6 +54,7 @@ public class GuestController : MonoBehaviour
             yield return null;
         }
         transform.position = _stopPos;
+        _renderer.sortingOrder = _stoppedSortingOrder; // 도착 후 앞으로
         //이동이 멈춘 다음에 주문팝업 노출
         CurrentOrder = PickOrder();
         _orderPopup.Show(CurrentOrder, _ghostData);
@@ -80,7 +83,8 @@ public class GuestController : MonoBehaviour
     //손님 퇴장, 이벤트로 DraggableFood에서 구독
     private IEnumerator CoExitRoutine()
     {
-        yield return new WaitForSeconds(1f);
+        _renderer.sortingOrder = _stoppedSortingOrder - 10; // 퇴장 시작하면 뒤로
+        yield return new WaitForSeconds(0.5f);
 
         if (_defaultFacingLeft)
             _renderer.flipX = transform.position.x < _exitPos.x;
@@ -98,7 +102,7 @@ public class GuestController : MonoBehaviour
     private IEnumerator CoPatienceRoutine()
     {
         float totalTimer = _ghostData.patienceSeconds * GameContext.customerPatienceMultiplier;
-        float timer = totalTimer;
+        float timer = 10f;  //테스트하느라 임시설정
         while (timer > 0f)
         {
             timer -= Time.deltaTime;

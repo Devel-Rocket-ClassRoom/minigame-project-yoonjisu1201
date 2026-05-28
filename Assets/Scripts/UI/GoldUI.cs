@@ -5,23 +5,28 @@ using TMPro;
 public class GoldUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _goldText;
-    [SerializeField] private bool _isRealtime;
     [SerializeField] private bool _showSesionGold;
 
     private void OnEnable()
     {
+        if (GoldManager.Instance != null)
+        {
+            GoldManager.Instance.OnGoldChanged += Refresh;
+            Refresh();
+        }
         Refresh();
     }
-    private void Update()
+    private void OnDisable()
     {
-        if (!_isRealtime) return;
-        Refresh();
+        if (GoldManager.Instance != null)
+            GoldManager.Instance.OnGoldChanged -= Refresh;
     }
+
     public void Refresh()
     {
         if (GoldManager.Instance == null) return;
         int gold = _showSesionGold ? GoldManager.Instance.SessionGold
             : GoldManager.Instance.TotalGold;
-        _goldText.text = $"{gold} G";
+        _goldText.text = $"{gold:#,###} G";
     }
 }

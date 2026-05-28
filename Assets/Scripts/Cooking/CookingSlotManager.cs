@@ -22,6 +22,8 @@ public class CookingSlotManager : MonoBehaviour
         {
             SetActiveSlot(_slots[0]);
         }
+        ApplySlotUpgrade();
+
     }
   
     public void SetActiveSlot(CookingSlotUI slotUI)
@@ -38,6 +40,14 @@ public class CookingSlotManager : MonoBehaviour
     {
         ActiveSlot?.CancelCooking();
     }
+    public void ApplySlotUpgrade()
+    {
+        int active = UpgradeManager.instance.ActiveSlotCount;
+        for (int i = 0; i < _slots.Count; i++)
+            _slots[i].gameObject.SetActive(i < active);
 
+        if (!_activeSlotUI.gameObject.activeSelf)
+            SetActiveSlot(_slots[0]);
+    }
 
 }

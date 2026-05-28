@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.9339995, y: 1.72, z: 0}
-  m_LocalScale: {x: 1.0664, y: 1.0664, z: 1.0664}
+  m_LocalScale: {x: 1.0664, y: 1.0664, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4058946349431092359}
@@ -111,7 +111,6 @@ MonoBehaviour:
   _entrySpeed: 2.5
   _exitSpeed: 4
   _defaultFacingLeft: 1
-  _registry: {fileID: 11400000, guid: 64c46ee1487e83b46b6fa2f6d8b886ba, type: 2}
 --- !u!70 &7321445594935010580
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
