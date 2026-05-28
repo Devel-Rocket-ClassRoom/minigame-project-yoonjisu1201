@@ -10,7 +10,7 @@ public class TruckRankManager : MonoBehaviour
     [SerializeField] private int _debugStartRank = 1;
 
     public int CurrentRank { get; private set; } = 1;
-    public float TotalExp { get; private set; } = 0f;
+    public float TotalExp { get; private set; } = 0f; 
     public float SessionExp { get; private set; } = 0f;
 
     //해금 관리하는곳에서 고둑

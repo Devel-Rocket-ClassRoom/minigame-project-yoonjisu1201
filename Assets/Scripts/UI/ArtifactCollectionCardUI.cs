@@ -6,9 +6,12 @@ public class ArtifactCollectionCardUI : MonoBehaviour
 {
     [SerializeField] private Image _artifactImage;
     [SerializeField] private TextMeshProUGUI _artifactNameText;
+    [SerializeField] private Image[] _stars;
 
     private static readonly Color LOCKED_COLOR = Color.black;
     private static readonly Color UNLOCKED_COLOR = Color.white;
+    private static readonly Color STAR_ON = new Color(1f, 0.85f, 0.1f, 1f);
+    private static readonly Color STAR_OFF = new Color(0.6f, 0.6f, 0.6f, 0.4f);
 
     private ArtifactSO _artifactData;
     private Button _button;
@@ -40,6 +43,11 @@ public class ArtifactCollectionCardUI : MonoBehaviour
             ? LocalizationManager.GetArtifactName(_artifactData.id)
             : "???";
         _button.interactable = true;
+
+        int count = UnlockManager.instance != null
+        ? UnlockManager.instance.GetArtifacCount(_artifactData) : 0;
+        for (int i = 0; i < _stars.Length; i++)
+            _stars[i].color = i < count ? STAR_ON : STAR_OFF;
     }
 
     private void OnClicked()

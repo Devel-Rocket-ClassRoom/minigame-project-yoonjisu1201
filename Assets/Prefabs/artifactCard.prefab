@@ -545,7 +545,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8000632480553677273}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -671,6 +671,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArtifactCollectionCardUI
   _artifactImage: {fileID: 1341578456212068699}
   _artifactNameText: {fileID: 167356477792827853}
+  _stars:
+  - {fileID: 6801278320669716455}
+  - {fileID: 3505623265657141967}
+  - {fileID: 3719786362030539298}
+  - {fileID: 8292591005210788092}
+  - {fileID: 3915020657931959396}
 --- !u!1001 &7405833598452378967
 PrefabInstance:
   m_ObjectHideFlags: 0

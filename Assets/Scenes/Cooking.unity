@@ -1122,9 +1122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GuestSpawner
   _registry: {fileID: 11400000, guid: 64c46ee1487e83b46b6fa2f6d8b886ba, type: 2}
   _guestPrefabs:
-  - {fileID: 5245644928372099623, guid: 45b4e68c9aac35448bc64575a1d11321, type: 3}
-  - {fileID: 1516874351441483764, guid: c6f2bc9da1371d24f93317b6f4c56fc4, type: 3}
-  - {fileID: 5399948996847082248, guid: 36ff5b7310d35774ba0515c2c45efdb9, type: 3}
+  - {fileID: 5245644928372099623, guid: 4474611070da36c438d3dd6eb478c41f, type: 3}
+  - {fileID: 1516874351441483764, guid: 45b4e68c9aac35448bc64575a1d11321, type: 3}
+  - {fileID: 5399948996847082248, guid: c6f2bc9da1371d24f93317b6f4c56fc4, type: 3}
   - {fileID: 8824106736081060970, guid: 22c035346f7dfc64690b3d7a37eac5b2, type: 3}
   - {fileID: 8824106736081060970, guid: b98bc194dc7d97540aea75df17c2f961, type: 3}
   - {fileID: 8824106736081060970, guid: 6aafe5af036fc054dab14573a56e1c58, type: 3}
@@ -3763,9 +3763,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GuestSpawner
   _registry: {fileID: 11400000, guid: 64c46ee1487e83b46b6fa2f6d8b886ba, type: 2}
   _guestPrefabs:
-  - {fileID: 5245644928372099623, guid: 45b4e68c9aac35448bc64575a1d11321, type: 3}
-  - {fileID: 1516874351441483764, guid: c6f2bc9da1371d24f93317b6f4c56fc4, type: 3}
-  - {fileID: 5399948996847082248, guid: 36ff5b7310d35774ba0515c2c45efdb9, type: 3}
+  - {fileID: 5245644928372099623, guid: 4474611070da36c438d3dd6eb478c41f, type: 3}
+  - {fileID: 1516874351441483764, guid: 45b4e68c9aac35448bc64575a1d11321, type: 3}
+  - {fileID: 5399948996847082248, guid: c6f2bc9da1371d24f93317b6f4c56fc4, type: 3}
   - {fileID: 8824106736081060970, guid: 22c035346f7dfc64690b3d7a37eac5b2, type: 3}
   - {fileID: 8824106736081060970, guid: b98bc194dc7d97540aea75df17c2f961, type: 3}
   - {fileID: 8824106736081060970, guid: 6aafe5af036fc054dab14573a56e1c58, type: 3}
@@ -4793,9 +4793,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GuestSpawner
   _registry: {fileID: 11400000, guid: 64c46ee1487e83b46b6fa2f6d8b886ba, type: 2}
   _guestPrefabs:
-  - {fileID: 5245644928372099623, guid: 45b4e68c9aac35448bc64575a1d11321, type: 3}
-  - {fileID: 1516874351441483764, guid: c6f2bc9da1371d24f93317b6f4c56fc4, type: 3}
-  - {fileID: 5399948996847082248, guid: 36ff5b7310d35774ba0515c2c45efdb9, type: 3}
+  - {fileID: 5245644928372099623, guid: 4474611070da36c438d3dd6eb478c41f, type: 3}
+  - {fileID: 1516874351441483764, guid: 45b4e68c9aac35448bc64575a1d11321, type: 3}
+  - {fileID: 5399948996847082248, guid: c6f2bc9da1371d24f93317b6f4c56fc4, type: 3}
   - {fileID: 8824106736081060970, guid: 22c035346f7dfc64690b3d7a37eac5b2, type: 3}
   - {fileID: 8824106736081060970, guid: b98bc194dc7d97540aea75df17c2f961, type: 3}
   - {fileID: 8824106736081060970, guid: 6aafe5af036fc054dab14573a56e1c58, type: 3}
