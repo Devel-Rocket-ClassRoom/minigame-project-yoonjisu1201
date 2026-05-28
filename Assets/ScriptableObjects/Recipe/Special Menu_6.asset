@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e74d6192225dc48bd5442cfd3d67a0, type: 3}
   m_Name: Special Menu_6
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
-  id: special menu_6
-  displayName: "\uBCC4 \uAC00\uB8E8 \uC18C\uBCF4\uB85C"
+  id: recipe_special_6
   basicIngredients:
   - {fileID: 11400000, guid: 6702ed6c5b6d6f5408c1e8702b8ed0ce, type: 2}
   - {fileID: 11400000, guid: 2587f9cf24ecb144bb1959b96fc26168, type: 2}
   - {fileID: 11400000, guid: f0e6a26dc1c53ce46984571b7fc96363, type: 2}
-  icon: {fileID: 21300000, guid: 4d3784c6d03059443b95e2119580bae5, type: 3}
+  icon: {fileID: 21300000, guid: c4bd159b42d63824a949ecce9a5100e6, type: 3}
+  specialIcon: {fileID: 21300000, guid: 4d3784c6d03059443b95e2119580bae5, type: 3}
   cookTime: 12
   sellPrice: 50
   unlockRank: 6

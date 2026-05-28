@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e74d6192225dc48bd5442cfd3d67a0, type: 3}
   m_Name: Special Menu_4
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
-  id: special menu_4
-  displayName: "\uBB34\uC9C0\uAC1C \uCE74\uB098\uD398"
+  id: recipe_special_4
   basicIngredients:
   - {fileID: 11400000, guid: 29d7ddf15f00eb54ba973adab9ddf0d5, type: 2}
   - {fileID: 11400000, guid: 2e402a19a31a7f547b8300fca4326184, type: 2}
   - {fileID: 11400000, guid: 2a55096ba384af04bbc63ac6469e7990, type: 2}
-  icon: {fileID: 21300000, guid: ee341945dd1f26249a398bfe6c9496dd, type: 3}
+  icon: {fileID: 21300000, guid: c275a12627f26e042812d63a62984a29, type: 3}
+  specialIcon: {fileID: 21300000, guid: ee341945dd1f26249a398bfe6c9496dd, type: 3}
   cookTime: 12
   sellPrice: 50
   unlockRank: 4
   isSignatureMenu: 1
-  ownerGhost: {fileID: 11400000, guid: dcf6c695c97136e4d8351efa41d1b74e, type: 2}
+  ownerGhost: {fileID: 11400000, guid: 96e3ddbddc8f692468a0f92627c05312, type: 2}
   special_Ingredient: {fileID: 11400000, guid: 012d4cf0c40a6914fba250e8cc62dd43, type: 2}
   normalLast_Ing: {fileID: 11400000, guid: b8babd419eaff6e439966ba1e6cb19e5, type: 2}
   dialogueID: 

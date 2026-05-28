@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IngredientSO
   id: Ing_document sugar
   displayName: "\uC11C\uB958\uB354\uBBF8 \uC124\uD0D5"
-  icon: {fileID: -8815475086986227609, guid: 39c94c7030dd4f94a9e7d5909b6bb485, type: 3}
+  icon: {fileID: 21300000, guid: 39c94c7030dd4f94a9e7d5909b6bb485, type: 3}
   category: 4

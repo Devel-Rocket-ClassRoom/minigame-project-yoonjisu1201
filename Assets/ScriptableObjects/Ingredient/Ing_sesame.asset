@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IngredientSO
   id: Ing_sesame
   displayName: "\uAE68"
-  icon: {fileID: 2533639470923380028, guid: 0580a9a3802458b4b81949b2740f2ddf, type: 3}
+  icon: {fileID: 21300000, guid: 0580a9a3802458b4b81949b2740f2ddf, type: 3}
   category: 3

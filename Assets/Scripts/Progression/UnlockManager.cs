@@ -5,7 +5,7 @@ using UnityEngine;
 //해금된 것들 저장, 해금 메서드, 해금 조회 메서드
 public class UnlockManager : MonoBehaviour
 {
-    public static UnlockManager instance {  get; private set; }
+    public static UnlockManager instance { get; private set; }
 
     //----------------------------------해금 저장
     //HashSet - 중복 없이 저장, Contains 조회 빠름
@@ -17,6 +17,11 @@ public class UnlockManager : MonoBehaviour
     private HashSet<string> _unlockedMemoirIds = new(); //방명록
 
     private Dictionary<string, int> _artifactCounts = new();
+
+    [Header("DEBUG")]
+    [SerializeField] private int _debugArtifactCount = 0;
+    [SerializeField] private int _debugMaxGhostRank = 1;  // 추가
+    [SerializeField] private ContentRegistrySO _debugRegistry;
 
     private const int ARTIFACT_ABILITY_THRESHOLD = 5;
     private int _artifactOverflowGold = 100;
@@ -38,6 +43,17 @@ public class UnlockManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+#if UNITY_EDITOR
+        if (_debugArtifactCount > 0 && _debugRegistry != null)
+            foreach (var ghost in _debugRegistry.allGhosts)
+            {
+                if (ghost.artifact == null) continue;
+                if (ghost.unlockRank > _debugMaxGhostRank) continue;  // 랭크 초과 스킵
+                for (int i = 0; i < _debugArtifactCount; i++)
+                    CollectArtifact(ghost.artifact);
+            }
+#endif
     }
     public void UnlockGhost(GhostSO ghost)
     {
@@ -51,8 +67,7 @@ public class UnlockManager : MonoBehaviour
     {
         if (_unlockedRecipes.Add(recipe.id))
         {
-            Debug.Log($"레시피 해금: {recipe.displayName}");
-            OnRecipeUnlocked?.Invoke (recipe);
+            OnRecipeUnlocked?.Invoke(recipe);
             UnlockIngredientsFrom(recipe);
         }
     }
@@ -132,7 +147,7 @@ public class UnlockManager : MonoBehaviour
 
     public int GetArtifacCount(ArtifactSO artifact)
     {
-        return artifact != null && 
-            _artifactCounts.TryGetValue(artifact.id, out int c)  ? c : 0;
+        return artifact != null &&
+            _artifactCounts.TryGetValue(artifact.id, out int c) ? c : 0;
     }
 }
