@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,6 +12,7 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private SpriteRenderer _highlightRenderer;
     [SerializeField] private SpriteRenderer _resultRenderer;
     [SerializeField] private DraggableFood _draggableFood;
+    [SerializeField] private IngredientPreviewEffect[] _ingredientPreviews;
 
     //상태별 스프라이트 -> 나중에 애니메이션 교체
     [SerializeField] private Sprite _spriteEmpty;
@@ -23,6 +26,10 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     public CookingSlot Slot => _slot;
     private float _testCookTime = 5f;
 
+    private Coroutine _hideCoroutine;
+    private int _previewIndex = 0;
+
+
     private void Awake()
     {
         _slot = GetComponent<CookingSlot>();
@@ -32,12 +39,20 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     private void OnEnable()
     {
         _slot.OnStateChanged += HandleStateChanged;
+        _slot.OnIngredientAdded += ShowIngredientPreview;
     }
 
     private void OnDisable()
     {
         _slot.OnStateChanged -= HandleStateChanged;
+        _slot.OnIngredientAdded -= ShowIngredientPreview;
     }
+    private void ShowIngredientPreview(IngredientSO ingredient)
+    {
+        _ingredientPreviews[_previewIndex].Play(ingredient.icon);
+        _previewIndex = (_previewIndex + 1) % _ingredientPreviews.Length;
+    }
+
     public void OnPointerClick(PointerEventData eventData) //이건 꼭 퍼블릭으로
     {
         Debug.Log($"{gameObject.name} 클릭됨");
@@ -83,9 +98,10 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
             _resultRenderer.enabled = false;
         }
     }
-    public void OnStartCookingButtonClicked()
+    public void StartCooking()
     {
-        _slot.StartCooking(_testCookTime);
+        float time = _testCookTime * UpgradeManager.instance.CookingSpeedMultiplier;
+        _slot.StartCooking(time);
     }
 
 }

@@ -4,8 +4,9 @@ public class GoldManager : MonoBehaviour
 {
     public static GoldManager Instance {  get; private set; }
 
-    public int TotalGold {  get; private set; }
+    public int TotalGold { get; private set; } = 10000;
     public int SessionGold {  get; private set; }
+    public event System.Action OnGoldChanged;
 
     private void Awake()
     {
@@ -22,6 +23,18 @@ public class GoldManager : MonoBehaviour
     {
         TotalGold += amount;
         SessionGold += amount;
+        OnGoldChanged?.Invoke();
+    }
+
+    public bool TrySpendGold(int amount)
+    {
+        if (TotalGold >= amount)
+        {
+            TotalGold -= amount;
+            OnGoldChanged?.Invoke();
+            return true;
+        }
+        return false;
     }
     public void ResetSession()
     {

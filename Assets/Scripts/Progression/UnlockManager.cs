@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using Unity.AppUI.MVVM;
 using UnityEngine;
 //해금된 것들 저장, 해금 메서드, 해금 조회 메서드
 public class UnlockManager : MonoBehaviour
@@ -149,5 +147,12 @@ public class UnlockManager : MonoBehaviour
     {
         return artifact != null &&
             _artifactCounts.TryGetValue(artifact.id, out int c) ? c : 0;
+    }
+    public List<RecipeSO> GetUnlockedRecipes(ContentRegistrySO registry)
+    {
+        var result = new List<RecipeSO>();
+        foreach (var recipe in registry.allRecipes)
+            if (IsRecipeUnlocked(recipe)) result.Add(recipe);
+        return result;
     }
 }

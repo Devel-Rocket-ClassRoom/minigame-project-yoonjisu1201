@@ -17,8 +17,13 @@ public class CookingSlot : MonoBehaviour
     private List<IngredientSO> _ingredients;
     private Coroutine _cookingCoroutine;
     [SerializeField] private float spoilTime = 10f;
-    [SerializeField] private List<RecipeSO> _availableRecipes; //활성화된 레시피
+    private List<RecipeSO> _availableRecipes; //활성화된 레시피
+    [SerializeField] private ContentRegistrySO _registry;
     private RecipeSO _cookedRecipe;
+
+    private const int MAX_INGREDIENTS = 4;
+
+    public event System.Action<IngredientSO> OnIngredientAdded; //슬롯UI에서 구독
 
     public CookingSlotState State => _state;
     public RecipeSO CookedRecipe => _cookedRecipe;
@@ -32,12 +37,16 @@ public class CookingSlot : MonoBehaviour
         _ingredients = new List<IngredientSO>();
         _state = CookingSlotState.Empty;
     }
+    private void Start()
+    {
+        _availableRecipes = UnlockManager.instance.GetUnlockedRecipes(_registry);
+    }
 
-    
+
     public void AddIngredient(IngredientSO ingredient)
     {
-        if (_state != CookingSlotState.Empty && _state != CookingSlotState.Filling)
-            return;
+        if (_state != CookingSlotState.Empty && _state != CookingSlotState.Filling) return;
+        if (_ingredients.Count >= MAX_INGREDIENTS) return;
 
         _ingredients.Add(ingredient);
         _state = CookingSlotState.Filling;
@@ -45,6 +54,7 @@ public class CookingSlot : MonoBehaviour
         Debug.Log($"조리대 재료 추가: 현재{_ingredients.Count}개, 조리대 상태: {_state}");
         string ingredientList = string.Join(", ", _ingredients.ConvertAll(i => i.displayName));
         Debug.Log($"[{gameObject.name}] 재료 목록({_ingredients.Count}개): {ingredientList}");
+        OnIngredientAdded?.Invoke(ingredient);
     }
     public void StartCooking(float cookTime)
     {
