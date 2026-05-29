@@ -98,7 +98,7 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
             _resultRenderer.enabled = false;
         }
     }
-    public void OnStartCookingButtonClicked()
+    public void StartCooking()
     {
         float time = _testCookTime * UpgradeManager.instance.CookingSpeedMultiplier;
         _slot.StartCooking(time);

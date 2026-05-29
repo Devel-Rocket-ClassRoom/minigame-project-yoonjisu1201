@@ -102,7 +102,7 @@ public class GuestController : MonoBehaviour
     private IEnumerator CoPatienceRoutine()
     {
         float totalTimer = _ghostData.patienceSeconds * GameContext.customerPatienceMultiplier;
-        float timer = 10f;  //테스트하느라 임시설정
+        float timer = totalTimer;  //테스트하느라 임시설정
         while (timer > 0f)
         {
             timer -= Time.deltaTime;

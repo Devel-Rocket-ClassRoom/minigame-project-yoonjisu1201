@@ -36,6 +36,10 @@ public class CookingSlotManager : MonoBehaviour
     {
         ActiveSlot?.AddIngredient(ingredient);
     }
+    public void OnStartCooking()
+    {
+        _activeSlotUI?.StartCooking();
+    }
     public void OnCancelCooking()
     {
         ActiveSlot?.CancelCooking();

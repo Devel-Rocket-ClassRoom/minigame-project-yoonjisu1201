@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using Unity.AppUI.MVVM;
 using UnityEngine;
 //해금된 것들 저장, 해금 메서드, 해금 조회 메서드
 public class UnlockManager : MonoBehaviour
