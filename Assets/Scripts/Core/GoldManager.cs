@@ -4,7 +4,7 @@ public class GoldManager : MonoBehaviour
 {
     public static GoldManager Instance {  get; private set; }
 
-    public int TotalGold { get; private set; } = 10000;
+    public int TotalGold { get; private set; } = 0;
     public int SessionGold {  get; private set; }
     public event System.Action OnGoldChanged;
 

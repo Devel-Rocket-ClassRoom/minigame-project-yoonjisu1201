@@ -27,6 +27,6 @@ public class GoldUI : MonoBehaviour
         if (GoldManager.Instance == null) return;
         int gold = _showSesionGold ? GoldManager.Instance.SessionGold
             : GoldManager.Instance.TotalGold;
-        _goldText.text = $"{gold:#,###} G";
+        _goldText.text = $"{gold:#,##0} G";
     }
 }

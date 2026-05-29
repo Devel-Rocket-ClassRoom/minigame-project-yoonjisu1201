@@ -14,7 +14,7 @@ public class RecipeDetailPanelUI : MonoBehaviour
 
     [Header("기본재료 (3종)")]
     [SerializeField] private Image[] _basicIngredientImages;           // 길이 3
-    [SerializeField] private TextMeshProUGUI[] _basicIngredientNames;  // 길이 3
+    //[SerializeField] private TextMeshProUGUI[] _basicIngredientNames;  // 길이 3
 
     [Header("특별 버전 (특별재료 → 특별메뉴)")]
     [SerializeField] private Image _specialIngredientImage;
@@ -56,9 +56,9 @@ public class RecipeDetailPanelUI : MonoBehaviour
                           && recipe.basicIngredients[i] != null;
 
             SetImage(_basicIngredientImages[i], hasIng ? recipe.basicIngredients[i].icon : null, unlocked);
-            _basicIngredientNames[i].text = hasIng && unlocked
-                ? LocalizationManager.GetIngredientName(recipe.basicIngredients[i].id)
-                : (hasIng ? "???" : "-");
+            //_basicIngredientNames[i].text = hasIng && unlocked
+            //    ? LocalizationManager.GetIngredientName(recipe.basicIngredients[i].id)
+            //    : (hasIng ? "???" : "-");
         }
 
         // 공통: 메모
