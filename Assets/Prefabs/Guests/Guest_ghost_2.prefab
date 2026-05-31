@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3831553203204242550}
   - component: {fileID: 3019170087463396055}
   - component: {fileID: 1516874351441483764}
-  - component: {fileID: 1014917106351736244}
+  - component: {fileID: 5596592445853376356}
   m_Layer: 0
   m_Name: Guest_ghost_2
   m_TagString: Untagged
@@ -105,14 +105,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34e396a1503d73f478f4526b29a670cf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  m_EditorClassIdentifier: Assembly-CSharp::GuestController
   _ghostData: {fileID: 11400000, guid: 8150bc92cac558741b4778566fba3759, type: 2}
   _orderPopup: {fileID: 3743839872323970747}
   _entrySpeed: 2.5
-  _exitSpeed: 4
+  _entryBobAmplitude: 0.1
+  _entryBobSpeed: 8
+  _exitSpeed: 5
   _defaultFacingLeft: 0
---- !u!70 &1014917106351736244
-CapsuleCollider2D:
+  _stoppedSortingOrder: 0
+--- !u!61 &5596592445853376356
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -145,9 +148,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.027486771, y: 0.04123094}
-  m_Size: {x: 1.361541, y: 2.1037045}
-  m_Direction: 0
+  m_Offset: {x: 0.75, y: 0.32}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 3.67, y: 3.23}
+  m_EdgeRadius: 0
 --- !u!1001 &6119907240050301931
 PrefabInstance:
   m_ObjectHideFlags: 0

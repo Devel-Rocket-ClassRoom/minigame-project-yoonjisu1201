@@ -16,6 +16,7 @@ public class CookingSlot : MonoBehaviour
     private CookingSlotState _state;
     private List<IngredientSO> _ingredients;
     private Coroutine _cookingCoroutine;
+    private Coroutine _spoilCoroutine;
     [SerializeField] private float spoilTime = 10f;
     private List<RecipeSO> _availableRecipes; //활성화된 레시피
     [SerializeField] private ContentRegistrySO _registry;
@@ -24,6 +25,7 @@ public class CookingSlot : MonoBehaviour
     private const int MAX_INGREDIENTS = 4;
 
     public event System.Action<IngredientSO> OnIngredientAdded; //슬롯UI에서 구독
+    public event System.Action OnIngredientsFull;
 
     public CookingSlotState State => _state;
     public RecipeSO CookedRecipe => _cookedRecipe;
@@ -55,6 +57,8 @@ public class CookingSlot : MonoBehaviour
         string ingredientList = string.Join(", ", _ingredients.ConvertAll(i => i.displayName));
         Debug.Log($"[{gameObject.name}] 재료 목록({_ingredients.Count}개): {ingredientList}");
         OnIngredientAdded?.Invoke(ingredient);
+        if (_ingredients.Count == MAX_INGREDIENTS)
+            OnIngredientsFull?.Invoke();
     }
     public void StartCooking(float cookTime)
     {
@@ -81,7 +85,8 @@ public class CookingSlot : MonoBehaviour
 
         _state = CookingSlotState.Ready;
         OnStateChanged?.Invoke(_state);
-        StartCoroutine(CoSpoilRoutine(spoilTime));
+        if (_cookedRecipe != null)
+            _spoilCoroutine = StartCoroutine(CoSpoilRoutine(spoilTime));
     }
     private IEnumerator CoSpoilRoutine(float spoilTime)
     {
@@ -97,6 +102,11 @@ public class CookingSlot : MonoBehaviour
     {
         if (_state == CookingSlotState.Empty || _state == CookingSlotState.Cooking)
             return;
+        if (_spoilCoroutine != null)
+        {
+            StopCoroutine(_spoilCoroutine);
+            _spoilCoroutine = null;
+        }
         _ingredients.Clear();
         _state = CookingSlotState.Empty;
         OnStateChanged?.Invoke(_state);
@@ -108,6 +118,11 @@ public class CookingSlot : MonoBehaviour
         if (_state != CookingSlotState.Ready)
             return;
 
+        if (_spoilCoroutine != null)
+        {
+            StopCoroutine(_spoilCoroutine);
+            _spoilCoroutine = null;
+        }
         _ingredients.Clear();
         _cookedRecipe = null;
         _state = CookingSlotState.Empty;

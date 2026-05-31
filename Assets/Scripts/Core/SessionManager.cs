@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SessionManager : MonoBehaviour
 {
-    [SerializeField] private float _sessionDuration = 5f; //한 세션 2분
+    [SerializeField] private float _sessionDuration = 90f; 
     [SerializeField] private List<GuestSpawner> _spawners;
     [SerializeField] private GameObject _closingPanel;
 
@@ -13,6 +13,8 @@ public class SessionManager : MonoBehaviour
     public float SessionDuration => _sessionDuration;
     public float RemainingTime { get; private set; }
     public bool IsSessionActive { get; private set; }
+
+    private Coroutine _sessionTimerCoroutine;
 
     private void Awake()
     {
@@ -22,9 +24,24 @@ public class SessionManager : MonoBehaviour
     {
         RemainingTime = _sessionDuration;
         IsSessionActive = true;
-        StartCoroutine(CoSessionTimer());
+
         GoldManager.Instance.ResetSession();
         TruckRankManager.instance.ResetSession();
+
+        PreparedRecipeManager.Instance.BeginPrepareFlow();
+    }
+    public void StartSessionAfterPrepare()
+    {
+        RemainingTime = _sessionDuration;
+        IsSessionActive = true;
+
+        foreach (var spawner in _spawners)
+            spawner.StartSpawning();
+
+        if (_sessionTimerCoroutine != null)
+            StopCoroutine(_sessionTimerCoroutine);
+
+        _sessionTimerCoroutine = StartCoroutine(CoSessionTimer());
     }
     private IEnumerator CoSessionTimer()
     {
@@ -42,13 +59,14 @@ public class SessionManager : MonoBehaviour
         foreach (var spawner in _spawners)
         {
             spawner.StopSpawning();
+            spawner.ForceExitEnteringGuest();
         }
         StartCoroutine(CoWaitForGuestsAndClose());
     }
     private IEnumerator CoWaitForGuestsAndClose()
     {
         //All -> List의 모든 원소가 조건을 만족해야한다.
-        yield return new WaitUntil(() => _spawners.All(s => !s.IsGuestPresent));
+        yield return new WaitUntil(() => _spawners.All(s => !s.HasOrderingGuest));
         _closingPanel.SetActive(true);
     }
 

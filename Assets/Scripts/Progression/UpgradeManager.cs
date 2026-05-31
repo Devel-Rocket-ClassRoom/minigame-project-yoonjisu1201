@@ -9,13 +9,13 @@ public class UpgradeManager : MonoBehaviour
     private static readonly int[] SPEEDUP_COSTS = { 201, 202, 203 };
     private static readonly int[] COOK_BOARD_COSTS = { 301, 302 };
     private static readonly int[] ORDER_HINT_COSTS = { 401, 402, 403 };
-    private static readonly int[] FAVORITE_SLOT_COSTS = { 501, 502 };
+    private static readonly int[] CONTAINER_SLOT_COSTS = { 501, 502 };
 
     private int _cookSlotLevel = 0;
     private int _speedUpLevel = 0;
     private int _cookBoardLevel = 0;
     private int _orderHintLevel = 0;
-    private int _favoriteSlotLevel = 0;
+    private int _containerSlotLevel = 0;
 
     public int ActiveSlotCount => _cookSlotLevel + 1;
     public float CookingSpeedMultiplier => _speedUpLevel switch
@@ -30,7 +30,7 @@ public class UpgradeManager : MonoBehaviour
     public int SpeedUpLevel => _speedUpLevel;
     public int OrderBoardLevel => _cookBoardLevel;
     public int OrderHintLevel => _orderHintLevel;
-    public int FavoriteSlotCount => _favoriteSlotLevel;
+    public int ContainerSlotCount => _containerSlotLevel;
     public int SlotNextCost => _cookSlotLevel < COOKSLOT_COSTS.Length ?
         COOKSLOT_COSTS[_cookSlotLevel] : 0;
     public int SpeedUpNextCost => _speedUpLevel < SPEEDUP_COSTS.Length ?
@@ -39,8 +39,8 @@ public class UpgradeManager : MonoBehaviour
         COOK_BOARD_COSTS[_cookBoardLevel] : 0;
     public int OrderHintNextCost => _orderHintLevel < ORDER_HINT_COSTS.Length ? 
         ORDER_HINT_COSTS[_orderHintLevel] : 0;
-    public int FavoriteSlotNextCost => _favoriteSlotLevel < FAVORITE_SLOT_COSTS.Length ?
-        FAVORITE_SLOT_COSTS[_favoriteSlotLevel] : 0;
+    public int ContainerSlotNextCost => _containerSlotLevel < CONTAINER_SLOT_COSTS.Length ?
+        CONTAINER_SLOT_COSTS[_containerSlotLevel] : 0;
 
     private void Awake()
     {
@@ -98,14 +98,14 @@ public class UpgradeManager : MonoBehaviour
         _orderHintLevel++;
         return true;
     }
-    public bool CanUpgradeFavorite() =>
-        _favoriteSlotLevel < FAVORITE_SLOT_COSTS.Length &&
-        GoldManager.Instance.TotalGold >= FAVORITE_SLOT_COSTS[_favoriteSlotLevel];
-    public bool TryUpgradeFavoriteSlot()
+    public bool CanUpgradeContainer() =>
+        _containerSlotLevel < CONTAINER_SLOT_COSTS.Length &&
+        GoldManager.Instance.TotalGold >= CONTAINER_SLOT_COSTS[_containerSlotLevel];
+    public bool TryUpgradeContainerSlot()
     {
-        if (!CanUpgradeFavorite()) return false;
-        GoldManager.Instance.TrySpendGold(FAVORITE_SLOT_COSTS[_favoriteSlotLevel]);
-        _favoriteSlotLevel++;
+        if (!CanUpgradeContainer()) return false;
+        GoldManager.Instance.TrySpendGold(CONTAINER_SLOT_COSTS[_containerSlotLevel]);
+        _containerSlotLevel++;
         return true;
     }
 }

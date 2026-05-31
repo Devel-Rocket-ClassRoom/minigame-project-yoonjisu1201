@@ -1,0 +1,38 @@
+{
+    "asset": "8fb45d1fe0835104c85164b445d0cdcd",
+    "fileName": "019e79b1-57e1-7b8a-9429-03f4ab7e550a.mp4",
+    "prompt": "Close-up animated 2D sprite of a cooking pot boiling. Large pot that fills the frame, matching the proportions and size of the reference image. Cute tycoon game style, vibrant colors. Bubbles rising from the soup, steam wisps coming out. 4x4 grid, seamless loop.",
+    "negativePrompt": "",
+    "model": "video-seedance-1-pro",
+    "modelName": "Seedance 1 Pro",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Spritesheet",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 9,
+                "doodle": [],
+                "label": "First",
+                "strength": 1.0,
+                "invertStrength": false,
+                "assetReferenceGuid": "f45f76bdd92f21c4093cd093179ea229",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 0,
+        "height": 0
+    },
+    "spriteSheet": true,
+    "duration": 5.0
+}

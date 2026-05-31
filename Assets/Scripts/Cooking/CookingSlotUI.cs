@@ -19,15 +19,18 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     //상태별 스프라이트 -> 나중에 애니메이션 교체
     [SerializeField] private Sprite _spriteEmpty;
     [SerializeField] private Sprite _spriteFilling;
-    [SerializeField] private Sprite _spriteCooking;
     [SerializeField] private Sprite _spriteReady;
     [SerializeField] private Sprite _spriteSpoiled;
     [SerializeField] private Sprite _spriteFail;
-    [SerializeField] private float _resultSize = 1f;
+    [SerializeField] private Sprite _spriteFailResult;
+
+    [Header("애니메이션")]
+    [SerializeField] private Animator _stateAnimator;
 
     public CookingSlot Slot => _slot;
     private float _testCookTime = 5f;
 
+    private static readonly int StateParam = Animator.StringToHash("State");
     private Coroutine _hideCoroutine;
     private int _previewIndex = 0;
 
@@ -37,6 +40,8 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
         _slot = GetComponent<CookingSlot>();
         _highlightRenderer.enabled = false;
         _resultRenderer.enabled = false;
+        if (_stateAnimator != null)
+            _stateAnimator.enabled = false;
     }
     private void Start()
     {
@@ -82,6 +87,7 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
             _ingredientIconSlots[count - 1].sprite = ingredient.icon;
             _ingredientIconSlots[count - 1].enabled = true;
         }
+
     }
 
     public void OnPointerClick(PointerEventData eventData) //이건 꼭 퍼블릭으로
@@ -102,38 +108,57 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
             if (_ingredientIconSlots != null)
                 foreach (var slot in _ingredientIconSlots)
                     slot.enabled = false;
+            _draggableFood.enabled = false;
+            _draggableFood.GetComponent<Collider2D>().enabled = false;
         }
         if (_ingredientCountText != null)
             _ingredientCountText.enabled = (state == CookingSlotState.Empty || state == CookingSlotState.Filling)
                 && UpgradeManager.instance.OrderBoardLevel == 1;
 
-        _stateRenderer.sprite = state switch
+        bool isCooking = state == CookingSlotState.Cooking;
+        _stateAnimator.enabled = isCooking;
+        if (isCooking)
         {
-            CookingSlotState.Empty => _spriteEmpty,
-            CookingSlotState.Filling => _spriteFilling,
-            CookingSlotState.Cooking => _spriteCooking,
-            CookingSlotState.Ready => _spriteReady,
-            CookingSlotState.Spoiled => _spriteSpoiled,
-            _ => _spriteEmpty,
-        };
+            _stateAnimator.SetInteger(StateParam, (int)state);
+        }
+        else
+        {
+            _stateRenderer.sprite = state switch
+            {
+                CookingSlotState.Empty => _spriteEmpty,
+                CookingSlotState.Filling => _spriteFilling,
+                CookingSlotState.Ready => _spriteReady,
+                CookingSlotState.Spoiled => _spriteSpoiled,
+                _ => _spriteEmpty,
+            };
+        }
+        GetComponent<Collider2D>().enabled = state != CookingSlotState.Ready;
         if (state == CookingSlotState.Ready)
         {
-            _resultRenderer.enabled = true;
             if (_slot.CookedRecipe != null)
             {
                 _draggableFood.Setup(_slot.CookedRecipe, _slot);
                 Sprite icon = _slot.CookedRecipe.icon;
-                _resultRenderer.sprite = icon;
-                //스프라이트 사이즈 조절 (icon.bounds.size는 스프라이트의 실제크기) 
-                float maxDim = Mathf.Max(icon.bounds.size.x, icon.bounds.size.y);
-                _resultRenderer.transform.localScale = Vector3.one * (_resultSize / maxDim);
-
+                if (icon != null)
+                {
+                    _resultRenderer.enabled = true;
+                    _resultRenderer.sprite = icon;
+                }
             }
             else
             {
-                _resultRenderer.sprite = _spriteFail;
-                float maxDim = Mathf.Max(_spriteFail.bounds.size.x, _spriteFail.bounds.size.y);
-                _resultRenderer.transform.localScale = Vector3.one * (_resultSize / maxDim);
+                _draggableFood.Setup(null, _slot);
+                if (_spriteFail != null)
+                    _stateRenderer.sprite = _spriteFail;
+                if (_spriteFailResult != null)
+                {
+                    _resultRenderer.enabled = true;
+                    _resultRenderer.sprite = _spriteFailResult;
+                }
+                else
+                {
+                    _resultRenderer.enabled = false;
+                }
             }
         }
         else

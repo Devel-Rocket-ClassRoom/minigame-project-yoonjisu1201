@@ -1,0 +1,38 @@
+{
+    "asset": "d070fd54071822b488d749c3a739b425",
+    "fileName": "019e79a9-6c91-7ded-897d-e5150a1086b0.mp4",
+    "prompt": "Animated 2D sprite of a pot boiling on a stove, bubbles rising, steam coming out, matching the style and appearance of the provided reference image. Smooth looping animation. 4x4 grid.",
+    "negativePrompt": "",
+    "model": "video-seedance-1-pro",
+    "modelName": "Seedance 1 Pro",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Spritesheet",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 9,
+                "doodle": [],
+                "label": "First",
+                "strength": 1.0,
+                "invertStrength": false,
+                "assetReferenceGuid": "f45f76bdd92f21c4093cd093179ea229",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 0,
+        "height": 0
+    },
+    "spriteSheet": true,
+    "duration": 5.0
+}
