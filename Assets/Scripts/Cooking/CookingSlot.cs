@@ -91,9 +91,9 @@ public class CookingSlot : MonoBehaviour
 
         _state = CookingSlotState.Ready;
         OnStateChanged?.Invoke(_state);
-        OnAnyStateChanged?.Invoke(this);
         if (_cookedRecipe != null)
             _spoilCoroutine = StartCoroutine(CoSpoilRoutine(spoilTime));
+        OnAnyStateChanged?.Invoke(this);
     }
     private IEnumerator CoSpoilRoutine(float spoilTime)
     {
@@ -117,7 +117,7 @@ public class CookingSlot : MonoBehaviour
         _ingredients.Clear();
         _state = CookingSlotState.Empty;
         OnStateChanged?.Invoke(_state);
-        //Debug.Log($"모든 재료를 버렸습니다. 현재{_ingredients.Count}개");
+        OnAnyStateChanged?.Invoke(this);
     }
     //완성된 음식 서빙. 레시피 반환받아서 검증에 사용
      public void CollectAndReset()
@@ -134,6 +134,15 @@ public class CookingSlot : MonoBehaviour
         _cookedRecipe = null;
         _state = CookingSlotState.Empty;
         OnStateChanged?.Invoke(_state);
+        OnAnyStateChanged?.Invoke(this);
+    }
+    public void CancelSpoil()
+    {
+        if (_spoilCoroutine != null)
+        {
+            StopCoroutine(_spoilCoroutine);
+            _spoilCoroutine = null;
+        }
     }
 
 }

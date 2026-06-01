@@ -14,5 +14,9 @@ public class GhostSO : ScriptableObject
     public string firstMeetDialogueID; //임시(대화)
     public string memoirDialogueID; //방명록id
     public bool isStoryGuest;
-    
+
+    public Sprite spriteDefault;
+    public Sprite spriteHalf;
+    public Sprite spriteAngry;
+    public Sprite spriteHappy;
 }

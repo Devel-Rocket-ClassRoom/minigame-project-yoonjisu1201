@@ -15179,7 +15179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce347b8c38166f4fbccd44946aa6e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TruckRankManager
-  _debugStartRank: 0
+  _debugStartRank: 7
 --- !u!114 &1526221939
 MonoBehaviour:
   m_ObjectHideFlags: 0

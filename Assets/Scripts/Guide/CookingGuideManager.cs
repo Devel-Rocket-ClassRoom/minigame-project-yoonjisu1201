@@ -1,6 +1,7 @@
 using UnityEngine;
 
-// 첫 영업 한정 튜토리얼 가이드. 5단계: 손님도착 → 주문확인 → 재료투입 → 실패 → 서빙
+// 첫 영업 한정 튜토리얼 가이드. 6단계: 손님도착 → 주문확인 →
+// 재료투입 → 실패 → 다시만들기 -> 성공 -> 서빙
 public class CookingGuideManager : MonoBehaviour
 {
     public static CookingGuideManager instance;
@@ -11,6 +12,7 @@ public class CookingGuideManager : MonoBehaviour
     [SerializeField] private Transform cancelButtonTarget;
     [SerializeField] private Transform guestTarget;
     [SerializeField] private IngredientObject[] ingredientTargets;
+    [SerializeField] private IngredientObject[] retryIngredientTargets;
     [SerializeField] private GuestSpawner[] _pausedSpawners;
 
     [SerializeField] private GameObject goldUI;
@@ -18,14 +20,16 @@ public class CookingGuideManager : MonoBehaviour
     [SerializeField] private GameObject lobbyButton;
 
     private GuestController _currentGuest;
-    private int _subStep = 0;
     private int _ingredientIndex = 0;
+    private int _retryIngredientIndex = 0;
     private int _stepIndex = -1;
+    private int _subStep = 0;
 
     private bool _guideDone = false;
     public int StepIndex => _stepIndex;
+    public int SubStep => _subStep;
     // 각 단계별 원 크기 (주문팝업, 재료, 조리대, 쓰레기통, 손님)
-    private readonly float[] _circleSizes = { 600f, 160f, 260f, 270f, 200f };
+    private readonly float[] _circleSizes = { 600f, 200f, 200f, 270f, 200f, 600f };
 
     private System.Action<CookingSlot> _onAnyIngredientAdded;
 
@@ -39,8 +43,6 @@ public class CookingGuideManager : MonoBehaviour
         goldUI.SetActive(false);
         timerUI.SetActive(false);
         lobbyButton.SetActive(false);
-
-        PlayerPrefs.DeleteKey(PREF_KEY); // 테스트 끝나면 꼭 지울 것
 
         if (PlayerPrefs.GetInt(PREF_KEY, 0) == 1) return;
 
@@ -82,6 +84,31 @@ public class CookingGuideManager : MonoBehaviour
                 guideUI.SetBlocksRaycast(false);
             }
         }
+        if (_stepIndex == 4)
+        {
+            if (_subStep == 0)
+            {
+                _subStep = 1;
+                guideUI.ShowSub(1);
+                guideUI.SetBlocksRaycast(false);
+            }
+        }
+        if (_stepIndex == 5 && _subStep == 1)
+        {
+            _guideDone = true;
+            guideUI.Hide();
+            PlayerPrefs.SetInt(PREF_KEY, 1);
+
+            SessionManager.instance.ResumeTimer();
+            _currentGuest?.ResumePatience();
+
+            foreach (var s in _pausedSpawners)
+                s.StartSpawning();
+
+            goldUI.SetActive(true);
+            timerUI.SetActive(true);
+            lobbyButton.SetActive(true);
+        }
     }
     private void OnDestroy()
     {
@@ -98,8 +125,7 @@ public class CookingGuideManager : MonoBehaviour
         _subStep = 0;
         guideUI.Display(_stepIndex + 1, circleTarget, _circleSizes[index]);
 
-        // Step 1(index 0)만 터치 차단, 나머지는 통과
-        guideUI.SetBlocksRaycast(index == 0 || index == 3);
+        guideUI.SetBlocksRaycast(index == 0 || index == 3 || index == 4);
     }
     private void HandleGuestSpawned(GuestController guest)
     {
@@ -115,21 +141,39 @@ public class CookingGuideManager : MonoBehaviour
     //step2 재료선택 → 조리대
     private void HandleIngredientAdded()
     {
-        if (_stepIndex != 1) return;
+        if (_stepIndex == 1)
+        {
+            _ingredientIndex++;
 
-        _ingredientIndex++;
+            if (_ingredientIndex == 1)
+                guideUI.ShowSub(1);
 
-        if (_ingredientIndex == 1)
-            guideUI.ShowSub(1);
+            if (_ingredientIndex < ingredientTargets.Length)
+                guideUI.MoveCircle(ingredientTargets[_ingredientIndex].transform);
+            else
+                ShowStep(2, cookingSlotTarget);
+        }
+        else if (_stepIndex == 4 && _subStep == 1)
+        {
+            _retryIngredientIndex++;
 
-        if (_ingredientIndex < ingredientTargets.Length)
-            guideUI.MoveCircle(ingredientTargets[_ingredientIndex].transform);
-        else
-            ShowStep(2, cookingSlotTarget);
+            if (_retryIngredientIndex < retryIngredientTargets.Length)
+                guideUI.MoveCircle(retryIngredientTargets[_retryIngredientIndex].transform);
+            else
+            {
+                _subStep = 2;
+                guideUI.MoveCircle(cookingSlotTarget);
+            }
+        }
     }
     // Step 3(조리시작) / Step 4(실패) / Step 5(성공)
     private void HandleCookingStateChanged(CookingSlot slot)
     {
+        if (slot.State == CookingSlotState.Empty && _stepIndex == 3 && _subStep == 1)
+        {
+            ShowStep(4, retryIngredientTargets[0].transform);
+            return;
+        }
         if (slot.State == CookingSlotState.Cooking && _stepIndex == 2)
         {
             guideUI.ShowSub(1); // 조리 시작하면 sub2 표시
@@ -142,33 +186,34 @@ public class CookingGuideManager : MonoBehaviour
 
             if (failed && _stepIndex == 2)
                 ShowStep(3, cancelButtonTarget);           // Step 4: 실패
-            else if (!failed && (_stepIndex == 2 || _stepIndex == 3))
-                ShowStep(4, guestTarget);    // Step 5: 성공
+            else if (!failed && _stepIndex == 4)
+            {
+                slot.CancelSpoil();
+                ShowStep(5, guestTarget);
+            }
         }
     }
     private void HandleServeSuccess()
     {
-        if (_stepIndex != 4) return;
-        _guideDone = true;
-        guideUI.Hide();
-        PlayerPrefs.SetInt(PREF_KEY, 1);
-
-        SessionManager.instance.ResumeTimer();
-        _currentGuest?.ResumePatience();
-
-        foreach (var s in _pausedSpawners)
-            s.StartSpawning();
-
-        goldUI.SetActive(true);
-        timerUI.SetActive(true);
-        lobbyButton.SetActive(true);
+        if (_stepIndex != 5) return;
+        _subStep = 1;
+        guideUI.ShowSub(1);
+        guideUI.SetBlocksRaycast(true);
     }
     public bool IsIngredientAllowed(IngredientSO ingredient)
     {
         if (_guideDone) return true;
-        if (_stepIndex != 1) return false;
-        if (_ingredientIndex >= ingredientTargets.Length) return true;
-        return ingredientTargets[_ingredientIndex].Ingredient == ingredient;
+        if (_stepIndex == 1)
+        {
+            if (_ingredientIndex >= ingredientTargets.Length) return true;
+            return ingredientTargets[_ingredientIndex].Ingredient == ingredient;
+        }
+        if (_stepIndex == 4 && _subStep == 1)
+        {
+            if (_retryIngredientIndex >= retryIngredientTargets.Length) return true;
+            return retryIngredientTargets[_retryIngredientIndex].Ingredient == ingredient;
+        }
+        return false;
     }
     public bool IsCancelAllowed()
     {

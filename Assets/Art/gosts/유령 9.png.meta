@@ -1,10 +1,34 @@
 fileFormatVersion: 2
-guid: 7562bb3970e42a5479b51d54c13780fb
+guid: 12869ab21458025449da80affe426957
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1230128282655567232
-    second: f1163bf49a28f2a51c3920b90fa0d159607423c7_0
+      213: 5637063645623028537
+    second: "\uC720\uB839 9_0"
+  - first:
+      213: -5166008244433578256
+    second: "\uC720\uB839 9_1"
+  - first:
+      213: -1171782788592031042
+    second: "\uC720\uB839 9_2"
+  - first:
+      213: 6471168952138854450
+    second: "\uC720\uB839 9_3"
+  - first:
+      213: 2507459983779683180
+    second: "\uC720\uB839 9_4"
+  - first:
+      213: -6333699315667917542
+    second: "\uC720\uB839 9_5"
+  - first:
+      213: 3435456661403445874
+    second: "\uC720\uB839 9_6"
+  - first:
+      213: 7975616856679143077
+    second: "\uC720\uB839 9_7"
+  - first:
+      213: 5344488855882504863
+    second: "\uC720\uB839 9_8"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +137,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: f1163bf49a28f2a51c3920b90fa0d159607423c7_0
+      name: "\uC720\uB839 9_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 793
-        height: 605
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 53
+        y: 272
+        width: 170
+        height: 180
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 08da8d3d72b421110800000000000000
-      internalID: 1230128282655567232
+      spriteID: 93b01ade48fda3e40800000000000000
+      internalID: 5637063645623028537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC720\uB839 9_1"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 267
+        width: 153
+        height: 215
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f61cc35fd6ae48b0800000000000000
+      internalID: -5166008244433578256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC720\uB839 9_2"
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 62
+        width: 182
+        height: 163
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eba2e0c13cdfcbfe0800000000000000
+      internalID: -1171782788592031042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC720\uB839 9_3"
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 58
+        width: 151
+        height: 189
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 230f5c150e53ec950800000000000000
+      internalID: 6471168952138854450
       vertices: []
       indices: 
       edges: []
@@ -138,7 +228,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0d814e6fbe9cb094980e079df925d7cf
     internalID: 0
     vertices: []
     indices: 
@@ -146,9 +236,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      f1163bf49a28f2a51c3920b90fa0d159607423c7_0: 1230128282655567232
+      "\uC720\uB839 9_0": 5637063645623028537
+      "\uC720\uB839 9_1": -5166008244433578256
+      "\uC720\uB839 9_2": -1171782788592031042
+      "\uC720\uB839 9_3": 6471168952138854450
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

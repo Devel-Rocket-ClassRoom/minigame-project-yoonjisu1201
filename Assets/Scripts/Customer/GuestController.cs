@@ -22,7 +22,7 @@ public class GuestController : MonoBehaviour
 
     private const float SIGNATURE_ORDER_CHANCE = 0.5f;
     private List<RecipeSO> _sessionRecipes = new List<RecipeSO>();
-    private SpriteRenderer _renderer;
+    [SerializeField] private SpriteRenderer _renderer;
     private Coroutine _patienceCoroutine;
     private Coroutine _entryCoroutine;
     private bool _patiencePaused;
@@ -41,7 +41,6 @@ public class GuestController : MonoBehaviour
     //손님 입장. GuestSpawner에서 호출
     private void Awake()
     {
-        _renderer = GetComponent<SpriteRenderer>();
     }
 
     public void Enter(Vector3 entryPos, Vector3 stopPos, Vector3 exitPos)
@@ -50,6 +49,8 @@ public class GuestController : MonoBehaviour
         _exitPos = exitPos;
         _entryPos = entryPos;
         transform.position = entryPos;
+
+        _renderer.sprite = _ghostData.spriteDefault;
 
         if (_defaultFacingLeft)
             _renderer.flipX = entryPos.x < stopPos.x;
@@ -136,7 +137,15 @@ public class GuestController : MonoBehaviour
             if (!_patiencePaused)
             {
                 timer -= Time.deltaTime;
-                _orderPopup.SetGauge(timer / totalTimer);
+                float ratio = timer / totalTimer;
+                _orderPopup.SetGauge(ratio);
+
+                if (ratio <= 0.2f)
+                    _renderer.sprite = _ghostData.spriteAngry;
+                else if (ratio <= 0.5f)
+                    _renderer.sprite = _ghostData.spriteHalf;
+                else
+                    _renderer.sprite = _ghostData.spriteDefault;
             }
             yield return null;
         }
@@ -156,6 +165,7 @@ public class GuestController : MonoBehaviour
             _patienceCoroutine = null;
         }
 
+        _renderer.sprite = _ghostData.spriteHappy;
         CurrentOrder = null;
         _orderPopup.Hide();
         State = GuestState.Exiting;

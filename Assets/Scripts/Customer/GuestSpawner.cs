@@ -10,6 +10,7 @@ public class GuestSpawner : MonoBehaviour
     [SerializeField] private Transform _entryPoint;
     [SerializeField] private Transform _stopPoint;
     [SerializeField] private Transform _exitPoint;
+    [SerializeField] private RecipeSO _tutorialRecipe;
     public float _startSpawnDelay;
 
 
@@ -54,6 +55,7 @@ public class GuestSpawner : MonoBehaviour
             StopCoroutine(_spawnLoopCoroutine);
             _spawnLoopCoroutine = null;
         }
+        _isStart = true;
     }
     private IEnumerator CoSpawnLoop()
     {
@@ -67,6 +69,7 @@ public class GuestSpawner : MonoBehaviour
         if (_tutorialGuestPrefab != null && PlayerPrefs.GetInt("guide_cooking_done", 0) == 0)
         {
             SpawnGuest(_tutorialGuestPrefab);
+            _currentGuest.SetSessionRecipes(new List<RecipeSO> { _tutorialRecipe });
             yield return new WaitUntil(() => !_isGuestPresent);
         }
 

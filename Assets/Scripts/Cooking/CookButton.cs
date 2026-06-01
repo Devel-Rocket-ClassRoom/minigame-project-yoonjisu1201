@@ -35,7 +35,8 @@ public class CookButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         if (CookingGuideManager.instance != null &&
-        CookingGuideManager.instance.StepIndex == 1)
+        (CookingGuideManager.instance.StepIndex == 1 ||
+        (CookingGuideManager.instance.StepIndex == 4 && CookingGuideManager.instance.SubStep < 2)))
             return;
 
         CookingSlotManager.Instance.OnStartCooking();
