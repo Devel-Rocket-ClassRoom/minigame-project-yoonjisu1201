@@ -155,6 +155,31 @@ ui_label_unlock_rank2,트럭 등급 2 부터 오픈돼요!
 ui_label_reward_1,1개 획득 보상
 ui_label_reward_5,5개 획득 보상
 ui_label_artifact_passive,유물 패시브 능력
+guide_step1_label,STEP 1
+guide_step1_main,손님이 도착했어요! 
+guide_step1_sub1,- 손님이 주문을 들고 찾아왔어요.
+guide_step1_sub2,- 말풍선에 표시된 메뉴를 확인하세요.
+guide_step2_label,STEP 2
+guide_step2_main,재료를 선택하세요!
+guide_step2_sub1,- 필요한 재료를 눌러 조리대에 넣어주세요.
+guide_step2_sub2,- 재료가 조리대에 잘 들어가고 있어요.
+guide_step3_label,STEP 3
+guide_step3_main,요리를 시작해보세요!
+guide_step3_sub1,- 이제 재료가 다 준비되었어요. 조리대를 눌러 요리를 시작하세요.
+guide_step3_sub2,- 조리중에는 재료를 추가하거나 취소할 수 없어요.
+guide_step4_label,STEP 4
+guide_step4_main,요리가 실패했어요!
+guide_step4_sub1,- 이런, 순서가 틀렸거나 재료가 부족해서 요리가 실패했어요.
+guide_step4_sub2,- 드래그해서 쓰레기통에 버리고 다시 시도해보세요.(클릭으로 버릴수도 있어요.)
+guide_step5_label,STEP 5
+guide_step5_main,다시 만들어 볼까요?
+guide_step5_sub1,- 재료를 선택할때는 순서와 개수가 중요해요.
+guide_step5_sub2,- 별빛 샌드위치는 반죽 - 햄치즈 - 야채 순서로 넣어주세요.
+guide_step6_label,STEP 6
+guide_step6_main,요리가 성공했어요!
+guide_step6_sub1,- 손님에게 드래그해서 완성된 요리를 건네주세요.
+guide_step6_sub2,- 이제부터 요리를 직접 만들어보세요!
+
 
 
 

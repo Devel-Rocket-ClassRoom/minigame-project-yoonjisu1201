@@ -11,6 +11,8 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     public Vector3 _originPosition;
     private Camera _cam;
 
+    public static event System.Action OnAnyServeSuccess;
+
     private void Awake()
     {
         _cam = Camera.main;
@@ -45,6 +47,13 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
             if (hit.gameObject == gameObject) continue;
             if (hit.TryGetComponent<CancelButton>(out _))
             {
+                if (CookingGuideManager.instance != null &&
+                    !CookingGuideManager.instance.IsCancelAllowed())
+                {
+                    transform.position = _originPosition;
+                    return;
+                }
+
                 _slot.CollectAndReset();
                 enabled = false;
                 GetComponent<Collider2D>().enabled = false;
@@ -78,6 +87,9 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
             if (isValid)
             {
                 guest.ReceiveFood();
+
+                OnAnyServeSuccess?.Invoke();
+
                 _slot.CollectAndReset();
                 enabled = false;
                 GetComponent<Collider2D>().enabled = false;

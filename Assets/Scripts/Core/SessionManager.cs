@@ -15,6 +15,10 @@ public class SessionManager : MonoBehaviour
     public bool IsSessionActive { get; private set; }
 
     private Coroutine _sessionTimerCoroutine;
+    private bool _timerPaused;
+
+    public void PauseTimer() => _timerPaused = true;
+    public void ResumeTimer() => _timerPaused = false;
 
     private void Awake()
     {
@@ -47,7 +51,9 @@ public class SessionManager : MonoBehaviour
     {
         while (RemainingTime > 0f)
         {
-            RemainingTime -= Time.deltaTime;
+            if (!_timerPaused)
+                RemainingTime -= Time.deltaTime;
+
             yield return null;
         }
         RemainingTime = 0f;

@@ -18,11 +18,17 @@ public class GuestController : MonoBehaviour
 
 
     public event System.Action OnExited; //GuestSpawner가 구독
+    public static event System.Action<GuestController> OnGuestOrdering;
+
     private const float SIGNATURE_ORDER_CHANCE = 0.5f;
     private List<RecipeSO> _sessionRecipes = new List<RecipeSO>();
     private SpriteRenderer _renderer;
     private Coroutine _patienceCoroutine;
     private Coroutine _entryCoroutine;
+    private bool _patiencePaused;
+
+    public void PausePatience() => _patiencePaused = true;
+    public void ResumePatience() => _patiencePaused = false;
 
     public GuestState State { get; private set; }
 
@@ -73,6 +79,8 @@ public class GuestController : MonoBehaviour
         CurrentOrder = PickOrder();
         _orderPopup.Show(CurrentOrder, _ghostData);
         State = GuestState.Ordering;
+        OnGuestOrdering?.Invoke(this);
+
         _patienceCoroutine = StartCoroutine(CoPatienceRoutine());
         _entryCoroutine = null;
     }
@@ -122,11 +130,14 @@ public class GuestController : MonoBehaviour
     private IEnumerator CoPatienceRoutine()
     {
         float totalTimer = _ghostData.patienceSeconds * GameContext.customerPatienceMultiplier;
-        float timer = totalTimer;  //테스트하느라 임시설정
+        float timer = totalTimer;
         while (timer > 0f)
         {
-            timer -= Time.deltaTime;
-            _orderPopup.SetGauge(timer / totalTimer);
+            if (!_patiencePaused)
+            {
+                timer -= Time.deltaTime;
+                _orderPopup.SetGauge(timer / totalTimer);
+            }
             yield return null;
         }
 
