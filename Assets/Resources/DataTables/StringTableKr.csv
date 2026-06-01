@@ -147,8 +147,8 @@ ui_label_special_ingredient,전용 재료
 ui_label_basic_ingredient,기본 재료
 ui_label_normal_menu,일반 메뉴
 ui_label_special_menu,특별 메뉴
-ui_label_other_guest_order,다른 손님 주문 시
-ui_label_related_guest_order,관련 손님 주문 시
+ui_label_other_guest_order,다른 손님 주문
+ui_label_related_guest_order,관련 손님 주문
 ui_label_related_guest,관련 손님
 ui_label_memo,메모
 ui_label_unlock_rank2,트럭 등급 2 부터 오픈돼요!

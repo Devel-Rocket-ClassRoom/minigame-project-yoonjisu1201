@@ -57,7 +57,6 @@ public class UnlockManager : MonoBehaviour
     {
         if (_unlockedGhosts.Add(ghost.id))
         {
-            Debug.Log($"유령 해금: {ghost.displayName}");
             OnGhostUnlocked?.Invoke(ghost);
         }
     }
@@ -85,7 +84,6 @@ public class UnlockManager : MonoBehaviour
         if (_unlockedIngredients.Add(ing.id))
         {
             OnIngredientUnlocked?.Invoke(ing);
-            Debug.Log($"재료 해금: {ing.displayName}");
         }
     }
     //유물 개수, 해금만 관리. 
@@ -108,7 +106,6 @@ public class UnlockManager : MonoBehaviour
         {
             _unlockedArifacts.Add(artifact.id);
             OnArtifactUnlocked?.Invoke(artifact);
-            Debug.Log($"유물 해금: {IsArtifactUnlocked(artifact)}");
         }
 
         if (count + 1 == ARTIFACT_ABILITY_THRESHOLD)

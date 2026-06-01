@@ -14,12 +14,15 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     private void Awake()
     {
         _cam = Camera.main;
+        enabled = false;
+        GetComponent<Collider2D>().enabled = false;
     }
     public void Setup(RecipeSO recipe, CookingSlot slot)
     {
         _recipe = recipe;
         _slot = slot;
-        gameObject.SetActive(true);
+        enabled = true;
+        GetComponent<Collider2D>().enabled = true;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -34,14 +37,27 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Vector2 dropPos = _cam.ScreenToWorldPoint(eventData.position);
+        Collider2D[] hits = Physics2D.OverlapPointAll(dropPos);
+
+        foreach (var hit in hits)
+        {
+            if (hit.gameObject == gameObject) continue;
+            if (hit.TryGetComponent<CancelButton>(out _))
+            {
+                _slot.CollectAndReset();
+                enabled = false;
+                GetComponent<Collider2D>().enabled = false;
+                transform.position = _originPosition;
+                return;
+            }
+        }
 
         if (_recipe == null)
         {
             transform.position = _originPosition;
             return;
         }
-        Vector2 dropPos = _cam.ScreenToWorldPoint(eventData.position);
-        Collider2D[] hits = Physics2D.OverlapPointAll(dropPos);
 
         Debug.Log($"감지된 콜라이더 수: {hits.Length}");
 
@@ -63,7 +79,8 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
             {
                 guest.ReceiveFood();
                 _slot.CollectAndReset();
-                gameObject.SetActive(false);
+                enabled = false;
+                GetComponent<Collider2D>().enabled = false;
                 transform.position = _originPosition;
 
                 Vector3 goldPos = guest.StopPos + Vector3.down * _goldDropOfset;

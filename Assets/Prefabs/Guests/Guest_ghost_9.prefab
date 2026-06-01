@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4897223356624534547}
   - component: {fileID: 6869770520486148703}
   - component: {fileID: 8824106736081060970}
-  - component: {fileID: 7321445594935010580}
+  - component: {fileID: 3705359627554991229}
   m_Layer: 0
   m_Name: Guest_ghost_9
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.9339995, y: 1.72, z: 0}
-  m_LocalScale: {x: 1.0664, y: 1.0664, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4058946349431092359}
@@ -105,14 +105,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34e396a1503d73f478f4526b29a670cf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  m_EditorClassIdentifier: Assembly-CSharp::GuestController
   _ghostData: {fileID: 11400000, guid: f5382a3912ad3dd4a84a1e9206c4d2aa, type: 2}
   _orderPopup: {fileID: 7692734018263788133}
   _entrySpeed: 2.5
-  _exitSpeed: 4
+  _entryBobAmplitude: 0.1
+  _entryBobSpeed: 8
+  _exitSpeed: 5
   _defaultFacingLeft: 0
---- !u!70 &7321445594935010580
-CapsuleCollider2D:
+  _stoppedSortingOrder: 0
+--- !u!61 &3705359627554991229
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -145,9 +148,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.1327927, y: -0.017568165}
-  m_Size: {x: 1.3018583, y: 2.4062774}
-  m_Direction: 0
+  m_Offset: {x: 0.86, y: 0.44}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 4.13, y: 3.38}
+  m_EdgeRadius: 0
 --- !u!1001 &997715981205198645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156,6 +168,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4897223356624534547}
     m_Modifications:
+    - target: {fileID: 236724062055633057, guid: 672e3a6244284cb41a651893b2c02519, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 3811749152637006818, guid: 672e3a6244284cb41a651893b2c02519, type: 3}
       propertyPath: m_Name
       value: OrderPopup
@@ -204,6 +220,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7237230277356657836, guid: 672e3a6244284cb41a651893b2c02519, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d3784c6d03059443b95e2119580bae5, type: 3}
     - target: {fileID: 7237230277356657836, guid: 672e3a6244284cb41a651893b2c02519, type: 3}
       propertyPath: m_SortingOrder
       value: 1

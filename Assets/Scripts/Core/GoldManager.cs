@@ -39,6 +39,7 @@ public class GoldManager : MonoBehaviour
     public void ResetSession()
     {
         SessionGold = 0;
+        OnGoldChanged?.Invoke();
     }
 
 }

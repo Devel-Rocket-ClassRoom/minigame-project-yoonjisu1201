@@ -1,0 +1,38 @@
+{
+    "asset": "7d0529591344cdd49b60b48acb335ac6",
+    "fileName": "019e7a39-54ff-70eb-92c9-d88865a45adc.png",
+    "prompt": "A single golden sparkle sprite, 4-pointed star shape with a central glow, casual cartoon style, matching the golden sparkles in the provided reference image. Sharp edges with a subtle dark outline. High quality game asset.",
+    "negativePrompt": "",
+    "model": "gemini-3.0-pro",
+    "modelName": "Gemini 3.0 Pro",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 7,
+                "doodle": [],
+                "label": "Image",
+                "strength": 0.25,
+                "invertStrength": false,
+                "assetReferenceGuid": "7ad2531b8a42ef440800a0867ca7ab59",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

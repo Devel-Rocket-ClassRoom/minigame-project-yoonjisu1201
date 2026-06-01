@@ -1,12 +1,12 @@
-using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TruckRankUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _rankText;
-    [SerializeField] private TextMeshProUGUI _totalExpText;
+    [SerializeField] private TextMeshProUGUI _expText;
+    [SerializeField] private Slider _expBar;
 
     private void OnEnable()
     {
@@ -14,7 +14,6 @@ public class TruckRankUI : MonoBehaviour
     }
     private void Start()
     {
-        //도감UI가 켜질 때마다 등급 정보 새로고침
         RefreshRate(); 
     }
 
@@ -23,7 +22,22 @@ public class TruckRankUI : MonoBehaviour
         if (TruckRankManager.instance == null) return;
         int rank = TruckRankManager.instance.CurrentRank;
         float totalExp = TruckRankManager.instance.TotalExp;
-        _rankText.text = $"등급 {rank}";
-        _totalExpText.text = $"{totalExp}";
+
+        _rankText.text = $"트럭등급 {rank}";
+
+        if (rank >= RankThresholds.MAX_RANK)
+        {
+            _expText.text = "트럭등급 MAX";
+            if (_expBar != null) _expBar.value = 1f;
+            return;
+        }
+
+        float prevThreshold = RankThresholds.GetRequiredExp(rank - 1);
+        float nextThreshold = RankThresholds.GetRequiredExp(rank);
+        float progress = totalExp - prevThreshold;
+        float required = nextThreshold - prevThreshold;
+
+        _expText.text = $"{(int)progress} / {(int)required}";
+        if (_expBar != null) _expBar.value = required > 0f ? progress / required : 1f;
     }
 }

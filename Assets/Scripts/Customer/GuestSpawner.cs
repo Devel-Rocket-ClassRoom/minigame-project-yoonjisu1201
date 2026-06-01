@@ -11,11 +11,18 @@ public class GuestSpawner : MonoBehaviour
     [SerializeField] private Transform _exitPoint;
     public float _startSpawnDelay;
 
+
     private bool _isGuestPresent; //현재 손님이 있는지
     private bool _isStart = true; //처음 시작할때만 생성되는 딜레이시간 다르게
     private List<GuestController> _sessionPrefabs = new List<GuestController>();
     private List<RecipeSO> _sessionRecipes = new List<RecipeSO>();
     private Coroutine _spawnLoopCoroutine;
+
+    private GuestController _currentGuest;
+
+    public bool HasOrderingGuest => _currentGuest != null &&
+        _currentGuest.State == GuestState.Ordering;
+
     public bool IsGuestPresent => _isGuestPresent;
     private void Start()
     {
@@ -29,6 +36,12 @@ public class GuestSpawner : MonoBehaviour
             if (UnlockManager.instance.IsRecipeUnlocked(recipe))
                 _sessionRecipes.Add(recipe);
         }
+    }
+    public void StartSpawning()
+    {
+        if (_spawnLoopCoroutine != null)
+            StopCoroutine(_spawnLoopCoroutine);
+
         _spawnLoopCoroutine = StartCoroutine(CoSpawnLoop());
     }
     public void StopSpawning()
@@ -56,6 +69,7 @@ public class GuestSpawner : MonoBehaviour
             if (_sessionPrefabs.Count == 0) continue;
 
             GuestController guest = Instantiate(_sessionPrefabs[Random.Range(0, _sessionPrefabs.Count)]);
+            _currentGuest = guest;
             guest.SetSessionRecipes(_sessionRecipes);
 
             _isGuestPresent = true;
@@ -65,6 +79,7 @@ public class GuestSpawner : MonoBehaviour
             {
                 Destroy(guest.gameObject);
                 _isGuestPresent = false;
+                _currentGuest = null;
                 guest.OnExited -= onExited;
             };
             guest.OnExited += onExited;
@@ -73,5 +88,10 @@ public class GuestSpawner : MonoBehaviour
 
             yield return new WaitUntil(() => !_isGuestPresent);
         }
+    }
+    public void ForceExitEnteringGuest()
+    {
+        if (_currentGuest != null && _currentGuest.State == GuestState.Entering)
+            _currentGuest.ForceExit();
     }
 }
