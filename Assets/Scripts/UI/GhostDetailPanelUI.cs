@@ -125,7 +125,7 @@ public class GhostDetailPanelUI : MonoBehaviour
         if (index < menus.Count && menus[index].icon != null)
         {
             icon.sprite = menus[index].icon;
-            icon.color = Color.white;
+            icon.color = unlocked ? Color.white : Color.black;
         }
         else
         {

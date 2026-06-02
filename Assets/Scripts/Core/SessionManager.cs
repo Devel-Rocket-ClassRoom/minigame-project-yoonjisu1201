@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class SessionManager : MonoBehaviour
 {
-    [SerializeField] private float _sessionDuration = 90f; 
+    [SerializeField] private BalanceConfigSO _balanceConfig;
+
     [SerializeField] private List<GuestSpawner> _spawners;
     [SerializeField] private GameObject _closingPanel;
 
     public static SessionManager instance { get; private set; }
-    public float SessionDuration => _sessionDuration;
+    public float SessionDuration => _balanceConfig.sessionDuration;
     public float RemainingTime { get; private set; }
     public bool IsSessionActive { get; private set; }
 
     private Coroutine _sessionTimerCoroutine;
     private bool _timerPaused;
+    private int _sessionServeCount = 0;
 
     public void PauseTimer() => _timerPaused = true;
     public void ResumeTimer() => _timerPaused = false;
@@ -24,9 +26,18 @@ public class SessionManager : MonoBehaviour
     {
         instance = this;
     }
+    private void OnEnable()
+    {
+        DraggableFood.OnAnyServeSuccess += OnServeSuccess;
+    }
+    private void OnDisable()
+    {
+        DraggableFood.OnAnyServeSuccess -= OnServeSuccess;
+    }
+    private void OnServeSuccess() => _sessionServeCount++;
     private void Start()
     {
-        RemainingTime = _sessionDuration;
+        RemainingTime = _balanceConfig.sessionDuration;
         IsSessionActive = true;
 
         GoldManager.Instance.ResetSession();
@@ -36,7 +47,7 @@ public class SessionManager : MonoBehaviour
     }
     public void StartSessionAfterPrepare()
     {
-        RemainingTime = _sessionDuration;
+        RemainingTime = _balanceConfig.sessionDuration;
         IsSessionActive = true;
 
         foreach (var spawner in _spawners)
@@ -67,6 +78,13 @@ public class SessionManager : MonoBehaviour
             spawner.StopSpawning();
             spawner.ForceExitEnteringGuest();
         }
+
+        if (GameContext.sessionEndBonusGoldPerDish > 0 && _sessionServeCount > 0)
+        {
+            int bonus = GameContext.sessionEndBonusGoldPerDish * _sessionServeCount;
+            GoldManager.Instance.AddGold(bonus);
+        }
+
         StartCoroutine(CoWaitForGuestsAndClose());
     }
     private IEnumerator CoWaitForGuestsAndClose()

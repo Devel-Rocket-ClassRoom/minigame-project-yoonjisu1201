@@ -15232,6 +15232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce347b8c38166f4fbccd44946aa6e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TruckRankManager
+  _balanceConfig: {fileID: 11400000, guid: bbd5f264b66ec0746840236b66809646, type: 2}
   _debugStartRank: 0
 --- !u!114 &1526221939
 MonoBehaviour:
@@ -15275,6 +15276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afe07c0a5e69f942961b0e3abd0d8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
+  _balanceConfig: {fileID: 11400000, guid: bbd5f264b66ec0746840236b66809646, type: 2}
 --- !u!1 &1529132735
 GameObject:
   m_ObjectHideFlags: 0

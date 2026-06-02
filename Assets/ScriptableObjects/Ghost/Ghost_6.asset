@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GhostSO
   id: ghost_6
   icon: {fileID: 21300000, guid: 279810117b3885d4bbf26288bcade073, type: 3}
-  patienceSeconds: 30
+  patienceType: 2
   unlockRank: 6
   artifact: {fileID: 11400000, guid: ad481109af7be9d44b903302e511f193, type: 2}
-  ArtifactDropChance: 1
   firstMeetDialogueID: 
   memoirDialogueID: 
   isStoryGuest: 1

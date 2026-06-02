@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e396a1503d73f478f4526b29a670cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuestController
+  _balanceConfig: {fileID: 11400000, guid: bbd5f264b66ec0746840236b66809646, type: 2}
   _ghostData: {fileID: 11400000, guid: 8150bc92cac558741b4778566fba3759, type: 2}
   _orderPopup: {fileID: 4082362077272159129}
   _entrySpeed: 2.5

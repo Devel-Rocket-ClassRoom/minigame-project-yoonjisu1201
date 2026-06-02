@@ -13,11 +13,13 @@ public enum CookingSlotState
 
 public class CookingSlot : MonoBehaviour
 {
+    [SerializeField] private BalanceConfigSO _balanceConfig;
+
     private CookingSlotState _state;
     private List<IngredientSO> _ingredients;
     private Coroutine _cookingCoroutine;
     private Coroutine _spoilCoroutine;
-    [SerializeField] private float spoilTime = 15f;
+    private bool _firstCookDone = false;
     private List<RecipeSO> _availableRecipes; //활성화된 레시피
     [SerializeField] private ContentRegistrySO _registry;
     private RecipeSO _cookedRecipe;
@@ -75,7 +77,14 @@ public class CookingSlot : MonoBehaviour
         _state = CookingSlotState.Cooking;
         OnStateChanged?.Invoke(_state);
         OnAnyStateChanged?.Invoke(this);
-        _cookingCoroutine = StartCoroutine(CoCookingRoutine(cookTime));
+
+        float actualCookTime = cookTime;
+        if (!_firstCookDone && GameContext.firstCookSpeedMultiplier < 1f)
+        {
+            actualCookTime *= GameContext.firstCookSpeedMultiplier;
+            _firstCookDone = true;
+        }
+        _cookingCoroutine = StartCoroutine(CoCookingRoutine(actualCookTime));
         //Debug.Log($"요리 중 . . .{_state}");
     }
 
@@ -92,7 +101,14 @@ public class CookingSlot : MonoBehaviour
         _state = CookingSlotState.Ready;
         OnStateChanged?.Invoke(_state);
         if (_cookedRecipe != null)
-            _spoilCoroutine = StartCoroutine(CoSpoilRoutine(spoilTime));
+        {
+            _spoilCoroutine = StartCoroutine(CoSpoilRoutine(
+                _balanceConfig.foodSpoilTime * GameContext.spoilTimeMultiplier));
+        }
+        else if (GameContext.consolationChance > 0f && Random.value < GameContext.consolationChance)
+        {
+            GoldManager.Instance.AddGold(GameContext.consolationGold);
+        }
         OnAnyStateChanged?.Invoke(this);
     }
     private IEnumerator CoSpoilRoutine(float spoilTime)

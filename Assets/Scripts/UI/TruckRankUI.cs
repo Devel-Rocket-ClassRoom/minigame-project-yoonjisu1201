@@ -25,15 +25,15 @@ public class TruckRankUI : MonoBehaviour
 
         _rankText.text = $"트럭등급 {rank}";
 
-        if (rank >= RankThresholds.MAX_RANK)
+        if (rank >= TruckRankManager.instance.MaxRank)
         {
             _expText.text = "트럭등급 MAX";
             if (_expBar != null) _expBar.value = 1f;
             return;
         }
 
-        float prevThreshold = RankThresholds.GetRequiredExp(rank - 1);
-        float nextThreshold = RankThresholds.GetRequiredExp(rank);
+        float prevThreshold = TruckRankManager.instance.GetRequiredExp(rank - 1);
+        float nextThreshold = TruckRankManager.instance.GetRequiredExp(rank);
         float progress = totalExp - prevThreshold;
         float required = nextThreshold - prevThreshold;
 

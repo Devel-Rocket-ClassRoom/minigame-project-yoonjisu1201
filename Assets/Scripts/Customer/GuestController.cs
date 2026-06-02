@@ -7,6 +7,8 @@ using UnityEngine;
 public enum GuestState { Entering, Ordering, Exiting }
 public class GuestController : MonoBehaviour
 {
+    [SerializeField] private BalanceConfigSO _balanceConfig;
+
     [SerializeField] private GhostSO _ghostData;
     [SerializeField] private OrderPopup _orderPopup;
     [SerializeField] private float _entrySpeed = 2.5f;
@@ -20,7 +22,6 @@ public class GuestController : MonoBehaviour
     public event System.Action OnExited; //GuestSpawner가 구독
     public static event System.Action<GuestController> OnGuestOrdering;
 
-    private const float SIGNATURE_ORDER_CHANCE = 0.5f;
     private List<RecipeSO> _sessionRecipes = new List<RecipeSO>();
     [SerializeField] private SpriteRenderer _renderer;
     private Coroutine _patienceCoroutine;
@@ -100,7 +101,7 @@ public class GuestController : MonoBehaviour
             }
         }
 
-        if (signatureRecipe != null && Random.value < SIGNATURE_ORDER_CHANCE)
+        if (signatureRecipe != null && Random.value < _balanceConfig.signatureOrderChance)
             return signatureRecipe;
 
         return _sessionRecipes[Random.Range(0, _sessionRecipes.Count)];
@@ -121,7 +122,7 @@ public class GuestController : MonoBehaviour
         while (Vector2.Distance(transform.position, _exitPos) > 0.05f)
         {
             bobTime += Time.deltaTime;
-            basePos = Vector2.MoveTowards(basePos, _exitPos, _exitSpeed * Time.deltaTime);
+            basePos = Vector2.MoveTowards(basePos, _exitPos, _exitSpeed * GameContext.exitSpeedMultiplier * Time.deltaTime);
             float bobOffset = Mathf.Sin(bobTime * _entryBobSpeed) * _entryBobAmplitude;
             transform.position = new Vector3(basePos.x, basePos.y + bobOffset, basePos.z);
             yield return null;
@@ -130,7 +131,9 @@ public class GuestController : MonoBehaviour
     }
     private IEnumerator CoPatienceRoutine()
     {
-        float totalTimer = _ghostData.patienceSeconds * GameContext.customerPatienceMultiplier;
+        float totalTimer = _balanceConfig.basePatienceSeconds
+            * _balanceConfig.GetPatienceMultiplier(_ghostData.patienceType)
+            * GameContext.customerPatienceMultiplier;
         float timer = totalTimer;
         while (timer > 0f)
         {
@@ -148,6 +151,13 @@ public class GuestController : MonoBehaviour
                     _renderer.sprite = _ghostData.spriteDefault;
             }
             yield return null;
+        }
+
+        if (GameContext.patienceRefillChance > 0f && Random.value < GameContext.patienceRefillChance)
+        {
+            timer = totalTimer;
+            _patienceCoroutine = StartCoroutine(CoPatienceRoutine());
+            yield break;
         }
 
         _patienceCoroutine = null;

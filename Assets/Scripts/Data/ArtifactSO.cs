@@ -1,9 +1,30 @@
 using UnityEngine;
 
+public enum ArtifactEffectType
+{
+    None,
+    ExitSpeedBoost,         // artifact_2: 퇴장 속도 증가
+    FailedFoodConsolation,  // artifact_3: 망한 음식 위로금
+    SpoilTimeExtension,     // artifact_4: 음식 상하는 시간 연장
+    PatienceBoost,          // artifact_5: 인내심 증가
+    SessionEndBonus,        // artifact_6: 영업 종료 보너스 골드
+    FirstCookSpeedBoost,    // artifact_7: 첫 조리 속도 부스트
+    RelaxedCustomerChance,  // artifact_8: 느긋한 손님 등장 확률
+    PatienceRefill,         // artifact_9: 인내심 소진 시 리필 확률
+}
+
 [CreateAssetMenu(fileName = "ArtifactSO", menuName = "Scriptable Objects/ArtifactSO")]
 public class ArtifactSO : ScriptableObject
 {
-    //id, 이름, 이미지, 방명록 텍스트, 유물효과 설명 텍스트
     public string id;
     public Sprite icon;
+
+    public ArtifactEffectType effectType;
+    [Tooltip("주요 효과 수치\n" +
+             "2:퇴장속도배율증가(0.15) / 3:위로금확률(0.3) / 4:상하는시간배율증가(0.15)\n" +
+             "5:인내심배율증가(0.05) / 6:서빙당보너스골드(5) / 7:첫조리배율(0.2=80%빠름)\n" +
+             "8:느긋한손님등장확률(0.1) / 9:인내심리필확률(0.5)")]
+    public float effectValue;
+    [Tooltip("보조 수치 (artifact_3: 위로금 골드량 / artifact_8: 느긋한 손님 인내심 배율)")]
+    public float effectValue2;
 }

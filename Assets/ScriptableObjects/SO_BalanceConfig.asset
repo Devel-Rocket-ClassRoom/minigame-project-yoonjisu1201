@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6968e3d0810484c86735d1c038576d, type: 3}
+  m_Name: SO_BalanceConfig
+  m_EditorClassIdentifier: Assembly-CSharp::BalanceConfigSO
+  sessionDuration: 120
+  spawnBySlotLevel:
+  - spawnInterval: 6.5
+    startDelayMultipliers:
+    - 1
+    - 2
+    - 3
+  - spawnInterval: 5.5
+    startDelayMultipliers:
+    - 1
+    - 1.8
+    - 2.8
+  - spawnInterval: 5
+    startDelayMultipliers:
+    - 1
+    - 1.5
+    - 2
+  signatureOrderChance: 0.45
+  artifactDropChance: 0.15
+  basePatienceSeconds: 28
+  patienceRelaxedMultiplier: 1.15
+  patienceNormalMultiplier: 1
+  patienceHastyMultiplier: 0.9
+  patienceHurriedMultiplier: 0.8
+  foodSpoilTime: 15
+  expPerServe: 1
+  rankExpThresholds: 000000000c000000240000004600000073000000aa000000eb000000360100008b010000ea010000
+  cookSlotCosts: c201000078050000
+  speedUpCosts: fa000000bc02000040060000
+  speedUpMultipliers:
+  - 0.9
+  - 0.8
+  - 0.7
+  cookBoardCosts: b400000026020000
+  orderHintCosts: c80000005802000014050000
+  containerSlotCosts: 5e010000e8030000

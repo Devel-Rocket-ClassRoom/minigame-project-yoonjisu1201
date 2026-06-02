@@ -1,15 +1,16 @@
 using UnityEngine;
 
+public enum PatienceType { Normal, Relaxed, Hasty, Hurried }
+
 [CreateAssetMenu(fileName = "NewGhost", menuName = "Scriptable Objects/GhostSO")]
 public class GhostSO : ScriptableObject
 {
     // id, 이름, 이미지, 전용메뉴, 유물, 인내심, 해금레벨
     public string id;
     public Sprite icon;
-    public float patienceSeconds;
+    public PatienceType patienceType;
     public int unlockRank;
     public ArtifactSO artifact;
-    [Range(0f, 1f)] public float ArtifactDropChance;
     public string firstMeetDialogueID; //임시(대화)
     public string memoirDialogueID; //방명록id
     public bool isStoryGuest;

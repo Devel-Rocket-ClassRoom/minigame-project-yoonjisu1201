@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
+
 public class GuestSpawner : MonoBehaviour
 {
     [SerializeField] private ContentRegistrySO _registry;
@@ -11,8 +12,9 @@ public class GuestSpawner : MonoBehaviour
     [SerializeField] private Transform _stopPoint;
     [SerializeField] private Transform _exitPoint;
     [SerializeField] private RecipeSO _tutorialRecipe;
-    public float _startSpawnDelay;
 
+    [SerializeField] private BalanceConfigSO _balanceConfig;
+    [SerializeField] private int _spawnerIndex;
 
     private bool _isGuestPresent; //현재 손님이 있는지
     private bool _isStart = true; //처음 시작할때만 생성되는 딜레이시간 다르게
@@ -28,6 +30,9 @@ public class GuestSpawner : MonoBehaviour
         _currentGuest.State == GuestState.Ordering;
 
     public bool IsGuestPresent => _isGuestPresent;
+    private SpawnConfig CurrentSpawnConfig =>
+         _balanceConfig.spawnBySlotLevel[UpgradeManager.instance.CookSlotLevel];
+
     private void Start()
     {
         foreach (var prefab in _guestPrefabs)
@@ -62,7 +67,8 @@ public class GuestSpawner : MonoBehaviour
         if (_isStart)
         {
             _isStart = false;
-            yield return new WaitForSeconds(_startSpawnDelay);
+            yield return new WaitForSeconds(CurrentSpawnConfig.spawnInterval * 
+                CurrentSpawnConfig.startDelayMultipliers[_spawnerIndex]);
         }
 
         // 가이드 미완료 시 튜토리얼 손님 먼저 스폰
@@ -84,7 +90,7 @@ public class GuestSpawner : MonoBehaviour
             SpawnGuest(_sessionPrefabs[Random.Range(0, _sessionPrefabs.Count)]);
 
             yield return new WaitUntil(() => !_isGuestPresent);
-            yield return new WaitForSeconds(GameContext.customerSpawnInterval);
+            yield return new WaitForSeconds(CurrentSpawnConfig.spawnInterval);
         }
     }
     public void ForceExitEnteringGuest()

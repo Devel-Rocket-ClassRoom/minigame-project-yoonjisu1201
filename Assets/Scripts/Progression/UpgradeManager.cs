@@ -4,12 +4,14 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager instance { get; private set; }
-    //비용테이블 상수 - 실제 비용은 3주차에 조정
-    private static readonly int[] COOKSLOT_COSTS = { 101, 102 };
-    private static readonly int[] SPEEDUP_COSTS = { 201, 202, 203 };
-    private static readonly int[] COOK_BOARD_COSTS = { 301, 302 };
-    private static readonly int[] ORDER_HINT_COSTS = { 401, 402, 403 };
-    private static readonly int[] CONTAINER_SLOT_COSTS = { 501, 502 };
+
+    [SerializeField] private BalanceConfigSO _balanceConfig;
+
+    private int[] COOKSLOT_COSTS => _balanceConfig.cookSlotCosts;
+    private int[] SPEEDUP_COSTS => _balanceConfig.speedUpCosts;
+    private int[] COOK_BOARD_COSTS => _balanceConfig.cookBoardCosts;
+    private int[] ORDER_HINT_COSTS => _balanceConfig.orderHintCosts;
+    private int[] CONTAINER_SLOT_COSTS => _balanceConfig.containerSlotCosts;
 
     private int _cookSlotLevel = 0;
     private int _speedUpLevel = 0;
@@ -18,13 +20,8 @@ public class UpgradeManager : MonoBehaviour
     private int _containerSlotLevel = 0;
 
     public int ActiveSlotCount => _cookSlotLevel + 1;
-    public float CookingSpeedMultiplier => _speedUpLevel switch
-    {
-        1 => 0.95f,
-        2 => 0.92f,
-        3 => 0.88f,  
-        _ => 1f
-    };
+    public float CookingSpeedMultiplier =>
+        _speedUpLevel > 0 ? _balanceConfig.speedUpMultipliers[_speedUpLevel - 1] : 1f;
 
     public int CookSlotLevel => _cookSlotLevel;
     public int SpeedUpLevel => _speedUpLevel;
