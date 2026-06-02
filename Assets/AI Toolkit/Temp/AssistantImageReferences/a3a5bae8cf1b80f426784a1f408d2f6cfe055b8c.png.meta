@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: aeb7752b120407c4f80a613641cdc164
-labels:
-- UnityAI
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -120,8 +118,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1047
-        height: 235
+        width: 1008
+        height: 1008
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

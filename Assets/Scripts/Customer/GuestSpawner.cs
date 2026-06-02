@@ -6,9 +6,11 @@ public class GuestSpawner : MonoBehaviour
 {
     [SerializeField] private ContentRegistrySO _registry;
     [SerializeField] private List<GuestController> _guestPrefabs;
+    [SerializeField] private GuestController _tutorialGuestPrefab;
     [SerializeField] private Transform _entryPoint;
     [SerializeField] private Transform _stopPoint;
     [SerializeField] private Transform _exitPoint;
+    [SerializeField] private RecipeSO _tutorialRecipe;
     public float _startSpawnDelay;
 
 
@@ -19,7 +21,9 @@ public class GuestSpawner : MonoBehaviour
     private Coroutine _spawnLoopCoroutine;
 
     private GuestController _currentGuest;
+    private bool _firstGuestSpawned;
 
+    public static event System.Action<GuestController> OnGuestSpawned;
     public bool HasOrderingGuest => _currentGuest != null &&
         _currentGuest.State == GuestState.Ordering;
 
@@ -51,40 +55,31 @@ public class GuestSpawner : MonoBehaviour
             StopCoroutine(_spawnLoopCoroutine);
             _spawnLoopCoroutine = null;
         }
+        _isStart = true;
     }
     private IEnumerator CoSpawnLoop()
     {
-        while (true) //영업마감 오픈 시스템 만들기 전까지 ture로 사용
+        if (_isStart)
         {
-            if (_isStart)
-            {
-                _isStart = false;
-                yield return new WaitForSeconds(_startSpawnDelay);
-            }
-            else
-            {
-                yield return new WaitForSeconds(GameContext.customerSpawnInterval);
-            }
+            _isStart = false;
+            yield return new WaitForSeconds(_startSpawnDelay);
+        }
+
+        // 가이드 미완료 시 튜토리얼 손님 먼저 스폰
+        if (_tutorialGuestPrefab != null && PlayerPrefs.GetInt("guide_cooking_done", 0) == 0)
+        {
+            SpawnGuest(_tutorialGuestPrefab);
+            _currentGuest.SetSessionRecipes(new List<RecipeSO> { _tutorialRecipe });
+            yield return new WaitUntil(() => !_isGuestPresent);
+        }
+
+        while (true) //영업마감 오픈 시스템 만들기 전까지 true로 사용
+        {
+            yield return new WaitForSeconds(GameContext.customerSpawnInterval);
 
             if (_sessionPrefabs.Count == 0) continue;
 
-            GuestController guest = Instantiate(_sessionPrefabs[Random.Range(0, _sessionPrefabs.Count)]);
-            _currentGuest = guest;
-            guest.SetSessionRecipes(_sessionRecipes);
-
-            _isGuestPresent = true;
-
-            System.Action onExited = null;
-            onExited = () =>
-            {
-                Destroy(guest.gameObject);
-                _isGuestPresent = false;
-                _currentGuest = null;
-                guest.OnExited -= onExited;
-            };
-            guest.OnExited += onExited;
-
-            guest.Enter(_entryPoint.position, _stopPoint.position, _exitPoint.position);
+            SpawnGuest(_sessionPrefabs[Random.Range(0, _sessionPrefabs.Count)]);
 
             yield return new WaitUntil(() => !_isGuestPresent);
         }
@@ -93,5 +88,24 @@ public class GuestSpawner : MonoBehaviour
     {
         if (_currentGuest != null && _currentGuest.State == GuestState.Entering)
             _currentGuest.ForceExit();
+    }
+    private void SpawnGuest(GuestController prefab)
+    {
+        GuestController guest = Instantiate(prefab);
+        _currentGuest = guest;
+        guest.SetSessionRecipes(_sessionRecipes);
+        _isGuestPresent = true;
+
+        System.Action onExited = null;
+        onExited = () =>
+        {
+            Destroy(guest.gameObject);
+            _isGuestPresent = false;
+            _currentGuest = null;
+            guest.OnExited -= onExited;
+        };
+        guest.OnExited += onExited;
+        guest.Enter(_entryPoint.position, _stopPoint.position, _exitPoint.position);
+        OnGuestSpawned?.Invoke(guest);
     }
 }

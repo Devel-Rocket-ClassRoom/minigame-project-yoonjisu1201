@@ -22,3 +22,7 @@ MonoBehaviour:
   firstMeetDialogueID: 
   memoirDialogueID: 
   isStoryGuest: 1
+  spriteDefault: {fileID: 7607023084751264345, guid: 5fa9db6e34099b049ab2d5f64a00dc29, type: 3}
+  spriteHalf: {fileID: -3164035279308751474, guid: 5fa9db6e34099b049ab2d5f64a00dc29, type: 3}
+  spriteAngry: {fileID: -1796109443564306434, guid: 5fa9db6e34099b049ab2d5f64a00dc29, type: 3}
+  spriteHappy: {fileID: 4337738685146189058, guid: 5fa9db6e34099b049ab2d5f64a00dc29, type: 3}

@@ -71,4 +71,8 @@ public class LocalizationManager : MonoBehaviour
     public static string GetRecipeDesc(string id) => Get(NormalizeId(id) + "_desc");
     public static string GetRecipeMemo(string id) => Get(NormalizeId(id) + "_memo");
     public static string GetIngredientName(string id) => Get(NormalizeId(id) + "_name");
+    public static string GetGuideLabel(int step) => Get($"guide_step{step}_label");
+    public static string GetGuideMain(int step) => Get($"guide_step{step}_main");
+    public static string GetGuideSub1(int step) => Get($"guide_step{step}_sub1");
+    public static string GetGuideSub2(int step) => Get($"guide_step{step}_sub2");
 }
