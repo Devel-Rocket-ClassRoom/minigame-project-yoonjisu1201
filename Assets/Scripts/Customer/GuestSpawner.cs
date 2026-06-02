@@ -75,13 +75,16 @@ public class GuestSpawner : MonoBehaviour
 
         while (true) //영업마감 오픈 시스템 만들기 전까지 true로 사용
         {
-            yield return new WaitForSeconds(GameContext.customerSpawnInterval);
-
-            if (_sessionPrefabs.Count == 0) continue;
+            if (_sessionPrefabs.Count == 0)
+            {
+                yield return null;
+                continue;
+            }
 
             SpawnGuest(_sessionPrefabs[Random.Range(0, _sessionPrefabs.Count)]);
 
             yield return new WaitUntil(() => !_isGuestPresent);
+            yield return new WaitForSeconds(GameContext.customerSpawnInterval);
         }
     }
     public void ForceExitEnteringGuest()

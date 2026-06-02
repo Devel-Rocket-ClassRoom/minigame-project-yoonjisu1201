@@ -1,3 +1,5 @@
+using System.Globalization;
+using TMPro;
 using UnityEngine;
 
 public class OrderPopup : MonoBehaviour
@@ -9,6 +11,7 @@ public class OrderPopup : MonoBehaviour
     [SerializeField] private Sprite _signatureOrderSprite;
     [SerializeField] private SpriteRenderer _firstIngredientIcon;
     [SerializeField] private SpriteRenderer _favoriteStarIcon;
+    [SerializeField] private TextMeshPro _hintText;
     //나중에 에셋추가되면 [SerializeField] private SpriteRenderer __gaugeBarIcon;
 
 
@@ -28,7 +31,7 @@ public class OrderPopup : MonoBehaviour
             _orderIcon.sprite = isSignature ? _signatureOrderSprite : _normalOrderSprite;
 
         if (_firstIngredientIcon != null)
-        {
+        {                        
             bool showHint = level >= 2 && recipe.basicIngredients != null && recipe.basicIngredients.Count > 0;
             _firstIngredientIcon.enabled = showHint;
             if (showHint)
@@ -36,10 +39,14 @@ public class OrderPopup : MonoBehaviour
         }
         if (_favoriteStarIcon != null)
             _favoriteStarIcon.enabled = level >= 3 && isSignature;
+
+        if (_hintText != null)
+            _hintText.text = LocalizationManager.GetRecipeHint(recipe.id, isSignature);
         gameObject.SetActive(true);
     }
     public void Hide()
     {
+        if (_hintText != null) _hintText.text = "";
         gameObject.SetActive(false);
     }
     public void SetGauge(float ratio)

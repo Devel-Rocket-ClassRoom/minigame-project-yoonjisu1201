@@ -95,16 +95,14 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
                 GetComponent<Collider2D>().enabled = false;
                 transform.position = _originPosition;
 
-                Vector3 goldPos = guest.StopPos + Vector3.down * _goldDropOfset;
+                //Vector3 goldPos = guest.StopPos + Vector3.down * _goldDropOfset;
+                Vector3 goldPos = new Vector3(guest.StopPos.x, 1.1f, guest.StopPos.z);
                 int earnedGold = Mathf.RoundToInt(_recipe.sellPrice * GameContext.foodPriceMultiplier);
                 GoldPool.instance.Spawn(goldPos, earnedGold);
                 GoldManager.Instance.AddGold(earnedGold);
                 TruckRankManager.instance.AddExp(RankThresholds.EXP_PER_SERVE);
 
-                if (_recipe.isSignatureMenu && _recipe.ownerGhost == guest.GhostData)
-                {
-                    TryDropArtifact(guest.GhostData);
-                }
+                TryDropArtifact(guest.GhostData);
                 return;
             }
         }

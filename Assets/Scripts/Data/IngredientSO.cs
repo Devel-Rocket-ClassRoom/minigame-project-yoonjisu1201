@@ -13,7 +13,6 @@ public class IngredientSO : ScriptableObject
 {
     //id, 재료 이름, 이미지, 카테고리
     public string id;
-    public string displayName;
     public Sprite icon;
     public IngredientCategory category;
 }

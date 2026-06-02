@@ -75,4 +75,12 @@ public class LocalizationManager : MonoBehaviour
     public static string GetGuideMain(int step) => Get($"guide_step{step}_main");
     public static string GetGuideSub1(int step) => Get($"guide_step{step}_sub1");
     public static string GetGuideSub2(int step) => Get($"guide_step{step}_sub2");
+    public static string GetRecipeHint(string recipeId, bool includeSpecial)
+    {
+        int count = includeSpecial ? 4 : 3;
+        int index = UnityEngine.Random.Range(0, count);
+        if (index == 3)
+            return Get($"{recipeId}_hint_special");
+        return Get($"{recipeId}_hint_{index + 1}");
+    }
 }
