@@ -1,5 +1,6 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI; // Button
+using UnityEngine.UI;
 
 [System.Serializable]
 public class TabButtonData
@@ -13,6 +14,8 @@ public class CollectionTabController : MonoBehaviour
     [SerializeField] private GameObject[] _panels;
     [SerializeField] private TabButtonData[] _tabButtons;
     [SerializeField] private float _activeScale = 1.1f;
+    [SerializeField] private TextMeshProUGUI _tabTitleText;
+    [SerializeField] private string[] _tabTitles; // 탭 순서대로: 손님 도감, 레시피 도감, 유물 도감
 
     private void Start()
     {
@@ -28,6 +31,9 @@ public class CollectionTabController : MonoBehaviour
     {
         for (int i = 0; i < _panels.Length; i++)
             _panels[i].SetActive(i == index);
+
+        if (_tabTitleText != null && _tabTitles != null && index < _tabTitles.Length)
+            _tabTitleText.text = _tabTitles[index];
 
         for (int i = 0; i < _tabButtons.Length; i++)
         {

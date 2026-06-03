@@ -11,6 +11,8 @@ public class RecipeCollectionPanelUI : MonoBehaviour
     [SerializeField] private Button _rightButton;
     [SerializeField] private TextMeshProUGUI _pageText;
     [SerializeField] private RecipeDetailPanelUI _detailPanel;
+    [SerializeField] private GameObject _rightObject;
+    [SerializeField] private GameObject _lockedPageObject;
 
     private int _currentPage = 0;
     private int TotalPages => Mathf.CeilToInt((float)_registry.allRecipes.Count / _cards.Length);
@@ -26,7 +28,7 @@ public class RecipeCollectionPanelUI : MonoBehaviour
         RefreshPage();
 
         if (_registry.allRecipes.Count > 0)
-            _detailPanel.ShowRecipe(_registry.allRecipes[0]);
+            OnCardSelected(_registry.allRecipes[0]);
     }
 
     private void RefreshPage()
@@ -52,7 +54,12 @@ public class RecipeCollectionPanelUI : MonoBehaviour
 
     private void OnCardSelected(RecipeSO recipe)
     {
-        _detailPanel.ShowRecipe(recipe);
+        bool unlocked = !recipe.isSignatureMenu
+            || (UnlockManager.instance != null && UnlockManager.instance.IsRecipeUnlocked(recipe));
+        _rightObject.SetActive(unlocked);
+        _lockedPageObject.SetActive(!unlocked);
+        if (unlocked)
+            _detailPanel.ShowRecipe(recipe);
     }
 
     private void PrevPage()

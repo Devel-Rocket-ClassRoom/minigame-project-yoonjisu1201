@@ -1,6 +1,6 @@
 ﻿key,ko
 ghost_1_name,길 잃은 영혼
-ghost_2_name,부끄러운 꼬마 유령
+ghost_2_name,부끄러운 꼬마 
 ghost_3_name,바쁜 직장인 영혼
 ghost_4_name,미련이 남은 화가
 ghost_5_name,방랑하는 여행가
@@ -13,7 +13,7 @@ artifact_2_name,빛나는 구슬
 artifact_3_name,샐러리맨의 가방
 artifact_4_name,물감 묻은 붓
 artifact_5_name,여행자의 나침반
-artifact_6_name,은은한 밀대
+artifact_6_name,빵모양 밀대
 artifact_7_name,꿈틀거리는 새싹
 artifact_8_name,은빛 플루트
 artifact_9_name,학자의 안경
@@ -24,27 +24,27 @@ artifact_4_passive,완성 후 방치된 음식이 상하기 시작하는 대기 
 artifact_5_passive,손님들의 초기 인내심 게이지가 5% 증가한 상태로 시작해요.
 artifact_6_passive,영업이 종료되었을 때, 서빙에 성공한 총 음식 개수당 5골드의 보너스 정산금을 받아요.
 artifact_7_passive,영업 시작 시, 모든 슬롯의 첫 번째 조리 시간에 한해서만 조리 속도가 80% 빨라져요.
-artifact_8_passive,10%의 확률로 인내심 게이지가 일반 손님의 1.5배인 '느긋한 손님'이 등장해요.
+artifact_8_passive,손님을 3명 연속 만족시키면 20골드를 추가 획득해요.
 artifact_9_passive,손님 인내심이 바닥났을때 50% 확률로 인내심이 가득 채워져요.
 artifact_10_passive,???
-artifact_2_passive_name,
-artifact_3_passive_name,
-artifact_4_passive_name,
-artifact_5_passive_name,
-artifact_6_passive_name,
-artifact_7_passive_name,
-artifact_8_passive_name,
-artifact_9_passive_name,
+artifact_2_passive_name,가벼운 작별
+artifact_3_passive_name,따뜻한 위로금
+artifact_4_passive_name,천천히 식는 온기
+artifact_5_passive_name,든든한 첫인상
+artifact_6_passive_name,마감 보너스
+artifact_7_passive_name,첫 조리 가속
+artifact_8_passive_name,연속 단골 보상
+artifact_9_passive_name,마지막 인내
 artifact_10_passive_name,
-artifact_2_desc,손바닥 위에서 반짝이는 구슬이에요.\n가끔 혼자 데구르르 굴러가요.\n부끄러우면 더 밝게 빛난답니다.
-artifact_3_desc,서류 냄새가 살짝 나는 가방이에요.\n안에는 끝나지 않은 할 일이 가득해요.\n열면 한숨이 먼저 나올지도 몰라요.
-artifact_4_desc,물감이 잔뜩 묻은 붓이에요.\n어디든 콕 찍으면 색이 번져요.\n가끔 마음까지 칠해버린답니다.
-artifact_5_desc,방향을 자주 헷갈리는 나침반이에요.\n그래도 별빛 쪽은 기가 막히게 찾아요.\n길 잃은 손님에게 딱이에요.
-artifact_6_desc,밀가루 향이 나는 작은 밀대예요.\n반죽보다 마음을 더 잘 펴줘요.\n너무 세게 밀면 삐질 수도 있어요.
-artifact_7_desc,자꾸 꼼지락거리는 새싹이에요.\n물 한 방울이면 금방 기분이 좋아져요.\n조용히 두면 몰래 자라나요.
-artifact_8_desc,밤마다 살짝 울리는 플루트예요.\n누가 불지 않아도 한 소절씩 흘러나와요.\n잠든 손님도 귀를 쫑긋해요.
-artifact_9_desc,학자가 아끼던 둥근 안경이에요.\n쓰면 작은 글씨도 척척 보여요.\n대신 모르는 척은 어려워져요.
-artifact_10_desc,폭신폭신한 손뜨개 양말이에요.\n신으면 발끝부터 마음까지 따뜻해져요.\n짝이 어디 갔는지는 아무도 몰라요.
+artifact_2_desc,손바닥 위에서 반짝이는 구슬이에요. 부끄러우면 더 밝게 빛나요.
+artifact_3_desc,서류 냄새가 나는 작은 가방이에요. 안에는 끝나지 않은 일이 가득해요.
+artifact_4_desc,물감이 묻은 오래된 붓이에요. 콕 찍으면 마음까지 물들어요.
+artifact_5_desc,별빛 쪽을 잘 찾는 나침반이에요. 길 잃은 손님에게 딱이에요.
+artifact_6_desc,밀가루 향이 나는 작은 밀대예요. 반죽보다 마음을 더 잘 펴줘요.
+artifact_7_desc,자꾸 꼼지락거리는 새싹이에요. 조용히 두면 몰래 자라나요.
+artifact_8_desc,밤마다 살짝 울리는 플루트예요. 잠든 손님도 귀를 쫑긋해요.
+artifact_9_desc,학자가 아끼던 둥근 안경이에요. 작은 글씨도 척척 보여요.
+artifact_10_desc,폭신한 손뜨개 양말이에요. 발끝부터 마음까지 따뜻해져요.
 ghost_1_desc,안개 속을 헤매다 푸드트럭 불빛에 이끌려온 순수한 영혼.
 ghost_2_desc,트럭 뒤에 숨어 맛있는 냄새를 맡는 소심하고 귀여운 유령.
 ghost_3_desc,영혼이 되어서도 업무 가방을 놓지 못하는 바쁜 직장인.
@@ -189,15 +189,17 @@ ui_label_memoir_locked,방문 기록은 유물 1개를 획득하면 잠금 해�
 ui_label_special_ingredient,전용 재료
 ui_label_basic_ingredient,기본 재료
 ui_label_normal_menu,일반 메뉴
-ui_label_special_menu,특별 메뉴
+ui_label_special_menu,전용 메뉴
 ui_label_other_guest_order,다른 손님 주문
-ui_label_related_guest_order,관련 손님 주문
+ui_label_related_guest_order,주문
 ui_label_related_guest,관련 손님
 ui_label_memo,메모
-ui_label_unlock_rank2,트럭 등급 2 부터 오픈돼요!
-ui_label_reward_1,1개 획득 보상
-ui_label_reward_5,5개 획득 보상
-ui_label_artifact_passive,유물 패시브 능력
+ui_label_unlock_normal_menu,이 메뉴는 오픈되지 않아요.
+ui_label_unlock_special_menu,이 메뉴는 오픈되지 않아요.
+ui_label_reward_5,유물을 5개 모으면 패시브 능력을 얻을 수 있어요!
+ui_label_artifact_ownerghost,주인 유령: 
+ui_label_recipe_cooktime,조리시간
+ui_label_recipe_price,판매단가
 guide_step1_label,STEP 1
 guide_step1_main,손님이 도착했어요! 
 guide_step1_sub1,- 손님이 주문을 들고 찾아왔어요.
@@ -222,19 +224,24 @@ guide_step6_label,STEP 6
 guide_step6_main,요리가 성공했어요!
 guide_step6_sub1,- 손님에게 드래그해서 완성된 요리를 건네주세요.
 guide_step6_sub2,- 이제부터 요리를 직접 만들어보세요!
-ui_label_upgrade_lv,
-ui_label_upgrade_cost,
-ui_label_upgrade_max,
-ui_upgrade_slot_name,
-ui_upgrade_slot_desc,
-ui_upgrade_speed_name,
-ui_upgrade_speed_desc,
-ui_upgrade_orderboard_name,
-ui_upgrade_orderboard_desc,
-ui_upgrade_orderhint_name,
-ui_upgrade_orderhint_desc,
-ui_upgrade_container_name,
-ui_upgrade_container_desc,
+ui_upgrade_slot_name,조리대 확장
+ui_upgrade_slot_desc_1,조리 슬롯이 2개로 늘어나요.
+ui_upgrade_slot_desc_2,조리 슬롯이 3개로 늘어나요.
+ui_upgrade_speed_name,조리속도 단축
+ui_upgrade_speed_desc_1,조리시간이 10% 감소해요.
+ui_upgrade_speed_desc_2,조리시간이 20% 감소해요.
+ui_upgrade_speed_desc_3,조리시간이 30% 감소해요.
+ui_upgrade_board_name,조리대 재료현황
+ui_upgrade_board_desc_1,조리대에 넣은 재료 개수가 표시되요.
+ui_upgrade_board_desc_2,조리대에 넣은 재료 아이콘이 표시되요.
+ui_upgrade_hint_name,주문서 힌트
+ui_upgrade_hint_desc_1,일반 주문과 전용 주문을 구분해요.
+ui_upgrade_hint_desc_2,주문에 필요한 첫 재료를 보여줘요.
+ui_upgrade_hint_desc_3,전용손님 주문의 마지막 재료를 더 쉽게 알려줘요.
+ui_upgrade_container_name,레시피 즐겨찾기
+ui_upgrade_container_desc_1,보관 슬롯이 1개 오픈돼요.
+ui_upgrade_container_desc_2,보관 슬롯이 2개 오픈돼요.
+ui_upgrade_tip,업그레이드를 진행하면 영업이 더욱 편해져요!
 
 
 

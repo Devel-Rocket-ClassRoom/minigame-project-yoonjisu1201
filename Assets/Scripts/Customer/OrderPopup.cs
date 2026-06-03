@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class OrderPopup : MonoBehaviour
     [SerializeField] private TextMeshPro _hintText;
     //나중에 에셋추가되면 [SerializeField] private SpriteRenderer __gaugeBarIcon;
 
+    private Coroutine _hintCycleCoroutine;
 
     //손님 컨트롤러에서 사용
     public void Show(RecipeSO recipe, GhostSO ghostData)
@@ -31,7 +33,7 @@ public class OrderPopup : MonoBehaviour
             _orderIcon.sprite = isSignature ? _signatureOrderSprite : _normalOrderSprite;
 
         if (_firstIngredientIcon != null)
-        {                        
+        {
             bool showHint = level >= 2 && recipe.basicIngredients != null && recipe.basicIngredients.Count > 0;
             _firstIngredientIcon.enabled = showHint;
             if (showHint)
@@ -40,12 +42,32 @@ public class OrderPopup : MonoBehaviour
         if (_favoriteStarIcon != null)
             _favoriteStarIcon.enabled = level >= 3 && isSignature;
 
-        if (_hintText != null)
-            _hintText.text = LocalizationManager.GetRecipeHint(recipe.id, isSignature);
         gameObject.SetActive(true);
+        if (_hintText != null)
+        {
+            if (_hintCycleCoroutine != null)
+                StopCoroutine(_hintCycleCoroutine);
+            _hintCycleCoroutine = StartCoroutine(CoCycleHint(recipe.id, isSignature));
+        }
     }
+
+    private IEnumerator CoCycleHint(string recipeId, bool isSignature)
+    {
+        int lastIndex = -1;
+        while (true)
+        {
+            _hintText.text = LocalizationManager.GetRecipeHint(recipeId, isSignature, ref lastIndex);
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
     public void Hide()
     {
+        if (_hintCycleCoroutine != null)
+        {
+            StopCoroutine(_hintCycleCoroutine);
+            _hintCycleCoroutine = null;
+        }
         if (_hintText != null) _hintText.text = "";
         gameObject.SetActive(false);
     }

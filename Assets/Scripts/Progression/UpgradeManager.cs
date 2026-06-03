@@ -1,5 +1,7 @@
 using UnityEngine;
 
+public enum UpgradeType { CookSlot, SpeedUp, OrderBoard, OrderHint, Container }
+
 //업그레이드별 필요 비용과 레벨 관리, 업드레이드 가능여부 체크, 골드 차감, 결과값 내보내기
 public class UpgradeManager : MonoBehaviour
 {
@@ -105,4 +107,45 @@ public class UpgradeManager : MonoBehaviour
         _containerSlotLevel++;
         return true;
     }
+
+    // UpgradePanelUI에서 타입별로 통합 접근하기 위한 헬퍼
+    public int GetCurrentLevel(UpgradeType type) => type switch
+    {
+        UpgradeType.CookSlot => _cookSlotLevel,
+        UpgradeType.SpeedUp => _speedUpLevel,
+        UpgradeType.OrderBoard => _cookBoardLevel,
+        UpgradeType.OrderHint => _orderHintLevel,
+        UpgradeType.Container => _containerSlotLevel,
+        _ => 0
+    };
+
+    public int[] GetCosts(UpgradeType type) => type switch
+    {
+        UpgradeType.CookSlot => COOKSLOT_COSTS,
+        UpgradeType.SpeedUp => SPEEDUP_COSTS,
+        UpgradeType.OrderBoard => COOK_BOARD_COSTS,
+        UpgradeType.OrderHint => ORDER_HINT_COSTS,
+        UpgradeType.Container => CONTAINER_SLOT_COSTS,
+        _ => new int[0]
+    };
+
+    public bool TryUpgrade(UpgradeType type) => type switch
+    {
+        UpgradeType.CookSlot => TryUpgradeCookSlot(),
+        UpgradeType.SpeedUp => TryUpgradeSpeedUp(),
+        UpgradeType.OrderBoard => TryUpgradeCookBoard(),
+        UpgradeType.OrderHint => TryUpgradeOrderHint(),
+        UpgradeType.Container => TryUpgradeContainerSlot(),
+        _ => false
+    };
+
+    public bool CanUpgrade(UpgradeType type) => type switch
+    {
+        UpgradeType.CookSlot => CanUpgradeCookSlot(),
+        UpgradeType.SpeedUp => CanUpgradeSpeedUp(),
+        UpgradeType.OrderBoard => CanUpgradeCookBoard(),
+        UpgradeType.OrderHint => CanUpgradeOrderHint(),
+        UpgradeType.Container => CanUpgradeContainer(),
+        _ => false
+    };
 }

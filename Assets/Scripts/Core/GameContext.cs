@@ -22,9 +22,9 @@ public static class GameContext
     // artifact_7: 슬롯별 첫 조리 속도 부스트 배율 (1f = 없음, 0.2 = 80% 빠름)
     public static float firstCookSpeedMultiplier = 1f;
 
-    // artifact_8: 느긋한 손님 등장 확률 + 인내심 배율
-    public static float relaxedCustomerChance = 0f;
-    public static float relaxedCustomerPatienceMultiplier = 1f;
+    // artifact_8: N명 연속 만족 시 보너스 골드 (0 = 비활성)
+    public static int consecutiveSatisfiedRequired = 0;
+    public static int consecutiveSatisfiedBonus = 0;
 
     // artifact_9: 인내심 소진 시 리필 확률
     public static float patienceRefillChance = 0f;

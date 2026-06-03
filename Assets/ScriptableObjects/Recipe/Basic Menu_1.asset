@@ -20,7 +20,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d5e6f949355ea174ab0f488837b91851, type: 3}
   specialIcon: {fileID: 0}
   cookTime: 4.5
-  sellPrice: 10
+  sellPrice: 8
   unlockRank: 1
   isSignatureMenu: 0
   ownerGhost: {fileID: 0}

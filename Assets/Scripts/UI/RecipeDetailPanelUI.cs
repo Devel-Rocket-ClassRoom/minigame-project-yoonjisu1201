@@ -11,8 +11,10 @@ public class RecipeDetailPanelUI : MonoBehaviour
     [Header("레시피 정보")]
     [SerializeField] private TextMeshProUGUI _recipeNameText;
     [SerializeField] private TextMeshProUGUI _recipeDescText;
+    [SerializeField] private TextMeshProUGUI _cookTimeText;
+    [SerializeField] private TextMeshProUGUI _sellPriceText;
 
-    [Header("기본재료 (3종)")]
+    [Header("기본재료 (4종)")]
     [SerializeField] private Image[] _basicIngredientImages;           // 길이 3
     //[SerializeField] private TextMeshProUGUI[] _basicIngredientNames;  // 길이 3
 
@@ -26,9 +28,6 @@ public class RecipeDetailPanelUI : MonoBehaviour
 
     [Header("전용 손님")]
     [SerializeField] private Image _ownerGhostImage;
-
-    [Header("레시피 메모")]
-    [SerializeField] private TextMeshProUGUI _recipeMemoText;
 
     [Header("기본메뉴 잠금 안내 (기본메뉴일 때만 표시, 3개)")]
     [SerializeField] private GameObject[] _unlockRank2Labels;         // 텍스트 오브젝트 3개
@@ -48,6 +47,8 @@ public class RecipeDetailPanelUI : MonoBehaviour
         // 공통: 레시피 정보
         SetText(_recipeNameText, LocalizationManager.GetRecipeName(recipe.id), unlocked);
         SetText(_recipeDescText, LocalizationManager.GetRecipeDesc(recipe.id), unlocked);
+        SetText(_cookTimeText, $"{recipe.cookTime:F1}s", unlocked);
+        SetText(_sellPriceText, $"{recipe.sellPrice}G", unlocked);
 
         // 공통: 기본재료
         for (int i = 0; i < _basicIngredientImages.Length; i++)
@@ -60,9 +61,6 @@ public class RecipeDetailPanelUI : MonoBehaviour
             //    ? LocalizationManager.GetIngredientName(recipe.basicIngredients[i].id)
             //    : (hasIng ? "???" : "-");
         }
-
-        // 공통: 메모
-        SetText(_recipeMemoText, LocalizationManager.GetRecipeMemo(recipe.id), unlocked);
 
         // 전용메뉴 / 기본메뉴 분기
         if (recipe.isSignatureMenu)

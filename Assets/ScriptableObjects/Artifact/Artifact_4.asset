@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArtifactSO
   id: artifact_4
   icon: {fileID: 21300000, guid: 183233b595f23f14c9bad8c36946c448, type: 3}
+  passiveIcon: {fileID: 456549390420753832, guid: 6c6114f90f3f24243a77297541bdd252, type: 3}
   effectType: 3
   effectValue: 0.15
   effectValue2: 0

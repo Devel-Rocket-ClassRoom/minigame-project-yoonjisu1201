@@ -16,7 +16,7 @@ public class BalanceConfigSO : ScriptableObject
     [Tooltip("조리슬롯 레벨별 스폰 설정 (인덱스0=레벨0, 인덱스1=레벨1, 인덱스2=레벨2)")]
     public SpawnConfig[] spawnBySlotLevel = new SpawnConfig[]
     {
-        new SpawnConfig { spawnInterval = 6.5f, startDelayMultipliers = new float[] { 1f, 2f, 3f } },
+        new SpawnConfig { spawnInterval = 6.5f, startDelayMultipliers = new float[] { 1f, 2.5f, 4f } },
         new SpawnConfig { spawnInterval = 5.5f, startDelayMultipliers = new float[] { 1f, 1.8f, 2.8f } },
         new SpawnConfig { spawnInterval = 5f,   startDelayMultipliers = new float[] { 1f, 1.5f, 2f } },
     };

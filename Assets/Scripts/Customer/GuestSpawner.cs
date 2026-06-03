@@ -51,6 +51,7 @@ public class GuestSpawner : MonoBehaviour
         if (_spawnLoopCoroutine != null)
             StopCoroutine(_spawnLoopCoroutine);
 
+        GuestController.ResetStreak();
         _spawnLoopCoroutine = StartCoroutine(CoSpawnLoop());
     }
     public void StopSpawning()

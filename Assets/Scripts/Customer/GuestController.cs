@@ -22,6 +22,9 @@ public class GuestController : MonoBehaviour
     public event System.Action OnExited; //GuestSpawner가 구독
     public static event System.Action<GuestController> OnGuestOrdering;
 
+    private static int _consecutiveSatisfiedCount = 0;
+    public static void ResetStreak() => _consecutiveSatisfiedCount = 0;
+
     private List<RecipeSO> _sessionRecipes = new List<RecipeSO>();
     [SerializeField] private SpriteRenderer _renderer;
     private Coroutine _patienceCoroutine;
@@ -160,6 +163,7 @@ public class GuestController : MonoBehaviour
             yield break;
         }
 
+        _consecutiveSatisfiedCount = 0;
         _patienceCoroutine = null;
         CurrentOrder = null;
         _orderPopup.Hide();
@@ -173,6 +177,16 @@ public class GuestController : MonoBehaviour
         {
             StopCoroutine(_patienceCoroutine);
             _patienceCoroutine = null;
+        }
+
+        if (GameContext.consecutiveSatisfiedRequired > 0)
+        {
+            _consecutiveSatisfiedCount++;
+            if (_consecutiveSatisfiedCount >= GameContext.consecutiveSatisfiedRequired)
+            {
+                GoldManager.Instance.AddGold(GameContext.consecutiveSatisfiedBonus);
+                _consecutiveSatisfiedCount = 0;
+            }
         }
 
         _renderer.sprite = _ghostData.spriteHappy;

@@ -54,9 +54,9 @@ public class ArtifactEffectApplier : MonoBehaviour
                 GameContext.firstCookSpeedMultiplier = artifact.effectValue;
                 break;
 
-            case ArtifactEffectType.RelaxedCustomerChance:
-                GameContext.relaxedCustomerChance = artifact.effectValue;
-                GameContext.relaxedCustomerPatienceMultiplier = artifact.effectValue2;
+            case ArtifactEffectType.ConsecutiveSatisfactionBonus:
+                GameContext.consecutiveSatisfiedRequired = Mathf.RoundToInt(artifact.effectValue);
+                GameContext.consecutiveSatisfiedBonus = Mathf.RoundToInt(artifact.effectValue2);
                 break;
 
             case ArtifactEffectType.PatienceRefill:

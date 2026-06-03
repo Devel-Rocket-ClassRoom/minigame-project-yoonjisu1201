@@ -10,6 +10,8 @@ public class ArtifactCollectionPanelUI : MonoBehaviour
     [SerializeField] private Button _rightButton;
     [SerializeField] private TextMeshProUGUI _pageText;
     [SerializeField] private ArtifactDetailPanelUI _detailPanel;
+    [SerializeField] private GameObject _rightObject;
+    [SerializeField] private GameObject _lockedPageObject;
 
     private int _currentPage = 0;
     private int TotalPages => Mathf.CeilToInt((float)_registry.allArtifacts.Count / _cards.Length);
@@ -25,7 +27,7 @@ public class ArtifactCollectionPanelUI : MonoBehaviour
         RefreshPage();
 
         if (_registry.allArtifacts.Count > 0)
-            _detailPanel.ShowArtifact(_registry.allArtifacts[0], _registry);
+            OnCardSelected(_registry.allArtifacts[0]);
     }
 
     private void RefreshPage()
@@ -51,7 +53,12 @@ public class ArtifactCollectionPanelUI : MonoBehaviour
 
     private void OnCardSelected(ArtifactSO artifact)
     {
-        _detailPanel.ShowArtifact(artifact, _registry);
+        bool unlocked = UnlockManager.instance != null
+            && UnlockManager.instance.IsArtifactUnlocked(artifact);
+        _rightObject.SetActive(unlocked);
+        _lockedPageObject.SetActive(!unlocked);
+        if (unlocked)
+            _detailPanel.ShowArtifact(artifact, _registry);
     }
 
     private void PrevPage()
