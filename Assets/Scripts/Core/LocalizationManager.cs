@@ -75,4 +75,32 @@ public class LocalizationManager : MonoBehaviour
     public static string GetGuideMain(int step) => Get($"guide_step{step}_main");
     public static string GetGuideSub1(int step) => Get($"guide_step{step}_sub1");
     public static string GetGuideSub2(int step) => Get($"guide_step{step}_sub2");
+    public static string GetRecipeHint(string recipeId, bool includeSpecial, ref int lastIndex)
+    {
+        int count = includeSpecial ? 4 : 3;
+        int index;
+        do { index = UnityEngine.Random.Range(0, count); } while (count > 1 && index == lastIndex);
+        lastIndex = index;
+        if (index == 3)
+            return Get($"{recipeId}_hint_special");
+        return Get($"{recipeId}_hint_{index + 1}");
+    }
+    public static string GetUpgradeName(UpgradeType type) =>
+    Get($"ui_upgrade_{UpgradeKey(type)}_name");
+
+    public static string GetUpgradeDesc(UpgradeType type) =>
+        Get($"ui_upgrade_{UpgradeKey(type)}_desc");
+
+    public static string GetUpgradeLevelDesc(UpgradeType type, int levelIndex) =>
+        Get($"ui_upgrade_{UpgradeKey(type)}_desc_{levelIndex + 1}");
+
+    private static string UpgradeKey(UpgradeType type) => type switch
+    {
+        UpgradeType.CookSlot => "slot",
+        UpgradeType.SpeedUp => "speed",
+        UpgradeType.OrderBoard => "board",
+        UpgradeType.OrderHint => "hint",
+        UpgradeType.Container => "container",
+        _ => ""
+    };
 }

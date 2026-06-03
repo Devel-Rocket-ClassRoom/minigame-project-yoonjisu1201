@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Artifact_8
   m_EditorClassIdentifier: Assembly-CSharp::ArtifactSO
   id: artifact_8
-  displayName: "\uC740\uBE5B \uD50C\uB8E8\uD2B8"
   icon: {fileID: 21300000, guid: 372a00fc03cbe3f478b8126281f135f9, type: 3}
-  memoirText: 
-  functionalDesc: 
+  passiveIcon: {fileID: 1846698269599745892, guid: 6c6114f90f3f24243a77297541bdd252, type: 3}
+  effectType: 7
+  effectValue: 3
+  effectValue2: 15

@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Globalization;
+using TMPro;
 using UnityEngine;
 
 public class OrderPopup : MonoBehaviour
@@ -9,8 +12,10 @@ public class OrderPopup : MonoBehaviour
     [SerializeField] private Sprite _signatureOrderSprite;
     [SerializeField] private SpriteRenderer _firstIngredientIcon;
     [SerializeField] private SpriteRenderer _favoriteStarIcon;
+    [SerializeField] private TextMeshPro _hintText;
     //나중에 에셋추가되면 [SerializeField] private SpriteRenderer __gaugeBarIcon;
 
+    private Coroutine _hintCycleCoroutine;
 
     //손님 컨트롤러에서 사용
     public void Show(RecipeSO recipe, GhostSO ghostData)
@@ -36,10 +41,34 @@ public class OrderPopup : MonoBehaviour
         }
         if (_favoriteStarIcon != null)
             _favoriteStarIcon.enabled = level >= 3 && isSignature;
+
         gameObject.SetActive(true);
+        if (_hintText != null)
+        {
+            if (_hintCycleCoroutine != null)
+                StopCoroutine(_hintCycleCoroutine);
+            _hintCycleCoroutine = StartCoroutine(CoCycleHint(recipe.id, isSignature));
+        }
     }
+
+    private IEnumerator CoCycleHint(string recipeId, bool isSignature)
+    {
+        int lastIndex = -1;
+        while (true)
+        {
+            _hintText.text = LocalizationManager.GetRecipeHint(recipeId, isSignature, ref lastIndex);
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
     public void Hide()
     {
+        if (_hintCycleCoroutine != null)
+        {
+            StopCoroutine(_hintCycleCoroutine);
+            _hintCycleCoroutine = null;
+        }
+        if (_hintText != null) _hintText.text = "";
         gameObject.SetActive(false);
     }
     public void SetGauge(float ratio)

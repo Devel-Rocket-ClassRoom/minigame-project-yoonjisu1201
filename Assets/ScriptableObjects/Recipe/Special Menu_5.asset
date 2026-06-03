@@ -19,8 +19,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 64e1656e569988b45b73c81c97f4b17f, type: 2}
   icon: {fileID: 21300000, guid: ed8a49738f4fbce41ac769cda95d67ae, type: 3}
   specialIcon: {fileID: 21300000, guid: 66b23e73cd9845d4cbeaf2c780474581, type: 3}
-  cookTime: 12
-  sellPrice: 50
+  cookTime: 6
+  sellPrice: 27
   unlockRank: 5
   isSignatureMenu: 1
   ownerGhost: {fileID: 11400000, guid: 84d6ca3aba0da8c4c80285ca2db82bb2, type: 2}

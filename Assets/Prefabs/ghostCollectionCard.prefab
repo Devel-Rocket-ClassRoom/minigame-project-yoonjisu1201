@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.8808, y: 10}
-  m_SizeDelta: {x: 149.3247, y: 50}
+  m_AnchoredPosition: {x: 0.49057, y: 10}
+  m_SizeDelta: {x: 169.032, y: 84.579}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4562450138597673742
 CanvasRenderer:
@@ -247,8 +247,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.49023, y: -15}
-  m_SizeDelta: {x: 171.54, y: 171.5318}
+  m_AnchoredPosition: {x: 0, y: -26}
+  m_SizeDelta: {x: 140.685, y: 140.685}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8265550861283518581
 CanvasRenderer:
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 40838c902b32b8543b2474ec10c87c6a, type: 3}
+  m_Sprite: {fileID: 2724818950008445094, guid: 5e226c64a889d424e83e0c54a593a2c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -322,8 +322,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -1.238, y: -0}
+  m_SizeDelta: {x: 155.555, y: 68.432}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4242995765610482236
 CanvasRenderer:
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE38 \uC783\uC740 \uC601\uD63C \uC720\uB839"
+  m_text: "\uAE38 \uC783\uC740 \uC601\uD63C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 891b740d5ef415946b070ca13061680c, type: 2}
   m_sharedMaterial: {fileID: 5675065038460689975, guid: 891b740d5ef415946b070ca13061680c, type: 2}
@@ -380,8 +380,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Basic Menu_3
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   id: recipe_basic_3
-  displayName: "\uB530\uB048 \uBCC4\uBE5B \uC2A4\uD504"
   basicIngredients:
   - {fileID: 11400000, guid: 07d425141b9a22e4bae63d16a3ccf827, type: 2}
   - {fileID: 11400000, guid: e40951e6730ea5c4880ad6f98727c162, type: 2}
   - {fileID: 11400000, guid: cb958768bea36194dbd6358c13b6ffc7, type: 2}
   icon: {fileID: 21300000, guid: 915138f23fe7b884ba9ec88d456f124b, type: 3}
-  cookTime: 8
-  sellPrice: 30
+  specialIcon: {fileID: 0}
+  cookTime: 4.5
+  sellPrice: 12
   unlockRank: 1
   isSignatureMenu: 0
   ownerGhost: {fileID: 0}

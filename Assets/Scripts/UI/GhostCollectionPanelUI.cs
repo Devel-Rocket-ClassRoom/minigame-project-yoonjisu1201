@@ -12,6 +12,8 @@ public class GhostCollectionPanelUI : MonoBehaviour
     [SerializeField] private Button _rightButton;
     [SerializeField] private TextMeshProUGUI _pageText;
     [SerializeField] private GhostDetailPanelUI _detailPanel;
+    [SerializeField] private GameObject _rightObject;
+    [SerializeField] private GameObject _lockedPageObject;
 
     private const int TOTAL_PAGES = 2;
     private int _currentPage = 0;
@@ -26,7 +28,7 @@ public class GhostCollectionPanelUI : MonoBehaviour
 
         RefreshPage();
         if (_registry.allGhosts.Count > 0)
-            _detailPanel.showGhost(_registry.allGhosts[0], _registry);
+            OnCardSelected(_registry.allGhosts[0]);
     }
     //해금 여부검사는 GhostCollectionCardUI에서 함
     private void RefreshPage()
@@ -47,7 +49,12 @@ public class GhostCollectionPanelUI : MonoBehaviour
     }
     private void OnCardSelected(GhostSO ghost)
     {
-        _detailPanel.showGhost(ghost, _registry);
+        bool unlocked = UnlockManager.instance != null
+            && UnlockManager.instance.IsGhostUnlocked(ghost);
+        _rightObject.SetActive(unlocked);
+        _lockedPageObject.SetActive(!unlocked);
+        if (unlocked)
+            _detailPanel.showGhost(ghost, _registry);
     }
     private void PrevPage()
     {

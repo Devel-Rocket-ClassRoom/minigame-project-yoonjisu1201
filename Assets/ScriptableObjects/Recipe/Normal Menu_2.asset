@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6e74d6192225dc48bd5442cfd3d67a0, type: 3}
-  m_Name: Special Menu_2
+  m_Name: Normal Menu_2
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
-  id: recipe_special_2
+  id: recipe_normal_2
   basicIngredients:
   - {fileID: 11400000, guid: 6702ed6c5b6d6f5408c1e8702b8ed0ce, type: 2}
   - {fileID: 11400000, guid: f0e6a26dc1c53ce46984571b7fc96363, type: 2}
   - {fileID: 11400000, guid: 2aa1d8a1e59686c44b0bb5575075f668, type: 2}
+  - {fileID: 11400000, guid: b1fc54829cd6e6c4c873b5370d5b08ab, type: 2}
   icon: {fileID: 21300000, guid: 88b8e437136e29247b471e82c7a8ea57, type: 3}
-  specialIcon: {fileID: 21300000, guid: 5ec682fae0299ff449388309356ddecd, type: 3}
-  cookTime: 12
-  sellPrice: 50
+  specialIcon: {fileID: 0}
+  cookTime: 5.5
+  sellPrice: 15
   unlockRank: 2
-  isSignatureMenu: 1
+  isSignatureMenu: 0
   ownerGhost: {fileID: 11400000, guid: 8150bc92cac558741b4778566fba3759, type: 2}
-  special_Ingredient: {fileID: 11400000, guid: 06450474b6888944dbc1613b4d11beb7, type: 2}
-  normalLast_Ing: {fileID: 11400000, guid: b1fc54829cd6e6c4c873b5370d5b08ab, type: 2}
+  special_Ingredient: {fileID: 0}
+  normalLast_Ing: {fileID: 0}
   dialogueID: 

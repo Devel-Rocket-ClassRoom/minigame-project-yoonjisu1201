@@ -40,11 +40,11 @@ public class CookingGuideManager : MonoBehaviour
     }
     private void Start()
     {
+        if (PlayerPrefs.GetInt(PREF_KEY, 0) == 1) { _guideDone = true; return; }
+
         goldUI.SetActive(false);
         timerUI.SetActive(false);
         lobbyButton.SetActive(false);
-
-        if (PlayerPrefs.GetInt(PREF_KEY, 0) == 1) return;
 
         foreach (var s in _pausedSpawners)
             s.StopSpawning();
@@ -102,6 +102,8 @@ public class CookingGuideManager : MonoBehaviour
             SessionManager.instance.ResumeTimer();
             _currentGuest?.ResumePatience();
 
+            foreach (var s in _pausedSpawners)
+                s.StopSpawning();
             foreach (var s in _pausedSpawners)
                 s.StartSpawning();
 

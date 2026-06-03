@@ -1,15 +1,19 @@
 using UnityEngine;
 
+public enum UpgradeType { CookSlot, SpeedUp, OrderBoard, OrderHint, Container }
+
 //업그레이드별 필요 비용과 레벨 관리, 업드레이드 가능여부 체크, 골드 차감, 결과값 내보내기
 public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager instance { get; private set; }
-    //비용테이블 상수 - 실제 비용은 3주차에 조정
-    private static readonly int[] COOKSLOT_COSTS = { 101, 102 };
-    private static readonly int[] SPEEDUP_COSTS = { 201, 202, 203 };
-    private static readonly int[] COOK_BOARD_COSTS = { 301, 302 };
-    private static readonly int[] ORDER_HINT_COSTS = { 401, 402, 403 };
-    private static readonly int[] CONTAINER_SLOT_COSTS = { 501, 502 };
+
+    [SerializeField] private BalanceConfigSO _balanceConfig;
+
+    private int[] COOKSLOT_COSTS => _balanceConfig.cookSlotCosts;
+    private int[] SPEEDUP_COSTS => _balanceConfig.speedUpCosts;
+    private int[] COOK_BOARD_COSTS => _balanceConfig.cookBoardCosts;
+    private int[] ORDER_HINT_COSTS => _balanceConfig.orderHintCosts;
+    private int[] CONTAINER_SLOT_COSTS => _balanceConfig.containerSlotCosts;
 
     private int _cookSlotLevel = 0;
     private int _speedUpLevel = 0;
@@ -18,13 +22,8 @@ public class UpgradeManager : MonoBehaviour
     private int _containerSlotLevel = 0;
 
     public int ActiveSlotCount => _cookSlotLevel + 1;
-    public float CookingSpeedMultiplier => _speedUpLevel switch
-    {
-        1 => 0.95f,
-        2 => 0.92f,
-        3 => 0.88f,  
-        _ => 1f
-    };
+    public float CookingSpeedMultiplier =>
+        _speedUpLevel > 0 ? _balanceConfig.speedUpMultipliers[_speedUpLevel - 1] : 1f;
 
     public int CookSlotLevel => _cookSlotLevel;
     public int SpeedUpLevel => _speedUpLevel;
@@ -108,4 +107,45 @@ public class UpgradeManager : MonoBehaviour
         _containerSlotLevel++;
         return true;
     }
+
+    // UpgradePanelUI에서 타입별로 통합 접근하기 위한 헬퍼
+    public int GetCurrentLevel(UpgradeType type) => type switch
+    {
+        UpgradeType.CookSlot => _cookSlotLevel,
+        UpgradeType.SpeedUp => _speedUpLevel,
+        UpgradeType.OrderBoard => _cookBoardLevel,
+        UpgradeType.OrderHint => _orderHintLevel,
+        UpgradeType.Container => _containerSlotLevel,
+        _ => 0
+    };
+
+    public int[] GetCosts(UpgradeType type) => type switch
+    {
+        UpgradeType.CookSlot => COOKSLOT_COSTS,
+        UpgradeType.SpeedUp => SPEEDUP_COSTS,
+        UpgradeType.OrderBoard => COOK_BOARD_COSTS,
+        UpgradeType.OrderHint => ORDER_HINT_COSTS,
+        UpgradeType.Container => CONTAINER_SLOT_COSTS,
+        _ => new int[0]
+    };
+
+    public bool TryUpgrade(UpgradeType type) => type switch
+    {
+        UpgradeType.CookSlot => TryUpgradeCookSlot(),
+        UpgradeType.SpeedUp => TryUpgradeSpeedUp(),
+        UpgradeType.OrderBoard => TryUpgradeCookBoard(),
+        UpgradeType.OrderHint => TryUpgradeOrderHint(),
+        UpgradeType.Container => TryUpgradeContainerSlot(),
+        _ => false
+    };
+
+    public bool CanUpgrade(UpgradeType type) => type switch
+    {
+        UpgradeType.CookSlot => CanUpgradeCookSlot(),
+        UpgradeType.SpeedUp => CanUpgradeSpeedUp(),
+        UpgradeType.OrderBoard => CanUpgradeCookBoard(),
+        UpgradeType.OrderHint => CanUpgradeOrderHint(),
+        UpgradeType.Container => CanUpgradeContainer(),
+        _ => false
+    };
 }

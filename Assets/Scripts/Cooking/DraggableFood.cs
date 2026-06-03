@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Collider2D))]
 public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    [SerializeField] private BalanceConfigSO _balanceConfig;
     private RecipeSO _recipe; //조리대 슬롯에서 만든 레시피
     private CookingSlot _slot;
     private float _goldDropOfset = 1.1f;
@@ -95,16 +96,14 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
                 GetComponent<Collider2D>().enabled = false;
                 transform.position = _originPosition;
 
-                Vector3 goldPos = guest.StopPos + Vector3.down * _goldDropOfset;
-                int earnedGold = Mathf.RoundToInt(_recipe.sellPrice * GameContext.foodPriceMultiplier);
+                //Vector3 goldPos = guest.StopPos + Vector3.down * _goldDropOfset;
+                Vector3 goldPos = new Vector3(guest.StopPos.x, _goldDropOfset, guest.StopPos.z);
+                int earnedGold = _recipe.sellPrice;
                 GoldPool.instance.Spawn(goldPos, earnedGold);
                 GoldManager.Instance.AddGold(earnedGold);
-                TruckRankManager.instance.AddExp(RankThresholds.EXP_PER_SERVE);
+                TruckRankManager.instance.AddExp(TruckRankManager.instance.ExpPerServe);
 
-                if (_recipe.isSignatureMenu && _recipe.ownerGhost == guest.GhostData)
-                {
-                    TryDropArtifact(guest.GhostData);
-                }
+                TryDropArtifact(guest.GhostData);
                 return;
             }
         }
@@ -116,7 +115,7 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     {
         if (ghost.artifact == null) return;
 
-        float dropChance = ghost.ArtifactDropChance + GameContext.artifactDropChanceBonus;
+        float dropChance = _balanceConfig.artifactDropChance;
         float randomvalue = Random.value;
         if (randomvalue < dropChance)
             UnlockManager.instance.CollectArtifact(ghost.artifact);

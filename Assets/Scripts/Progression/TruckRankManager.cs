@@ -6,6 +6,8 @@ public class TruckRankManager : MonoBehaviour
 {
     public static TruckRankManager instance { get; private set; }
 
+    [SerializeField] private BalanceConfigSO _balanceConfig;
+
     [Header("DEBUG")]
     [SerializeField] private int _debugStartRank = 1;
 
@@ -13,7 +15,10 @@ public class TruckRankManager : MonoBehaviour
     public float TotalExp { get; private set; } = 0f; 
     public float SessionExp { get; private set; } = 0f;
 
-    //해금 관리하는곳에서 고둑
+    public int MaxRank => _balanceConfig.rankExpThresholds.Length;
+    public int ExpPerServe => _balanceConfig.expPerServe;
+    public int GetRequiredExp(int rank) => _balanceConfig.rankExpThresholds[rank];
+    //해금 관리하는곳에서 구독
     public event System.Action<int> OnRankUp;
 
     private void Awake()
@@ -44,9 +49,9 @@ public class TruckRankManager : MonoBehaviour
     }
     private void CheckRankUp()
     {
-        while (CurrentRank < RankThresholds.MAX_RANK)
+        while (CurrentRank < MaxRank)
         {
-            if (TotalExp >= RankThresholds.GetRequiredExp(CurrentRank))
+            if (TotalExp >= GetRequiredExp(CurrentRank))
             {
                 CurrentRank++;
                 OnRankUp?.Invoke(CurrentRank);

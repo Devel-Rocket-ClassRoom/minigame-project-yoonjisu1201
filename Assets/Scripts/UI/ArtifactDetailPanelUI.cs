@@ -10,12 +10,12 @@ public class ArtifactDetailPanelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _artifactDescText;
 
     [Header("유물 효과")]
+    [SerializeField] private Image _passiveIcon;
     [SerializeField] private TextMeshProUGUI _passiveNameText;
     [SerializeField] private TextMeshProUGUI _passiveDescText;
 
     [Header("전용 손님")]
     [SerializeField] private Image _ownerGhostImage;
-    [SerializeField] private TextMeshProUGUI _ownerGhostNameText;
 
     public void ShowArtifact(ArtifactSO artifact, ContentRegistrySO registry)
     {
@@ -27,21 +27,20 @@ public class ArtifactDetailPanelUI : MonoBehaviour
         SetImage(_artifactImage, artifact.icon, unlocked);
         SetText(_artifactNameText, LocalizationManager.GetArtifactName(artifact.id), unlocked);
         SetText(_artifactDescText, LocalizationManager.GetArtifactDesc(artifact.id), unlocked);
+        SetImage(_passiveIcon, artifact.passiveIcon, unlocked);
         SetText(_passiveNameText, LocalizationManager.GetArtifactPassiveName(artifact.id), unlocked);
         SetText(_passiveDescText, LocalizationManager.GetArtifactPassive(artifact.id), unlocked);
 
         GhostSO owner = FindOwnerGhost(artifact, registry);
         if (owner != null)
         {
-            bool ghostUnlocked = UnlockManager.instance != null
-                && UnlockManager.instance.IsGhostUnlocked(owner);
-            SetImage(_ownerGhostImage, owner.icon, ghostUnlocked);
-            SetText(_ownerGhostNameText, LocalizationManager.GetGhostName(owner.id), ghostUnlocked);
+            bool artifactCollected = UnlockManager.instance != null
+                && UnlockManager.instance.GetArtifacCount(artifact) > 0;
+            SetImage(_ownerGhostImage, owner.icon, artifactCollected);
         }
         else
         {
             SetImage(_ownerGhostImage, null, false);
-            _ownerGhostNameText.text = "-";
         }
     }
 

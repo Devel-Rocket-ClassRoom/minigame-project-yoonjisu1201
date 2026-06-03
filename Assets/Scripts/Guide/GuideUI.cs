@@ -74,6 +74,7 @@ public class GuideUI : MonoBehaviour, IPointerClickHandler
             dashedCircle.gameObject.SetActive(false);
             return;
         }
+        if (_cam == null) _cam = Camera.main;
         dashedCircle.gameObject.SetActive(true);
 
         Vector3 screenPos = _cam.WorldToScreenPoint(worldTarget.position);
