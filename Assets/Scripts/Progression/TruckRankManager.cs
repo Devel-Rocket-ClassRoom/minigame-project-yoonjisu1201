@@ -59,4 +59,16 @@ public class TruckRankManager : MonoBehaviour
             else break;
         }
     }
+    public void LoadFrom(SaveData data)
+    {
+        CurrentRank = data.currentRank;
+        TotalExp = data.totalExp;
+    }
+
+    public void ResetAll()
+    {
+        CurrentRank = 1;
+        TotalExp = 0f;
+        SessionExp = 0f;
+    }
 }

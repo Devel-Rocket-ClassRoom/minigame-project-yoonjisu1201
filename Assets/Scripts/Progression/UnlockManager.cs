@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 //해금된 것들 저장, 해금 메서드, 해금 조회 메서드
 public class UnlockManager : MonoBehaviour
@@ -151,5 +152,47 @@ public class UnlockManager : MonoBehaviour
         foreach (var recipe in registry.allRecipes)
             if (IsRecipeUnlocked(recipe)) result.Add(recipe);
         return result;
+    }
+
+    //----------------------------------저장/불러기용
+    public void WriteTo(SaveData data)
+    {
+        data.unlockedRecipes = new List<string>(_unlockedRecipes);
+        data.unlockedGhosts = new List<string>(_unlockedGhosts);
+        data.unlockedIngredients = new List<string>(_unlockedIngredients);
+        data.unlockedArtifacts = new List<string>(_unlockedArifacts);
+        data.unlockedAbilities = new List<string>(_unlockedAbilities);
+
+        //타입이 리스트라서 save를 연속으로 하면 중복으로 저장되기때문에 clear
+        data.artifactCountKeys.Clear();
+        data.artifactCountValues.Clear();
+        foreach (var kv in _artifactCounts)
+        {
+            data.artifactCountKeys.Add(kv.Key);
+            data.artifactCountValues.Add(kv.Value);
+        }
+    }
+
+    public void LoadFrom(SaveData data)
+    {
+        _unlockedRecipes = new HashSet<string>(data.unlockedRecipes);
+        _unlockedGhosts = new HashSet<string>(data.unlockedGhosts);
+        _unlockedIngredients = new HashSet<string>(data.unlockedIngredients);
+        _unlockedArifacts = new HashSet<string>(data.unlockedArtifacts);
+        _unlockedAbilities = new HashSet<string>(data.unlockedAbilities);
+
+        for (int i = 0; i < data.artifactCountKeys.Count; i++)
+            _artifactCounts[data.artifactCountKeys[i]] = data.artifactCountValues[i];
+    }
+
+    public void ResetAll()
+    {
+        _unlockedRecipes.Clear();
+        _unlockedGhosts.Clear();
+        _unlockedIngredients.Clear();
+        _unlockedArifacts.Clear();
+        _unlockedAbilities.Clear();
+        _unlockedMemoirIds.Clear();
+        _artifactCounts.Clear();
     }
 }
