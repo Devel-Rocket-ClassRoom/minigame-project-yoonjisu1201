@@ -99,11 +99,11 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
                 //Vector3 goldPos = guest.StopPos + Vector3.down * _goldDropOfset;
                 Vector3 basePos = new Vector3(guest.StopPos.x, _goldDropOfset, guest.StopPos.z);
                 int earnedGold = _recipe.sellPrice;
-                GoldPool.instance.Spawn(basePos + Vector3.left * 0.5f, earnedGold);
+                GoldPool.instance.Spawn(basePos + Vector3.left * 0.6f, earnedGold);
                 GoldManager.Instance.AddGold(earnedGold);
                 TruckRankManager.instance.AddExp(TruckRankManager.instance.ExpPerServe);
 
-                TryDropArtifact(guest.GhostData, basePos + Vector3.right * 0.5f);
+                TryDropArtifact(guest.GhostData, basePos + Vector3.right * 0.6f);
                 return;
             }
         }

@@ -13,12 +13,9 @@ public class RankUpPopupUI : MonoBehaviour
     [SerializeField] private RectTransform _cardContainer;
     [SerializeField] private GameObject _cardPrefab;
 
-    [SerializeField] private GameObject _levelUpEffects;
-
     private void Start()
     {
         _panel.SetActive(false);
-        if (_levelUpEffects != null) _levelUpEffects.SetActive(false);
         _closeButton.onClick.AddListener(Close);
 
         if (TruckRankManager.instance == null || _registry == null) return;
@@ -27,7 +24,6 @@ public class RankUpPopupUI : MonoBehaviour
 
         BuildCards(rank);
         _panel.SetActive(true);
-        if (_levelUpEffects != null) _levelUpEffects.SetActive(true);
     }
 
     private void BuildCards(int rank)
@@ -66,16 +62,17 @@ public class RankUpPopupUI : MonoBehaviour
         var shown = new HashSet<string>();
         foreach (var recipe in recipes)
         {
-            TryAddIngredient(recipe.normalLast_Ing, previousIngredients, shown);
-            TryAddIngredient(recipe.special_Ingredient, previousIngredients, shown);
+            TryAddIngredient(recipe.normalLast_Ing, previousIngredients, shown, "일반재료");
             foreach (var ing in recipe.basicIngredients)
-                TryAddIngredient(ing, previousIngredients, shown);
+                TryAddIngredient(ing, previousIngredients, shown, "일반재료");
         }
+        foreach (var recipe in recipes)
+            TryAddIngredient(recipe.special_Ingredient, previousIngredients, shown, "전용재료");
     }
-    private void TryAddIngredient(IngredientSO ing, HashSet<string> previous, HashSet<string> shown)
+    private void TryAddIngredient(IngredientSO ing, HashSet<string> previous, HashSet<string> shown, string category)
     {
         if (ing != null && !previous.Contains(ing.id) && shown.Add(ing.id))
-            AddCard(ing.icon, LocalizationManager.GetIngredientName(ing.id), "재료");
+            AddCard(ing.icon, LocalizationManager.GetIngredientName(ing.id), category);
     }
     private void AddCard(Sprite icon, string name, string category)
     {
@@ -86,7 +83,6 @@ public class RankUpPopupUI : MonoBehaviour
     {
         TruckRankManager.instance.ClearPendingRankUp();
         _panel.SetActive(false);
-        if (_levelUpEffects != null) _levelUpEffects.SetActive(false);
     }
 
     [ContextMenu("Test/Show Level Up Popup")]
@@ -94,6 +90,5 @@ public class RankUpPopupUI : MonoBehaviour
     {
         BuildCards(1);
         _panel.SetActive(true);
-        if (_levelUpEffects != null) _levelUpEffects.SetActive(true);
     }
 }
