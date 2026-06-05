@@ -97,13 +97,13 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
                 transform.position = _originPosition;
 
                 //Vector3 goldPos = guest.StopPos + Vector3.down * _goldDropOfset;
-                Vector3 goldPos = new Vector3(guest.StopPos.x, _goldDropOfset, guest.StopPos.z);
+                Vector3 basePos = new Vector3(guest.StopPos.x, _goldDropOfset, guest.StopPos.z);
                 int earnedGold = _recipe.sellPrice;
-                GoldPool.instance.Spawn(goldPos, earnedGold);
+                GoldPool.instance.Spawn(basePos + Vector3.left * 0.6f, earnedGold);
                 GoldManager.Instance.AddGold(earnedGold);
                 TruckRankManager.instance.AddExp(TruckRankManager.instance.ExpPerServe);
 
-                TryDropArtifact(guest.GhostData);
+                TryDropArtifact(guest.GhostData, basePos + Vector3.right * 0.6f);
                 return;
             }
         }
@@ -111,14 +111,17 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     }
 
     //유물 드롭 확률
-    private void TryDropArtifact(GhostSO ghost)
+    private void TryDropArtifact(GhostSO ghost, Vector3 spawnPos)
     {
         if (ghost.artifact == null) return;
 
         float dropChance = _balanceConfig.artifactDropChance;
         float randomvalue = Random.value;
         if (randomvalue < dropChance)
+        {
             UnlockManager.instance.CollectArtifact(ghost.artifact);
+            ArtifactDropPool.instance.Spawn(spawnPos, ghost.artifact.icon);
+        }
         Debug.Log($"{randomvalue}");
     }
 }

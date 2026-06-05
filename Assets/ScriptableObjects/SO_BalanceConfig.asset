@@ -29,8 +29,8 @@ MonoBehaviour:
     - 0.1
     - 1.5
     - 2.5
-  signatureOrderChance: 0.45
-  artifactDropChance: 0.15
+  signatureOrderChance: 1
+  artifactDropChance: 1
   basePatienceSeconds: 28
   patienceRelaxedMultiplier: 1.15
   patienceNormalMultiplier: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
   patienceHurriedMultiplier: 0.8
   foodSpoilTime: 15
   expPerServe: 1
-  rankExpThresholds: 000000000c000000240000004600000073000000aa000000eb000000360100008b010000ea010000
+  rankExpThresholds: 00000000010000000200000003000000040000000500000006000000070000000800000009000000
   cookSlotCosts: c201000078050000
   speedUpCosts: fa000000bc02000040060000
   speedUpMultipliers:

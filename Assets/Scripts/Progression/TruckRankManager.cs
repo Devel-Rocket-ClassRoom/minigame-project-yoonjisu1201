@@ -18,7 +18,7 @@ public class TruckRankManager : MonoBehaviour
     public int MaxRank => _balanceConfig.rankExpThresholds.Length;
     public int ExpPerServe => _balanceConfig.expPerServe;
     public int GetRequiredExp(int rank) => _balanceConfig.rankExpThresholds[rank];
-    //해금 관리하는곳에서 구독
+    public int PendingRankUp { get; private set; } = 0;
     public event System.Action<int> OnRankUp;
 
     private void Awake()
@@ -54,6 +54,7 @@ public class TruckRankManager : MonoBehaviour
             if (TotalExp >= GetRequiredExp(CurrentRank))
             {
                 CurrentRank++;
+                PendingRankUp = CurrentRank;
                 OnRankUp?.Invoke(CurrentRank);
             }
             else break;
@@ -65,10 +66,13 @@ public class TruckRankManager : MonoBehaviour
         TotalExp = data.totalExp;
     }
 
+    public void ClearPendingRankUp() => PendingRankUp = 0;
+
     public void ResetAll()
     {
         CurrentRank = 1;
         TotalExp = 0f;
         SessionExp = 0f;
+        PendingRankUp = 0;
     }
 }
