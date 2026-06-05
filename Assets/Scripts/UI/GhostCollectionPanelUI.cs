@@ -25,7 +25,7 @@ public class GhostCollectionPanelUI : MonoBehaviour
         _rightButton.onClick.AddListener(NextPage);
 
         if (UnlockManager.instance != null)
-            UnlockManager.instance.OnGhostUnlocked += _ => RefreshPage();
+            UnlockManager.instance.OnGhostUnlocked += OnGhostUnlockedHandler;
 
         RefreshPage();
         if (_registry.allGhosts.Count > 0)
@@ -65,6 +65,14 @@ public class GhostCollectionPanelUI : MonoBehaviour
         if (unlocked)
             _detailPanel.showGhost(ghost, _registry);
     }
+    private void OnGhostUnlockedHandler(GhostSO _) => RefreshPage();
+
+    private void OnDestroy()
+    {
+        if (UnlockManager.instance != null)
+            UnlockManager.instance.OnGhostUnlocked -= OnGhostUnlockedHandler;
+    }
+
     private void PrevPage()
     {
         if (_currentPage > 0)

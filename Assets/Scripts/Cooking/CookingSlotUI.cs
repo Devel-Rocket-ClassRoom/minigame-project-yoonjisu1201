@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -138,7 +139,11 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
             if (_slot.CookedRecipe != null)
             {
                 _draggableFood.Setup(_slot.CookedRecipe, _slot);
-                Sprite icon = _slot.CookedRecipe.icon;
+                RecipeSO cooked = _slot.CookedRecipe;
+                bool usedSpecial = cooked.isSignatureMenu
+                    && cooked.special_Ingredient != null
+                    && _slot.Ingredients.Contains(cooked.special_Ingredient);
+                Sprite icon = usedSpecial ? cooked.specialIcon : cooked.icon;
                 if (icon != null)
                 {
                     _resultRenderer.enabled = true;

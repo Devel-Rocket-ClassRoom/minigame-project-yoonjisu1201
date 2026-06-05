@@ -1,0 +1,38 @@
+{
+    "asset": "0c4c7738387c592459396f31be32f2a4",
+    "fileName": "019e971c-84ad-7d66-80ce-80056be33084.png",
+    "prompt": "A Unity game asset sprite sheet. White background. STRICT 5x5 grid (5 columns, 5 rows = 25 equal cells). The grid should fill the entire image with size 1024x1024 with no extra border or padding outside the cells. Contains the following individual game assets, one per cell left-to-right top-to-bottom, styled to exactly match the art style of the provided reference image: Large Gold Star, Medium Gold Star, Small Gold Star, Tiny Gold Star, Gold Sparkle Cluster, Large Purple Star, Medium Purple Star, Small Purple Star, Tiny Purple Star, Purple Sparkle Cluster, Large Gold Glint Star, Gold Sunburst Particle, Long Golden Comet Comet Trail, Golden Swirl Trail, Purple Circular Aura, Purple and Gold Spiral Trail, Gold and Purple Sparkle Field, Glowing Gold Nebula, Glowing Purple Nebula, Glowing Soft Gold Point, Glowing Soft Purple Point, Starburst with rays, Triple sparkle cluster, Glowing Gold Dust. Rules: - ONE asset per grid cell, centered with ample padding - Assets must be scaled to fit within their cell — do NOT overflow into grid lines - Grid must have exactly 5 columns and 5 rows of equal-sized cells - Grid lines: clean, solid black, clearly visible but not overly thick - All cells must be equal in size - White background inside every cell - Any remaining empty cells must be pure white with no content - NO text, labels, captions, names, or annotations anywhere in the image - Assets must look like they belong in the original scene (match style exactly) - Do NOT remove background on the game asset sprite sheet. Negative prompt: text, labels, captions, watermark, signature, blurry, low quality, distorted, overlapping assets, cropped assets, crossing lines, uneven grid lines, non-uniform cells, merged cells, thin grid lines, graph paper style, multiple items in one cell, grouped items, any letters or words.",
+    "negativePrompt": "",
+    "model": "gemini-3.0-pro",
+    "modelName": "Gemini 3.0 Pro",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": [
+            {
+                "doodleReferenceType": 7,
+                "doodle": [],
+                "label": "Image",
+                "strength": 0.25,
+                "invertStrength": false,
+                "assetReferenceGuid": "d7f445f5dcf6b8c4b95232d14afd6d45",
+                "unlabeledIndex": -1
+            }
+        ]
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}
