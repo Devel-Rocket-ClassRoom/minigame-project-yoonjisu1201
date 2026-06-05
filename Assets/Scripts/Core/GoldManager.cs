@@ -41,5 +41,16 @@ public class GoldManager : MonoBehaviour
         SessionGold = 0;
         OnGoldChanged?.Invoke();
     }
+    public void LoadFrom(SaveData data)
+    {
+        TotalGold = data.totalGold;
+        OnGoldChanged?.Invoke();
+    }
 
+    public void ResetAll()
+    {
+        TotalGold = 0;
+        SessionGold = 0;
+        OnGoldChanged?.Invoke();
+    }
 }

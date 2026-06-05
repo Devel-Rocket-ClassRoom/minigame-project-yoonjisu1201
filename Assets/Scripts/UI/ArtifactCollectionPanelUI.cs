@@ -15,6 +15,7 @@ public class ArtifactCollectionPanelUI : MonoBehaviour
 
     private int _currentPage = 0;
     private int TotalPages => Mathf.CeilToInt((float)_registry.allArtifacts.Count / _cards.Length);
+    private ArtifactSO _selectedArtifact;
 
     private void Start()
     {
@@ -28,6 +29,12 @@ public class ArtifactCollectionPanelUI : MonoBehaviour
 
         if (_registry.allArtifacts.Count > 0)
             OnCardSelected(_registry.allArtifacts[0]);
+    }
+
+    private void OnEnable()
+    {
+        if (_selectedArtifact != null)
+            OnCardSelected(_selectedArtifact);
     }
 
     private void RefreshPage()
@@ -53,6 +60,7 @@ public class ArtifactCollectionPanelUI : MonoBehaviour
 
     private void OnCardSelected(ArtifactSO artifact)
     {
+        _selectedArtifact = artifact;
         bool unlocked = UnlockManager.instance != null
             && UnlockManager.instance.IsArtifactUnlocked(artifact);
         _rightObject.SetActive(unlocked);

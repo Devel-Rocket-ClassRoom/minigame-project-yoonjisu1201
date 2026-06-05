@@ -30,8 +30,7 @@ public class RecipeCollectionCardUI : MonoBehaviour
     {
         if (_recipeData == null) return;
 
-        bool unlocked = !_recipeData.isSignatureMenu|| 
-            (UnlockManager.instance != null && UnlockManager.instance.IsRecipeUnlocked(_recipeData));
+        bool unlocked = UnlockManager.instance != null && UnlockManager.instance.IsRecipeUnlocked(_recipeData);
 
         _recipeImage.sprite = _recipeData.isSignatureMenu ? _recipeData.specialIcon : _recipeData.icon;
         _recipeImage.color = unlocked ? UNLOCKED_COLOR : LOCKED_COLOR;

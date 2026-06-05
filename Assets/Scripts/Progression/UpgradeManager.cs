@@ -148,4 +148,22 @@ public class UpgradeManager : MonoBehaviour
         UpgradeType.Container => CanUpgradeContainer(),
         _ => false
     };
+
+    public void LoadFrom(SaveData data)
+    {
+        _cookSlotLevel = data.cookSlotLevel;
+        _speedUpLevel = data.speedUpLevel;
+        _cookBoardLevel = data.cookBoardLevel;
+        _orderHintLevel = data.orderHintLevel;
+        _containerSlotLevel = data.containerSlotLevel;
+    }
+
+    public void ResetAll()
+    {
+        _cookSlotLevel = 0;
+        _speedUpLevel = 0;
+        _cookBoardLevel = 0;
+        _orderHintLevel = 0;
+        _containerSlotLevel = 0;
+    }
 }

@@ -16,6 +16,7 @@ public class RecipeCollectionPanelUI : MonoBehaviour
 
     private int _currentPage = 0;
     private int TotalPages => Mathf.CeilToInt((float)_registry.allRecipes.Count / _cards.Length);
+    private RecipeSO _selectedRecipe;
 
     private void Start()
     {
@@ -23,13 +24,27 @@ public class RecipeCollectionPanelUI : MonoBehaviour
         _rightButton.onClick.AddListener(NextPage);
 
         if (UnlockManager.instance != null)
-            UnlockManager.instance.OnRecipeUnlocked += _ => RefreshPage();
+            UnlockManager.instance.OnRecipeUnlocked += OnRecipeUnlockedHandler;
 
         RefreshPage();
 
         if (_registry.allRecipes.Count > 0)
             OnCardSelected(_registry.allRecipes[0]);
     }
+
+    private void OnEnable()
+    {
+        if (_selectedRecipe != null)
+            OnCardSelected(_selectedRecipe);
+    }
+
+    private void OnDestroy()
+    {
+        if (UnlockManager.instance != null)
+            UnlockManager.instance.OnRecipeUnlocked -= OnRecipeUnlockedHandler;
+    }
+
+    private void OnRecipeUnlockedHandler(RecipeSO _) => RefreshPage();
 
     private void RefreshPage()
     {
@@ -54,8 +69,8 @@ public class RecipeCollectionPanelUI : MonoBehaviour
 
     private void OnCardSelected(RecipeSO recipe)
     {
-        bool unlocked = !recipe.isSignatureMenu
-            || (UnlockManager.instance != null && UnlockManager.instance.IsRecipeUnlocked(recipe));
+        _selectedRecipe = recipe;
+        bool unlocked = UnlockManager.instance != null && UnlockManager.instance.IsRecipeUnlocked(recipe);
         _rightObject.SetActive(unlocked);
         _lockedPageObject.SetActive(!unlocked);
         if (unlocked)

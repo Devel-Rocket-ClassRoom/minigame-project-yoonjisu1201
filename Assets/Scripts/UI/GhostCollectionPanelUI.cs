@@ -17,6 +17,7 @@ public class GhostCollectionPanelUI : MonoBehaviour
 
     private const int TOTAL_PAGES = 2;
     private int _currentPage = 0;
+    private GhostSO _selectedGhost;
 
     private void Start()
     {
@@ -30,6 +31,13 @@ public class GhostCollectionPanelUI : MonoBehaviour
         if (_registry.allGhosts.Count > 0)
             OnCardSelected(_registry.allGhosts[0]);
     }
+
+    private void OnEnable()
+    {
+        if (_selectedGhost != null)
+            OnCardSelected(_selectedGhost);
+    }
+
     //해금 여부검사는 GhostCollectionCardUI에서 함
     private void RefreshPage()
     {
@@ -49,6 +57,7 @@ public class GhostCollectionPanelUI : MonoBehaviour
     }
     private void OnCardSelected(GhostSO ghost)
     {
+        _selectedGhost = ghost;
         bool unlocked = UnlockManager.instance != null
             && UnlockManager.instance.IsGhostUnlocked(ghost);
         _rightObject.SetActive(unlocked);

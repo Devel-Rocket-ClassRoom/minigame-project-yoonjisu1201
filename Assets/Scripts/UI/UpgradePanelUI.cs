@@ -53,7 +53,8 @@ public class UpgradePanelUI : MonoBehaviour
 
         _upgradeButton.onClick.AddListener(() =>
         {
-            UpgradeManager.instance.TryUpgrade((UpgradeType)_selectedIndex);
+            if (UpgradeManager.instance.TryUpgrade((UpgradeType)_selectedIndex))
+                SaveManager.Instance.Save(); 
             Refresh();
         });
 
