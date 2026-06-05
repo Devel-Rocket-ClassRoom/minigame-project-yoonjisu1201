@@ -24,7 +24,7 @@ public class RecipeCollectionPanelUI : MonoBehaviour
         _rightButton.onClick.AddListener(NextPage);
 
         if (UnlockManager.instance != null)
-            UnlockManager.instance.OnRecipeUnlocked += _ => RefreshPage();
+            UnlockManager.instance.OnRecipeUnlocked += OnRecipeUnlockedHandler;
 
         RefreshPage();
 
@@ -37,6 +37,14 @@ public class RecipeCollectionPanelUI : MonoBehaviour
         if (_selectedRecipe != null)
             OnCardSelected(_selectedRecipe);
     }
+
+    private void OnDestroy()
+    {
+        if (UnlockManager.instance != null)
+            UnlockManager.instance.OnRecipeUnlocked -= OnRecipeUnlockedHandler;
+    }
+
+    private void OnRecipeUnlockedHandler(RecipeSO _) => RefreshPage();
 
     private void RefreshPage()
     {

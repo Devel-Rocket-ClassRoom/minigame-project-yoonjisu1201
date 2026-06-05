@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class SettingsPanelUI : MonoBehaviour
@@ -15,7 +16,7 @@ public class SettingsPanelUI : MonoBehaviour
     {
         _bgmSlider.onValueChanged.AddListener(OnBGMChanged);
         _sfxSlider.onValueChanged.AddListener(OnSFXChanged);
-        _quitButton.onClick.AddListener(QuitGame);
+        _quitButton.onClick.AddListener(GoToTitle);
         _closeButton.onClick.AddListener(Close);
     }
 
@@ -40,7 +41,11 @@ public class SettingsPanelUI : MonoBehaviour
         if (_sfxPercentText != null) _sfxPercentText.text = $"{Mathf.RoundToInt(value * 100)}%";
     }
 
-    private void QuitGame() => Application.Quit();
+    private void GoToTitle()
+    {
+        SaveManager.Instance.Save();
+        SceneManager.LoadScene("Title");
+    }
 
     public void Open() => gameObject.SetActive(true);
     public void Close() => gameObject.SetActive(false);

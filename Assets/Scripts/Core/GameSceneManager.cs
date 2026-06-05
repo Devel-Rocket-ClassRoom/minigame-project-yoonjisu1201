@@ -5,6 +5,8 @@ public class GameSceneManager : MonoBehaviour
 {
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name != "Lobby") return;
+
         if (SaveManager.Instance.HasSave())
             SaveManager.Instance.Load();
         else
