@@ -119,7 +119,7 @@ public class DraggableFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
         float randomvalue = Random.value;
         if (randomvalue < dropChance)
         {
-            UnlockManager.instance.CollectArtifact(ghost.artifact);
+            UnlockManager.instance.GatherArtifact(ghost.artifact);
             ArtifactDropPool.instance.Spawn(spawnPos, ghost.artifact.icon);
         }
         Debug.Log($"{randomvalue}");

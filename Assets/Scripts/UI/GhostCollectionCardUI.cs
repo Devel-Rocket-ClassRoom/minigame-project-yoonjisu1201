@@ -7,6 +7,7 @@ public class GhostCollectionCardUI : MonoBehaviour
 {
     [SerializeField] private Image _ghostimage;
     [SerializeField] private TextMeshProUGUI _ghostNameText;
+    [SerializeField] private GameObject _newBadge;
 
     private static readonly Color LOCKED_COLOR = Color.black;
     private static readonly Color UNLOCKED_COLOR = Color.white;
@@ -39,12 +40,16 @@ public class GhostCollectionCardUI : MonoBehaviour
         _ghostimage.color = unlocked ? UNLOCKED_COLOR : LOCKED_COLOR;
         _ghostNameText.text = unlocked ? LocalizationManager.GetGhostName(_ghostData.id) : "???";
         _button.interactable = true;
+        if (_newBadge != null)
+            _newBadge.SetActive(unlocked && PlayerPrefs.GetInt("new_ghost_" + _ghostData.id, 0) == 1);
 
     }
     //눌렀을때 상세정보 창이랑 연결
     private void OnClicked()
     {
-        if (_ghostData != null)
+        if (_ghostData == null) return;
+        PlayerPrefs.DeleteKey("new_ghost_" + _ghostData.id);
+        if (_newBadge != null) _newBadge.SetActive(false);
         _onSelected?.Invoke(_ghostData);
     }
 

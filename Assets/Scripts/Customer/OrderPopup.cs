@@ -16,6 +16,10 @@ public class OrderPopup : MonoBehaviour
     //나중에 에셋추가되면 [SerializeField] private SpriteRenderer __gaugeBarIcon;
 
     private Coroutine _hintCycleCoroutine;
+    private bool _isPaused;
+
+    public void Pause() => _isPaused = true;
+    public void Resume() => _isPaused = false;
 
     //손님 컨트롤러에서 사용
     public void Show(RecipeSO recipe, GhostSO ghostData)
@@ -57,7 +61,12 @@ public class OrderPopup : MonoBehaviour
         while (true)
         {
             _hintText.text = LocalizationManager.GetRecipeHint(recipeId, isSignature, ref lastIndex);
-            yield return new WaitForSeconds(5f);
+            float t = 0f;
+            while (t < 4f)
+            {
+                if (!_isPaused) t += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 

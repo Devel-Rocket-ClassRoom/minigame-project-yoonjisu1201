@@ -10,7 +10,7 @@ public class LobbyConfirmPopupUI : MonoBehaviour
     private void Start()
     {
         gameObject.SetActive(false);
-        _confirmButton.onClick.AddListener(() => _gameSceneManager.GoToLobby());
+        _confirmButton.onClick.AddListener(() => _gameSceneManager.GoToLobbyForfeit());
         _cancelButton.onClick.AddListener(Hide);
     }
 

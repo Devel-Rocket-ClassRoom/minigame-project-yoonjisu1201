@@ -31,17 +31,24 @@ public class RankUpPopupUI : MonoBehaviour
         _titleText.text = $"트럭등급 {rank} 달성!";
 
         foreach (var ghost in _registry.GetGhostsForRank(rank))
+        {
+            PlayerPrefs.SetInt("new_ghost_" + ghost.id, 1);
             AddCard(ghost.icon, LocalizationManager.GetGhostName(ghost.id), "손님");
+        }
 
         var recipes = _registry.GetRecipesForRank(rank);
 
         foreach (var recipe in recipes)
             if (!recipe.isSignatureMenu)
+            {
+                PlayerPrefs.SetInt("new_recipe_" + recipe.id, 1);
                 AddCard(recipe.icon, LocalizationManager.GetRecipeName(recipe.id), "일반레시피");
+            }
 
         foreach (var recipe in recipes)
             if (recipe.isSignatureMenu)
             {
+                PlayerPrefs.SetInt("new_recipe_" + recipe.id, 1);
                 AddCard(recipe.icon, LocalizationManager.GetRecipeName(recipe.id), "일반레시피");
                 AddCard(recipe.specialIcon, LocalizationManager.GetRecipeName(recipe.id), "전용레시피");
             }
@@ -79,10 +86,13 @@ public class RankUpPopupUI : MonoBehaviour
         var card = Instantiate(_cardPrefab, _cardContainer).GetComponent<RankUpCardUI>();
         card.Setup(icon, name, category);
     }
+    public event System.Action OnClosed;
+
     private void Close()
     {
         TruckRankManager.instance.ClearPendingRankUp();
         _panel.SetActive(false);
+        OnClosed?.Invoke();
     }
 
     [ContextMenu("Test/Show Level Up Popup")]

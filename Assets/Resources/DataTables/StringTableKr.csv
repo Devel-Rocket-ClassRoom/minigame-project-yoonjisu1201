@@ -243,7 +243,14 @@ ui_upgrade_container_name,레시피 즐겨찾기
 ui_upgrade_container_desc_1,보관 슬롯이 1개 오픈돼요.
 ui_upgrade_container_desc_2,보관 슬롯이 2개 오픈돼요.
 ui_upgrade_tip,업그레이드를 진행하면 영업이 더욱 편해져요!
-
+ui_menuguide_title,트럭등급 4부터는 전용 레시피가 등장해요! 전용 레시피마다 주인 유령이 정해져 있고 주문하는 손님에 따라 정답 마지막 재료가 달라져요!
+ui_menuguide_normaltext1,다른 손님 주문
+ui_menuguide_specialtext1,전용 손님 주문
+ui_menuguide_normaltext2,일반 재료가 정답
+ui_menuguide_specialtext2,전용 재료가 정답
+ui_menuguide_menuname,크래커
+ui_menuguide_tip1,전용 재료는 주인 유령이 주문할 때만 사용해요.
+ui_menuguide_tip2,레시피의 주인 유령과 전용 재료는 레시피 도감에서 확인할 수 있어요.
 
 
 

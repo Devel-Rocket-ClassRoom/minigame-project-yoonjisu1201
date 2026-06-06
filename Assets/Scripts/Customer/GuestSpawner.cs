@@ -18,6 +18,7 @@ public class GuestSpawner : MonoBehaviour
 
     private bool _isGuestPresent; //현재 손님이 있는지
     private bool _isStart = true; //처음 시작할때만 생성되는 딜레이시간 다르게
+    private bool _spawnPaused;
     private List<GuestController> _sessionPrefabs = new List<GuestController>();
     private List<RecipeSO> _sessionRecipes = new List<RecipeSO>();
     private Coroutine _spawnLoopCoroutine;
@@ -63,12 +64,32 @@ public class GuestSpawner : MonoBehaviour
         }
         _isStart = true;
     }
+    public void PauseSpawning()
+    {
+        _spawnPaused = true;
+        _currentGuest?.Pause();
+    }
+    public void ResumeSpawning()
+    {
+        _spawnPaused = false;
+        _currentGuest?.Resume();
+    }
+    private IEnumerator WaitPauseable(float duration)
+    {
+        float t = 0f;
+        while (t < duration)
+        {
+            if (!_spawnPaused)
+                t += Time.deltaTime;
+            yield return null;
+        }
+    }
     private IEnumerator CoSpawnLoop()
     {
         if (_isStart)
         {
             _isStart = false;
-            yield return new WaitForSeconds(CurrentSpawnConfig.spawnInterval * 
+            yield return WaitPauseable(CurrentSpawnConfig.spawnInterval *
                 CurrentSpawnConfig.startDelayMultipliers[_spawnerIndex]);
         }
 
@@ -91,7 +112,7 @@ public class GuestSpawner : MonoBehaviour
             SpawnGuest(_sessionPrefabs[Random.Range(0, _sessionPrefabs.Count)]);
 
             yield return new WaitUntil(() => !_isGuestPresent);
-            yield return new WaitForSeconds(CurrentSpawnConfig.spawnInterval);
+            yield return WaitPauseable(CurrentSpawnConfig.spawnInterval);
         }
     }
     public void ForceExitEnteringGuest()

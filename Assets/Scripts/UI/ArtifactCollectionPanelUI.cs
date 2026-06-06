@@ -16,6 +16,7 @@ public class ArtifactCollectionPanelUI : MonoBehaviour
     private int _currentPage = 0;
     private int TotalPages => Mathf.CeilToInt((float)_registry.allArtifacts.Count / _cards.Length);
     private ArtifactSO _selectedArtifact;
+    private System.Action<ArtifactSO> _onArtifactUnlocked;
 
     private void Start()
     {
@@ -23,12 +24,21 @@ public class ArtifactCollectionPanelUI : MonoBehaviour
         _rightButton.onClick.AddListener(NextPage);
 
         if (UnlockManager.instance != null)
-            UnlockManager.instance.OnArtifactUnlocked += _ => RefreshPage();
+        {
+            _onArtifactUnlocked = _ => RefreshPage();
+            UnlockManager.instance.OnArtifactUnlocked += _onArtifactUnlocked;
+        }
 
         RefreshPage();
 
         if (_registry.allArtifacts.Count > 0)
             OnCardSelected(_registry.allArtifacts[0]);
+    }
+
+    private void OnDestroy()
+    {
+        if (UnlockManager.instance != null && _onArtifactUnlocked != null)
+            UnlockManager.instance.OnArtifactUnlocked -= _onArtifactUnlocked;
     }
 
     private void OnEnable()

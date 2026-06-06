@@ -18,6 +18,8 @@ public class SessionManager : MonoBehaviour
     private Coroutine _sessionTimerCoroutine;
     private bool _timerPaused;
     private int _sessionServeCount = 0;
+    private int _sessionGuestCount = 0;
+    public int SessionGuestCount => _sessionGuestCount;
 
     public void PauseTimer() => _timerPaused = true;
     public void ResumeTimer() => _timerPaused = false;
@@ -29,12 +31,15 @@ public class SessionManager : MonoBehaviour
     private void OnEnable()
     {
         DraggableFood.OnAnyServeSuccess += OnServeSuccess;
+        GuestSpawner.OnGuestSpawned += OnGuestSpawned;
     }
     private void OnDisable()
     {
         DraggableFood.OnAnyServeSuccess -= OnServeSuccess;
+        GuestSpawner.OnGuestSpawned -= OnGuestSpawned;
     }
     private void OnServeSuccess() => _sessionServeCount++;
+    private void OnGuestSpawned(GuestController _) => _sessionGuestCount++;
     private void Start()
     {
         RemainingTime = _balanceConfig.sessionDuration;

@@ -39,10 +39,15 @@ public class TruckRankManager : MonoBehaviour
 
     public void AddExp(int amount)
     {
-        TotalExp += amount;
         SessionExp += amount;
+    }
+
+    public void CommitSession()
+    {
+        TotalExp += SessionExp;
         CheckRankUp();
     }
+
     public void ResetSession()
     {
         SessionExp = 0f;
