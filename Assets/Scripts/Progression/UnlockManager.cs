@@ -16,6 +16,7 @@ public class UnlockManager : MonoBehaviour
     private HashSet<string> _unlockedMemoirIds = new(); //방명록
 
     private Dictionary<string, int> _artifactCounts = new();
+    private List<ArtifactSO> _sessionArtifacts = new();
 
     [Header("DEBUG")]
     [SerializeField] private int _debugArtifactCount = 0;
@@ -87,7 +88,24 @@ public class UnlockManager : MonoBehaviour
             OnIngredientUnlocked?.Invoke(ing);
         }
     }
-    //유물 개수, 해금만 관리. 
+    public void GatherArtifact(ArtifactSO artifact)
+    {
+        _sessionArtifacts.Add(artifact);
+    }
+
+    public void CommitSessionArtifacts()
+    {
+        foreach (var artifact in _sessionArtifacts)
+            CollectArtifact(artifact);
+        _sessionArtifacts.Clear();
+    }
+
+    public void ResetSessionArtifacts()
+    {
+        _sessionArtifacts.Clear();
+    }
+
+    //유물 개수, 해금만 관리.
     public void CollectArtifact(ArtifactSO artifact)
     {
         if (!_artifactCounts.ContainsKey(artifact.id))
@@ -107,6 +125,7 @@ public class UnlockManager : MonoBehaviour
         {
             _unlockedArifacts.Add(artifact.id);
             OnArtifactUnlocked?.Invoke(artifact);
+            PlayerPrefs.SetInt("new_artifact_" + artifact.id, 1);
         }
 
         if (count + 1 == ARTIFACT_ABILITY_THRESHOLD)

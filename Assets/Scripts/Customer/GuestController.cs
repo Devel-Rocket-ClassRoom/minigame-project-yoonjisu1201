@@ -29,10 +29,18 @@ public class GuestController : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     private Coroutine _patienceCoroutine;
     private Coroutine _entryCoroutine;
-    private bool _patiencePaused;
+    private bool _isPaused;
 
-    public void PausePatience() => _patiencePaused = true;
-    public void ResumePatience() => _patiencePaused = false;
+    public void Pause()
+    {
+        _isPaused = true;
+        _orderPopup.Pause();
+    }
+    public void Resume()
+    {
+        _isPaused = false;
+        _orderPopup.Resume();
+    }
 
     public GuestState State { get; private set; }
 
@@ -72,10 +80,13 @@ public class GuestController : MonoBehaviour
 
         while (Vector2.Distance(basePos, _stopPos) > 0.05f)
         {
-            bobTime += Time.deltaTime;
-            basePos = Vector2.MoveTowards(basePos, _stopPos, _entrySpeed * Time.deltaTime);
-            float bobOffset = Mathf.Sin(bobTime * _entryBobSpeed) * _entryBobAmplitude;
-            transform.position = new Vector3(basePos.x, basePos.y + bobOffset, basePos.z);
+            if (!_isPaused)
+            {
+                bobTime += Time.deltaTime;
+                basePos = Vector2.MoveTowards(basePos, _stopPos, _entrySpeed * Time.deltaTime);
+                float bobOffset = Mathf.Sin(bobTime * _entryBobSpeed) * _entryBobAmplitude;
+                transform.position = new Vector3(basePos.x, basePos.y + bobOffset, basePos.z);
+            }
             yield return null;
         }
         transform.position = _stopPos;
@@ -115,7 +126,13 @@ public class GuestController : MonoBehaviour
         _renderer.sortingOrder = _stoppedSortingOrder - 10; // 퇴장 시작하면 뒤로
         float bobTime = 0f;
         Vector3 basePos = transform.position;
-        yield return new WaitForSeconds(0.5f);
+
+        float delay = 0f;
+        while (delay < 0.5f)
+        {
+            if (!_isPaused) delay += Time.deltaTime;
+            yield return null;
+        }
 
         if (_defaultFacingLeft)
             _renderer.flipX = transform.position.x < _exitPos.x;
@@ -124,10 +141,13 @@ public class GuestController : MonoBehaviour
 
         while (Vector2.Distance(transform.position, _exitPos) > 0.05f)
         {
-            bobTime += Time.deltaTime;
-            basePos = Vector2.MoveTowards(basePos, _exitPos, _exitSpeed * GameContext.exitSpeedMultiplier * Time.deltaTime);
-            float bobOffset = Mathf.Sin(bobTime * _entryBobSpeed) * _entryBobAmplitude;
-            transform.position = new Vector3(basePos.x, basePos.y + bobOffset, basePos.z);
+            if (!_isPaused)
+            {
+                bobTime += Time.deltaTime;
+                basePos = Vector2.MoveTowards(basePos, _exitPos, _exitSpeed * GameContext.exitSpeedMultiplier * Time.deltaTime);
+                float bobOffset = Mathf.Sin(bobTime * _entryBobSpeed) * _entryBobAmplitude;
+                transform.position = new Vector3(basePos.x, basePos.y + bobOffset, basePos.z);
+            }
             yield return null;
         }
         OnExited?.Invoke();
@@ -140,7 +160,7 @@ public class GuestController : MonoBehaviour
         float timer = totalTimer;
         while (timer > 0f)
         {
-            if (!_patiencePaused)
+            if (!_isPaused)
             {
                 timer -= Time.deltaTime;
                 float ratio = timer / totalTimer;
@@ -220,8 +240,9 @@ public class GuestController : MonoBehaviour
 
         while (Vector2.Distance(transform.position, _entryPos) > 0.05f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, _entryPos,
-                _entrySpeed * Time.deltaTime);
+            if (!_isPaused)
+                transform.position = Vector2.MoveTowards(transform.position, _entryPos,
+                    _entrySpeed * Time.deltaTime);
             yield return null;
         }
         OnExited?.Invoke();

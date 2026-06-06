@@ -17,7 +17,8 @@ public class CookingGuideManager : MonoBehaviour
 
     [SerializeField] private GameObject goldUI;
     [SerializeField] private GameObject timerUI;
-    [SerializeField] private GameObject lobbyButton;
+    [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject collectionbook;
 
     private GuestController _currentGuest;
     private int _ingredientIndex = 0;
@@ -44,7 +45,8 @@ public class CookingGuideManager : MonoBehaviour
 
         goldUI.SetActive(false);
         timerUI.SetActive(false);
-        lobbyButton.SetActive(false);
+        pauseButton.SetActive(false);
+        collectionbook.SetActive(false);
 
         foreach (var s in _pausedSpawners)
             s.StopSpawning();
@@ -100,7 +102,7 @@ public class CookingGuideManager : MonoBehaviour
             PlayerPrefs.SetInt(PREF_KEY, 1);
 
             SessionManager.instance.ResumeTimer();
-            _currentGuest?.ResumePatience();
+            _currentGuest?.Resume();
 
             foreach (var s in _pausedSpawners)
                 s.StopSpawning();
@@ -109,7 +111,8 @@ public class CookingGuideManager : MonoBehaviour
 
             goldUI.SetActive(true);
             timerUI.SetActive(true);
-            lobbyButton.SetActive(true);
+            pauseButton.SetActive(true);
+            collectionbook.SetActive(true);
         }
     }
     private void OnDestroy()
@@ -137,7 +140,7 @@ public class CookingGuideManager : MonoBehaviour
     private void HandleGuestOrdering(GuestController guest)
     {
         if (_stepIndex >= 0) return;
-        guest.PausePatience();
+        guest.Pause();
         ShowStep(0, guestTarget);
     }
     //step2 재료선택 → 조리대

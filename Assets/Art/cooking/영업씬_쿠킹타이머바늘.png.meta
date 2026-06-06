@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 38018eee84b65f043af0f8a7361b7f7e
+guid: b775f3d44b4c57741a5fea8089740e69
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8916817325758293175
-    second: "\uD0C0\uC774\uD2C0\uC52C_\uBC30\uACBD_1080_0"
+      213: 3511785324109966748
+    second: "\uC601\uC5C5\uC52C_\uCFE0\uD0B9\uD0C0\uC774\uBA38\uBC14\uB298_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.49822226, y: 0.11955551}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uD0C0\uC774\uD2C0\uC52C_\uBC30\uACBD_1080_0"
+      name: "\uC601\uC5C5\uC52C_\uCFE0\uD0B9\uD0C0\uC774\uBA38\uBC14\uB298_0"
       rect:
         serializedVersion: 2
-        x: 0
+        x: 103
         y: 0
-        width: 1080
-        height: 576
+        width: 49
+        height: 251
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b42fdc4d16eebb70800000000000000
-      internalID: 8916817325758293175
+      spriteID: c9d2103652e5cb030800000000000000
+      internalID: 3511785324109966748
       vertices: []
       indices: 
       edges: []
@@ -139,7 +139,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uD0C0\uC774\uD2C0\uC52C_\uBC30\uACBD_1080_0": 8916817325758293175
+      "\uC601\uC5C5\uC52C_\uCFE0\uD0B9\uD0C0\uC774\uBA38\uBC14\uB298_0": 3511785324109966748
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

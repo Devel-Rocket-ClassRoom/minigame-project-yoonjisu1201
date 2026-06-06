@@ -7,6 +7,7 @@ public class ArtifactCollectionCardUI : MonoBehaviour
     [SerializeField] private Image _artifactImage;
     [SerializeField] private TextMeshProUGUI _artifactNameText;
     [SerializeField] private Image[] _stars;
+    [SerializeField] private GameObject _newBadge;
 
     private static readonly Color LOCKED_COLOR = Color.black;
     private static readonly Color UNLOCKED_COLOR = Color.white;
@@ -45,15 +46,19 @@ public class ArtifactCollectionCardUI : MonoBehaviour
         _button.interactable = true;
 
         int count = UnlockManager.instance != null
-        ? UnlockManager.instance.GetArtifacCount(_artifactData) : 0;
+            ? UnlockManager.instance.GetArtifacCount(_artifactData) : 0;
         for (int i = 0; i < _stars.Length; i++)
             _stars[i].color = i < count ? STAR_ON : STAR_OFF;
+        if (_newBadge != null)
+            _newBadge.SetActive(unlocked && PlayerPrefs.GetInt("new_artifact_" + _artifactData.id, 0) == 1);
     }
 
     private void OnClicked()
     {
-        if (_artifactData != null)
-            _onSelected?.Invoke(_artifactData);
+        if (_artifactData == null) return;
+        PlayerPrefs.DeleteKey("new_artifact_" + _artifactData.id);
+        if (_newBadge != null) _newBadge.SetActive(false);
+        _onSelected?.Invoke(_artifactData);
     }
 }
 

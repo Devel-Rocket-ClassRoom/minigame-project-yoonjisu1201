@@ -27,6 +27,10 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
 
     [Header("애니메이션")]
     [SerializeField] private Animator _stateAnimator;
+    [SerializeField] private GameObject _clock;
+    [SerializeField] private Transform _clockHand;
+
+    private Coroutine _clockCoroutine;
 
     public CookingSlot Slot => _slot;
     private float _testCookTime = 5f;
@@ -63,12 +67,14 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     {
         _slot.OnStateChanged += HandleStateChanged;
         _slot.OnIngredientAdded += ShowIngredientPreview;
+        _slot.OnCookingStarted += StartClockRotation;
     }
 
     private void OnDisable()
     {
         _slot.OnStateChanged -= HandleStateChanged;
         _slot.OnIngredientAdded -= ShowIngredientPreview;
+        _slot.OnCookingStarted -= StartClockRotation;
     }
     private void ShowIngredientPreview(IngredientSO ingredient)
     {
@@ -117,6 +123,7 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
                 && UpgradeManager.instance.OrderBoardLevel == 1;
 
         bool isCooking = state == CookingSlotState.Cooking;
+        if (_clock != null) _clock.SetActive(isCooking);
         _stateAnimator.enabled = isCooking;
         if (isCooking)
         {
@@ -176,6 +183,27 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
     {
         float time = _testCookTime * UpgradeManager.instance.CookingSpeedMultiplier;
         _slot.StartCooking(time);
+    }
+
+    private void StartClockRotation(float cookTime)
+    {
+        if (_clockHand == null) return;
+        if (_clockCoroutine != null) StopCoroutine(_clockCoroutine);
+        _clockCoroutine = StartCoroutine(CoRotateClock(cookTime));
+    }
+
+    private IEnumerator CoRotateClock(float cookTime)
+    {
+        float elapsed = 0f;
+        while (elapsed < cookTime)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / cookTime);
+            _clockHand.localRotation = Quaternion.Euler(0f, 0f, -360f * t);
+            yield return null;
+        }
+        _clockHand.localRotation = Quaternion.identity;
+        _clockCoroutine = null;
     }
 
 }

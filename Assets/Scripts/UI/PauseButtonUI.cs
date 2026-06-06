@@ -5,35 +5,51 @@ public class PauseButtonUI : MonoBehaviour
 {
     [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _lobbyButton;
+    [SerializeField] private CanvasGroup _lobbyCanvasGroup;
     [SerializeField] private LobbyConfirmPopupUI _confirmPopup;
+    [SerializeField] private GuestSpawner[] _spawners;
 
-    private bool _isPaused;
+    public static bool IsPaused { get; private set; }
 
     private void Start()
     {
-        _lobbyButton.gameObject.SetActive(false);
+        SetLobbyButtonVisible(false);
         _pauseButton.onClick.AddListener(OnPauseClicked);
         _lobbyButton.onClick.AddListener(OnLobbyClicked);
     }
     private void OnPauseClicked()
     {
-        _isPaused = !_isPaused;
+        IsPaused = !IsPaused;
 
-        if (_isPaused)
+        if (IsPaused)
         {
             SessionManager.instance.PauseTimer();
-            _lobbyButton.gameObject.SetActive(true);
+            foreach (var spawner in _spawners) spawner.PauseSpawning();
+            Invoke(nameof(ShowLobbyButton), 0f);
         }
         else
         {
             SessionManager.instance.ResumeTimer();
-            _lobbyButton.gameObject.SetActive(false);
+            foreach (var spawner in _spawners) spawner.ResumeSpawning();
+            SetLobbyButtonVisible(false);
             _confirmPopup.Hide();
         }
+    }
+    private void ShowLobbyButton() => SetLobbyButtonVisible(true);
+
+    private void SetLobbyButtonVisible(bool visible)
+    {
+        _lobbyCanvasGroup.alpha = visible ? 1f : 0f;
+        _lobbyCanvasGroup.interactable = visible;
+        _lobbyCanvasGroup.blocksRaycasts = visible;
     }
     private void OnLobbyClicked()
     {
         _confirmPopup.Show();
+    }
+    private void OnDestroy()
+    {
+        IsPaused = false;
     }
 
 }

@@ -21,8 +21,13 @@ public class GoldManager : MonoBehaviour
     }
     public void AddGold(int amount)
     {
-        TotalGold += amount;
         SessionGold += amount;
+        OnGoldChanged?.Invoke();
+    }
+
+    public void CommitSession()
+    {
+        TotalGold += SessionGold;
         OnGoldChanged?.Invoke();
     }
 

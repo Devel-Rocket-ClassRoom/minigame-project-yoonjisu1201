@@ -22,7 +22,16 @@ public class GameSceneManager : MonoBehaviour
     }
     public void GoToLobby()
     {
+        GoldManager.Instance.CommitSession();
+        TruckRankManager.instance.CommitSession();
+        UnlockManager.instance.CommitSessionArtifacts();
         SaveManager.Instance.Save();
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public void GoToLobbyForfeit()
+    {
+        UnlockManager.instance.ResetSessionArtifacts();
         SceneManager.LoadScene("Lobby");
     }
     public void GoToCooking()

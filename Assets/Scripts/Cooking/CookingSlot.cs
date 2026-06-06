@@ -29,6 +29,7 @@ public class CookingSlot : MonoBehaviour
     public event System.Action<IngredientSO> OnIngredientAdded; //슬롯UI에서 구독
     public event System.Action OnIngredientsFull;
     public event System.Action<CookingSlotState> OnStateChanged;
+    public event System.Action<float> OnCookingStarted;
 
     //가이드용 이벤트
     public static event System.Action<CookingSlot> OnAnyIngredientAdded;
@@ -85,6 +86,7 @@ public class CookingSlot : MonoBehaviour
             _firstCookDone = true;
         }
         _cookingCoroutine = StartCoroutine(CoCookingRoutine(actualCookTime));
+        OnCookingStarted?.Invoke(actualCookTime);
         //Debug.Log($"요리 중 . . .{_state}");
     }
 

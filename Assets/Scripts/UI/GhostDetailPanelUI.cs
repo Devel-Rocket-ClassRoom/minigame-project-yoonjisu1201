@@ -67,7 +67,7 @@ public class GhostDetailPanelUI : MonoBehaviour
 
         if (!isBasicGhost)
         {
-            _menuIcon.sprite = signature.icon;
+            _menuIcon.sprite = signature.isSignatureMenu ? signature.specialIcon : signature.icon;
             _menuIcon.color = unlocked ? Color.white : Color.black;
             _menuNameText.text = unlocked ? LocalizationManager.GetRecipeName(signature.id) : "???";
         }
