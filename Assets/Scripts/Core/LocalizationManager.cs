@@ -45,6 +45,10 @@ public class LocalizationManager : MonoBehaviour
         Debug.Log($"[LocalizationManager] {_table.Count}개 텍스트 로드 완료");
     }
 
+    public static bool HasKey(string key) => instance != null && instance._table.ContainsKey(key);
+
+    public static string GetDialogueLine(string dialogueId, int index) => Get($"{dialogueId}_line_{index}");
+
     public static string Get(string key)
     {
         if (instance == null) return key;

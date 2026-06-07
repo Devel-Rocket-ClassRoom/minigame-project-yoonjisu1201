@@ -17,7 +17,7 @@ MonoBehaviour:
   patienceType: 0
   unlockRank: 5
   artifact: {fileID: 11400000, guid: c7a9fa6c1fec90a42941e40c7cf7f7b4, type: 2}
-  firstMeetDialogueID: 
+  firstMeetDialogueID: ghost_traveler_unlock
   memoirDialogueID: 
   isStoryGuest: 1
   spriteDefault: {fileID: -6029549926024577610, guid: da6272ca49afb5046bea90f8125a9949, type: 3}

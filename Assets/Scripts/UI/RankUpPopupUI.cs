@@ -86,6 +86,7 @@ public class RankUpPopupUI : MonoBehaviour
         var card = Instantiate(_cardPrefab, _cardContainer).GetComponent<RankUpCardUI>();
         card.Setup(icon, name, category);
     }
+    public bool IsOpen => _panel.activeSelf;
     public event System.Action OnClosed;
 
     private void Close()

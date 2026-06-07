@@ -17,7 +17,7 @@ MonoBehaviour:
   patienceType: 1
   unlockRank: 10
   artifact: {fileID: 11400000, guid: 8c299126c69cada4eb162518dab08500, type: 2}
-  firstMeetDialogueID: 
+  firstMeetDialogueID: ghost_grandma_unlock
   memoirDialogueID: 
   isStoryGuest: 1
   spriteDefault: {fileID: 1541072959369184910, guid: 2b366a7017d1183419004b206977061a, type: 3}

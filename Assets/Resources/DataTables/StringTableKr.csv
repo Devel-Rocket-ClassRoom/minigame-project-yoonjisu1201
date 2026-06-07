@@ -1,4 +1,7 @@
 ﻿key,ko
+player_name1,주인공
+player_name2,푸드트럭 주인
+speaker_memo_name,할머니의 메모
 ghost_1_name,길 잃은 영혼
 ghost_2_name,부끄러운 꼬마 
 ghost_3_name,바쁜 직장인 영혼
@@ -179,6 +182,56 @@ ing_tomato_name,토마토
 ing_vegetable_name,야채
 ing_whipped_cream_name,휩핑크림
 ing_yakgwa_name,약과
+game_start_line_0,여긴... 어디지?\n낡은 푸드트럭이 왜 이런 숲속에 있는 거야?
+game_start_line_1,길을 잃은 손님에게는 따뜻한 한 끼를 내어줄 것.
+game_start_line_2,이 글씨... 할머니 글씨랑 닮았어.
+game_start_line_3,저기요...\n불빛이 보여서 와봤어요.
+game_start_line_4,으악...!\n유령... 맞죠?
+game_start_line_5,아마도요.\n저도 제가 어디로 가던 중이었는지는 잘 기억이 안 나요.\n그런데 이 트럭 앞에 서니까 조금 덜 추운 것 같아요.
+game_start_line_6,작은 불빛 하나면,\n길 잃은 누군가가 다시 걸어갈 수 있단다.
+game_start_line_7,조리대는 아직 쓸 수 있을 것 같고...\n그냥 지나칠 수는 없겠네.
+game_start_line_8,혹시 따뜻한 음식 하나 부탁드려도 될까요?
+game_start_line_9,좋아요.\n잘할 수 있을지는 모르지만, 한번 해볼게요.
+game_start_line_10,고마워요.\n그럼 제가 첫 손님이 될게요.
+ghost_shy_child_unlock_line_0,저기... 여기 불빛, 아까보다 조금 더 밝아졌죠?\n멀리서도 보였어요. 달콤한 냄새도 나고요.
+ghost_shy_child_unlock_line_1,폭신한 반죽이랑 생크림 냄새가 나서...\n계속 근처를 맴돌고 있었어요.
+ghost_shy_child_unlock_line_2,예전에도 그런 간식을 좋아했는데,\n이름은 잘 기억이 안 나요.\n괜찮다면, 저도 손님이 되어도 될까요?
+ghost_shy_child_unlock_line_3,네..물론이죠.. 따뜻한 불 켜두고 기다릴게요!
+ghost_worker_unlock_line_0,방금 이 근처에 줄이 생긴 걸 봤습니다.\n처음엔 착각인 줄 알았는데,\n정말 영업 중이었군요.
+ghost_worker_unlock_line_1,숲길에 진한 원두 향이 퍼져서\n그냥 지나칠 수가 없었습니다.
+ghost_worker_unlock_line_2,예전엔 늘 식은 커피만 들고 뛰어다녔는데...\n이번에는 천천히 마셔도 되겠죠?
+ghost_worker_unlock_line_3,그럼요. 오늘은 서두르지 않게 준비해드릴게요.
+ghost_painter_unlock_line_0,숲길에 없던 색이 하나 늘었더군요.\n따뜻한 노란빛, 접시 위의 작은 반짝임,\n손님들이 머문 자리까지요.
+ghost_painter_unlock_line_1,크래커 위에 올라간 치즈와 토마토처럼,\n작은 색들이 눈에 들어왔어요.
+ghost_painter_unlock_line_2,오랫동안 아무것도 그리고 싶지 않았는데...\n이곳은 조금 더 지켜보고 싶어졌습니다.
+ghost_painter_unlock_line_3,그럼 마음에 드는 색이 더 생기도록 차려볼게요.
+ghost_traveler_unlock_line_0,이 숲은 원래 길을 잘 내어주지 않습니다..\n그런데 오늘은 이상하게\n발걸음이 이쪽으로 향하더군요.
+ghost_traveler_unlock_line_1,달콤한 초콜릿 냄새와 모닥불 같은 온기가\n길잡이처럼 느껴졌습니다.
+ghost_traveler_unlock_line_2,긴 여행 끝에는 따뜻한 불가와\n달콤한 음식이 제일 잘 어울리지요.
+ghost_traveler_unlock_line_3,잠시 쉬어가도 괜찮겠습니까?
+ghost_traveler_unlock_line_4,물론이죠. 쉬어갈 자리는 항상 비워둘게요.
+ghost_baker_unlock_line_0,방금 반죽이랑 버터 냄새가 났어요.\n처음에는 제가 예전에 쓰던 오븐 냄새인 줄 알았어요.
+ghost_baker_unlock_line_1,그런데 아니네요.\n이곳에서 새로 만들어지는 냄새였어요.
+ghost_baker_unlock_line_2,잘 구워진 빵 위에 달콤한 가루를 뿌리면,\n괜히 기분이 좋아지거든요.
+ghost_baker_unlock_line_3,오늘은 제가 굽는 대신,\n손님으로 기다려봐도 될까요?
+ghost_baker_unlock_line_4,좋아요. 오늘은 제가 대신 맛있게 구워볼게요.
+ghost_forest_spirit_unlock_line_0,트럭 주변의 땅이 조금 부드러워졌어요.\n손님들이 머물다 간 자리마다 작은 빛이 남아 있네요.
+ghost_forest_spirit_unlock_line_1,말차 향처럼 은은한 풀 냄새도 나고요.\n이 숲은 오래 잠들어 있었지만,\n완전히 죽은 건 아니었나 봐요.
+ghost_forest_spirit_unlock_line_2,당신이 계속 불을 지켜준다면, 저도 이곳을 도울게요.
+ghost_forest_spirit_unlock_line_3,그럼 이 불빛이 꺼지지 않게 계속 노력할게요.
+ghost_musician_unlock_line_0,오랜만에 숲이 조용하지만은 않군요.\n그릇이 놓이는 소리,  손님이 웃는 소리,  불빛이 흔들리는 소리.
+ghost_musician_unlock_line_1,거기에 꿀이 천천히 흐르는 소리까지.\n전부 작은 박자처럼 들립니다.
+ghost_musician_unlock_line_2,달콤한 와플 한 접시면,\n오늘 밤 연주가 더 부드러워지겠네요.\n괜찮다면 이 푸드트럭 곁에서 잠시 연주해도 될까요?
+ghost_musician_unlock_line_3,좋아요. 오늘 밤은 그 연주에 맞춰 영업해볼게요.
+ghost_scholar_unlock_line_0,기록에는 이 푸드트럭이\n오래전에 멈췄다고 되어 있었습니다.
+ghost_scholar_unlock_line_1,하지만 지금은 다르군요.\n손님이 돌아오고, 숲길도 조금씩 열리고 있습니다.
+ghost_scholar_unlock_line_2,허브 향이 나는 따뜻한 차라면,\n이 이상한 변화를 정리하는 데 도움이 되겠습니다.
+ghost_scholar_unlock_line_3,사라진 레시피, 길 잃은 영혼, 꺼지지 않는 불빛...\n이야기의 마지막 장이 바뀌고 있는지도 모르겠습니다.
+ghost_grandma_unlock_line_0,불빛이 여기까지 닿았구나.\n처음엔 작은 불씨였는데,\n이제 숲길을 밝힐 만큼 커졌네.
+ghost_grandma_unlock_line_1,조청 냄새, 약과 냄새...\n참 오랜만에 맡아보는구나.\n그건 내가 마지막으로 남겨두었던 맛이란다.
+ghost_grandma_unlock_line_2,네가 손님들을 그냥 지나치지 않았기 때문에\n이 숲도 다시 길을 내어준 거야.
+ghost_grandma_unlock_line_3,그러니 앞으로도 이 푸드트럭을\n네 방식대로 이어가 줄 수 있겠니?
+ghost_grandma_unlock_line_4,네. 이곳에 찾아오는 손님들을 계속 따뜻하게 맞이할게요.
 ui_ending_text,도감을 완성하여 할머니의 영광스러운 후계자 칭호를 얻었습니다.
 ui_label_fav_menu,좋아하는 메뉴
 ui_label_passive,패시브 능력

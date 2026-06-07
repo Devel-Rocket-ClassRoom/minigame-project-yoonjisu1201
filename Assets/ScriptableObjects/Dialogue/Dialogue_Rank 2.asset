@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1aaf9e92e0429a479b7c54e80e11df6, type: 3}
-  m_Name: DialogueSO
+  m_Name: Dialogue_Rank 2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
-  id: 
-  speakerName: 
-  lines: []
+  id: ghost_shy_child_unlock
+  speakerNames:
+  - ghost_2_name
+  - player_name2
+  speakerSprites:
+  - {fileID: 2168349065045482180, guid: 984a5094988a8f748bcdfd02fc9afde5, type: 3}
+  - {fileID: 21300000, guid: 4232a28749d3cce4d8dceda03ad5720a, type: 3}
+  lineSpeakerIndices: 00000000000000000000000001000000

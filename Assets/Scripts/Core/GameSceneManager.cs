@@ -19,6 +19,7 @@ public class GameSceneManager : MonoBehaviour
         TruckRankManager.instance.ResetAll();
         UpgradeManager.instance.ResetAll();
         UnlockManager.instance.ResetAll();
+        DialogueManager.Instance?.Play("game_start");
     }
     public void GoToLobby()
     {

@@ -17,7 +17,7 @@ MonoBehaviour:
   patienceType: 1
   unlockRank: 2
   artifact: {fileID: 11400000, guid: 77d9bdc4842e0004f83853c871802972, type: 2}
-  firstMeetDialogueID: 
+  firstMeetDialogueID: ghost_shy_child_unlock
   memoirDialogueID: 
   isStoryGuest: 1
   spriteDefault: {fileID: 1825143439758681067, guid: a162e996e8f6a1c45ab966107b132737, type: 3}

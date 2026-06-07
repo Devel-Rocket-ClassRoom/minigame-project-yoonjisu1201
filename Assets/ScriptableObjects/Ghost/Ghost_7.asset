@@ -17,7 +17,7 @@ MonoBehaviour:
   patienceType: 1
   unlockRank: 7
   artifact: {fileID: 11400000, guid: cb205214e3e899e45b4d570ce9589c65, type: 2}
-  firstMeetDialogueID: 
+  firstMeetDialogueID: ghost_forest_spirit_unlock
   memoirDialogueID: 
   isStoryGuest: 1
   spriteDefault: {fileID: 8485772806212678844, guid: b80e11c4b44f1f741b0211021125d90d, type: 3}

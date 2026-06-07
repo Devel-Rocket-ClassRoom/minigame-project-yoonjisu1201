@@ -20,6 +20,7 @@ public class TitleSceneManager : MonoBehaviour
         // 매니저들은 DontDestroyOnLoad라 앱 실행 내내 살아있으므로
         SaveManager.Instance.DeleteSave();
         PlayerPrefs.DeleteKey("guide_cooking_done");
+        DialogueManager.ResetSeenDialogues();
         SceneManager.LoadScene("Lobby");
     }
     public void OnQuitClicked()

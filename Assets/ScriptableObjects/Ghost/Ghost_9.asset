@@ -17,7 +17,7 @@ MonoBehaviour:
   patienceType: 2
   unlockRank: 9
   artifact: {fileID: 11400000, guid: 17416e2f7b923c44e8694dbe9b0d46e4, type: 2}
-  firstMeetDialogueID: 
+  firstMeetDialogueID: ghost_scholar_unlock
   memoirDialogueID: 
   isStoryGuest: 1
   spriteDefault: {fileID: 5637063645623028537, guid: 12869ab21458025449da80affe426957, type: 3}
