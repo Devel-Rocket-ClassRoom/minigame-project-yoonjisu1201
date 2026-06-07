@@ -16,7 +16,11 @@ public class GuidePanelUI : MonoBehaviour
         _panel.SetActive(false);
         _openButton.gameObject.SetActive(TruckRankManager.instance.CurrentRank >= TRIGGER_RANK);
 
-        _openButton.onClick.AddListener(() => _panel.SetActive(true));
+        _openButton.onClick.AddListener(() =>
+        {
+            GameSceneManager.Instance?.PlayButtonSFX();
+            _panel.SetActive(true);
+        });
         _closeButton.onClick.AddListener(() => _panel.SetActive(false));
 
         if (_rankUpPopup != null)

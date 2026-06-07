@@ -3,14 +3,31 @@ using UnityEngine.SceneManagement;
 
 public class GameSceneManager : MonoBehaviour
 {
+    public static GameSceneManager Instance { get; private set; }
+
+    [SerializeField] private AudioClip _lobbyBGM;
+    [SerializeField] private AudioClip _buttonSFX;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         if (SceneManager.GetActiveScene().name != "Lobby") return;
+
+        AudioManager.instance.PlayBGM(_lobbyBGM);
 
         if (SaveManager.Instance.HasSave())
             SaveManager.Instance.Load();
         else
             ResetAllManagers();
+    }
+
+    public void PlayButtonSFX()
+    {
+        AudioManager.instance.PlaySFX(_buttonSFX);
     }
 
     private void ResetAllManagers()
@@ -37,6 +54,8 @@ public class GameSceneManager : MonoBehaviour
     }
     public void GoToCooking()
     {
+        PlayButtonSFX();
+        AudioManager.instance.StopBGM();
         SceneManager.LoadScene("Cooking");
     }
 }

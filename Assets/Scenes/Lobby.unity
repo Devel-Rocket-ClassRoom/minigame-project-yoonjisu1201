@@ -1194,6 +1194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d749154f3dca2049902d7ffce395e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSceneManager
+  _lobbyBGM: {fileID: 8300000, guid: 70e5adf7446d41347836c177badfee5f, type: 3}
+  _buttonSFX: {fileID: 8300000, guid: 042a243e137514f4da9183c97fedfb49, type: 3}
 --- !u!4 &92136726
 Transform:
   m_ObjectHideFlags: 0
@@ -16097,9 +16099,9 @@ RectTransform:
   - {fileID: 171243990}
   m_Father: {fileID: 1803095181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 291.319, y: -117.03732}
   m_SizeDelta: {x: 200.23999, y: 102.06}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1148158839
@@ -17882,9 +17884,9 @@ RectTransform:
   - {fileID: 490822829}
   m_Father: {fileID: 1803095181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 291.319, y: 0}
   m_SizeDelta: {x: 200.23999, y: 102.06}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1273516268
@@ -27360,7 +27362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1583467590
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35126,9 +35128,9 @@ RectTransform:
   - {fileID: 1307755276}
   m_Father: {fileID: 1803095181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 291.319, y: -234.07466}
   m_SizeDelta: {x: 200.23999, y: 102.06}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2113175670
@@ -35799,8 +35801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba8687f5084f9f4da671a6cf1f9c797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  _bgmSource: {fileID: 0}
-  _sfxSource: {fileID: 0}
+  _bgmSource: {fileID: 2136510385}
+  _sfxSource: {fileID: 2136510384}
 --- !u!4 &2136510387
 Transform:
   m_ObjectHideFlags: 0

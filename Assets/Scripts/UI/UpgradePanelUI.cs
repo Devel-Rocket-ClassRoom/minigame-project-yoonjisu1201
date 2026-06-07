@@ -131,6 +131,10 @@ public class UpgradePanelUI : MonoBehaviour
         }
     }
 
-    public void Open() => gameObject.SetActive(true);
+    public void Open()
+    {
+        GameSceneManager.Instance?.PlayButtonSFX();
+        gameObject.SetActive(true);
+    }
     public void Close() => gameObject.SetActive(false);
 }

@@ -48,6 +48,7 @@ public class CollectionTabController : MonoBehaviour
     public void Open()
     {
         if (PauseButtonUI.IsPaused) return;
+        GameSceneManager.Instance?.PlayButtonSFX();
         gameObject.SetActive(true);
         SwitchTab(0);
     }

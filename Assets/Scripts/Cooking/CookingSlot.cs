@@ -92,7 +92,13 @@ public class CookingSlot : MonoBehaviour
 
     private IEnumerator CoCookingRoutine(float cookTime)
     {
-        yield return new WaitForSeconds(cookTime);
+        float elapsed = 0f;
+        while (elapsed < cookTime)
+        {
+            if (!PauseButtonUI.IsPaused)
+                elapsed += Time.deltaTime;
+            yield return null;
+        }
 
         //요리가 실패했을때는?
         _cookedRecipe = RecipeValidator.FindMatchingRecipe(
@@ -115,7 +121,13 @@ public class CookingSlot : MonoBehaviour
     }
     private IEnumerator CoSpoilRoutine(float spoilTime)
     {
-        yield return new WaitForSeconds(spoilTime);
+        float elapsed = 0f;
+        while (elapsed < spoilTime)
+        {
+            if (!PauseButtonUI.IsPaused)
+                elapsed += Time.deltaTime;
+            yield return null;
+        }
 
         if (_state == CookingSlotState.Ready)
         {

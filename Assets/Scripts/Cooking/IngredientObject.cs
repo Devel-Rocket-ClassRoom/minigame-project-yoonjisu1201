@@ -17,6 +17,7 @@ public class IngredientObject : MonoBehaviour, IPointerClickHandler
         !CookingGuideManager.instance.IsIngredientAllowed(_ingredient))
             return;
 
+        SessionManager.instance.PlayIngredientSFX();
         CookingSlotManager.Instance.AddIngredient(_ingredient);
     }
 }

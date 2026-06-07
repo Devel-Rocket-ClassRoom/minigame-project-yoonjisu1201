@@ -9,6 +9,8 @@ public class SessionManager : MonoBehaviour
 
     [SerializeField] private List<GuestSpawner> _spawners;
     [SerializeField] private GameObject _closingPanel;
+    [SerializeField] private AudioClip _cookingBGM;
+    [SerializeField] private AudioClip _ingredientSFX;
 
     public static SessionManager instance { get; private set; }
     public float SessionDuration => _balanceConfig.sessionDuration;
@@ -23,6 +25,7 @@ public class SessionManager : MonoBehaviour
 
     public void PauseTimer() => _timerPaused = true;
     public void ResumeTimer() => _timerPaused = false;
+    public void PlayIngredientSFX() => AudioManager.instance.PlaySFX(_ingredientSFX);
 
     private void Awake()
     {
@@ -44,6 +47,8 @@ public class SessionManager : MonoBehaviour
     {
         RemainingTime = _balanceConfig.sessionDuration;
         IsSessionActive = true;
+
+        AudioManager.instance.PlayBGM(_cookingBGM);
 
         GoldManager.Instance.ResetSession();
         TruckRankManager.instance.ResetSession();
