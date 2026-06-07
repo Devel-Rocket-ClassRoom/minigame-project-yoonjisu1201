@@ -17,7 +17,7 @@ MonoBehaviour:
   patienceType: 2
   unlockRank: 6
   artifact: {fileID: 11400000, guid: ad481109af7be9d44b903302e511f193, type: 2}
-  firstMeetDialogueID: 
+  firstMeetDialogueID: ghost_baker_unlock
   memoirDialogueID: 
   isStoryGuest: 1
   spriteDefault: {fileID: -6627517864265742245, guid: bbb5a34669b4df64ba75e683e3f9f01c, type: 3}

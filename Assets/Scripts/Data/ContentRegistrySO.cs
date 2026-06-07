@@ -10,6 +10,7 @@ public class ContentRegistrySO : ScriptableObject
     public List<GhostSO> allGhosts;
     public List<RecipeSO> allRecipes;
     public List<ArtifactSO> allArtifacts;
+    public List<DialogueSO> allDialogues;
 
     public List<GhostSO> GetGhostsForRank(int rank)
     {
@@ -30,5 +31,12 @@ public class ContentRegistrySO : ScriptableObject
                 result.Add(recipe);
         }
         return result;
+    }
+
+    public DialogueSO GetDialogueById(string id)
+    {
+        foreach (var d in allDialogues)
+            if (d != null && d.id == id) return d;
+        return null;
     }
 }

@@ -27,9 +27,14 @@ public class ArtifactDetailPanelUI : MonoBehaviour
         SetImage(_artifactImage, artifact.icon, unlocked);
         SetText(_artifactNameText, LocalizationManager.GetArtifactName(artifact.id), unlocked);
         SetText(_artifactDescText, LocalizationManager.GetArtifactDesc(artifact.id), unlocked);
+        bool abilityUnlocked = UnlockManager.instance != null && UnlockManager.instance.IsAbilityUnlocked(artifact);
+        string passiveDesc = LocalizationManager.GetArtifactPassive(artifact.id);
+        if (abilityUnlocked && passiveDesc == "???")
+            passiveDesc = LocalizationManager.Get("ui_ending_text");
+
         SetImage(_passiveIcon, artifact.passiveIcon, unlocked);
         SetText(_passiveNameText, LocalizationManager.GetArtifactPassiveName(artifact.id), unlocked);
-        SetText(_passiveDescText, LocalizationManager.GetArtifactPassive(artifact.id), unlocked);
+        SetText(_passiveDescText, passiveDesc, unlocked);
 
         GhostSO owner = FindOwnerGhost(artifact, registry);
         if (owner != null)

@@ -17,7 +17,7 @@ MonoBehaviour:
   patienceType: 3
   unlockRank: 3
   artifact: {fileID: 11400000, guid: ec7f30cfdfe131f45b92ad52d524651e, type: 2}
-  firstMeetDialogueID: 
+  firstMeetDialogueID: ghost_worker_unlock
   memoirDialogueID: 
   isStoryGuest: 1
   spriteDefault: {fileID: 9018854965553239628, guid: 39801f760f01ba147b95cf304a34f0b7, type: 3}

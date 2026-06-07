@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1aaf9e92e0429a479b7c54e80e11df6, type: 3}
+  m_Name: Dialogue_Rank 9
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  id: ghost_scholar_unlock
+  speakerNames:
+  - ghost_9_name
+  speakerSprites:
+  - {fileID: 7636154969869073856, guid: 984a5094988a8f748bcdfd02fc9afde5, type: 3}
+  lineSpeakerIndices: 00000000000000000000000000000000

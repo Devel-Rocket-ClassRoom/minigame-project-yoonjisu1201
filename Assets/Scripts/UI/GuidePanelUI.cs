@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +34,15 @@ public class GuidePanelUI : MonoBehaviour
         if (TruckRankManager.instance.CurrentRank == TRIGGER_RANK)
         {
             _openButton.gameObject.SetActive(true);
-            _panel.SetActive(true);
+            StartCoroutine(CoShowAfterDialogue());
         }
+    }
+
+    private IEnumerator CoShowAfterDialogue()
+    {
+        yield return null; // 대화 시작 대기
+        while (DialogueManager.Instance != null && DialogueManager.Instance.IsDialoguePlaying)
+            yield return null;
+        _panel.SetActive(true);
     }
 }
