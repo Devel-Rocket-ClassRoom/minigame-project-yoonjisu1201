@@ -128,6 +128,9 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
         if (isCooking)
         {
             _stateAnimator.SetInteger(StateParam, (int)state);
+            if (_ingredientIconSlots != null)
+                foreach (var slot in _ingredientIconSlots)
+                    slot.enabled = false;
         }
         else
         {
@@ -197,9 +200,12 @@ public class CookingSlotUI : MonoBehaviour, IPointerClickHandler
         float elapsed = 0f;
         while (elapsed < cookTime)
         {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / cookTime);
-            _clockHand.localRotation = Quaternion.Euler(0f, 0f, -360f * t);
+            if (!PauseButtonUI.IsPaused)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / cookTime);
+                _clockHand.localRotation = Quaternion.Euler(0f, 0f, -360f * t);
+            }
             yield return null;
         }
         _clockHand.localRotation = Quaternion.identity;
