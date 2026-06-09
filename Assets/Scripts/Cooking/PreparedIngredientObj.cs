@@ -37,6 +37,9 @@ public class PreparedIngredientObj : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (PauseButtonUI.IsPaused)
+            return;
+
         if (_ingredient == null)
             return;
 

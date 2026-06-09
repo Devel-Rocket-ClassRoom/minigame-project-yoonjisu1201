@@ -13,6 +13,9 @@ public class IngredientObject : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (PauseButtonUI.IsPaused)
+            return;
+
         if (CookingGuideManager.instance != null &&
         !CookingGuideManager.instance.IsIngredientAllowed(_ingredient))
             return;

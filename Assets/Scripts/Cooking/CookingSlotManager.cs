@@ -38,10 +38,16 @@ public class CookingSlotManager : MonoBehaviour
     }
     public void OnStartCooking()
     {
+        if (PauseButtonUI.IsPaused)
+            return;
+
         _activeSlotUI?.StartCooking();
     }
     public void OnCancelCooking()
     {
+        if (PauseButtonUI.IsPaused)
+            return;
+
         ActiveSlot?.CancelCooking();
     }
     public void ApplySlotUpgrade()
