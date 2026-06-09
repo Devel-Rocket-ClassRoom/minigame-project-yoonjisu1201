@@ -25,7 +25,12 @@ public static class RecipeValidator
     {
         //기본&일반 메뉴
         if (!recipe.isSignatureMenu)
-            return IngredientsMatch(slotIngredients, recipe.basicIngredients);
+        {
+            if (recipe.normalLast_Ing == null)
+                return IngredientsMatch(slotIngredients, recipe.basicIngredients);
+            var expected = new List<IngredientSO>(recipe.basicIngredients) { recipe.normalLast_Ing };
+            return IngredientsMatch(slotIngredients, expected);
+        }
 
         //전용 메뉴 (리스트 복사하는 이유는 basicIngredients가 참조로 변하지 않도록 하기위함)
         var expectedNormal = new List<IngredientSO>(recipe.basicIngredients) { recipe.normalLast_Ing };
@@ -41,15 +46,20 @@ public static class RecipeValidator
     {
         //일반메뉴
         if (!recipe.isSignatureMenu)
-            return IngredientsMatch(slotIngredients, recipe.basicIngredients);
+        {
+            if (recipe.normalLast_Ing == null)
+                return IngredientsMatch(slotIngredients, recipe.basicIngredients);
+            var expected = new List<IngredientSO>(recipe.basicIngredients) { recipe.normalLast_Ing };
+            return IngredientsMatch(slotIngredients, expected);
+        }
 
         //전용메뉴
         IngredientSO lastIngredient = recipe.ownerGhost == currentGuest
            ? recipe.special_Ingredient
            : recipe.normalLast_Ing;
 
-        var expected = new List<IngredientSO>(recipe.basicIngredients) { lastIngredient };
-        return IngredientsMatch(slotIngredients, expected);
+        var expectedSignature = new List<IngredientSO>(recipe.basicIngredients) { lastIngredient };
+        return IngredientsMatch(slotIngredients, expectedSignature);
     }
 
 }

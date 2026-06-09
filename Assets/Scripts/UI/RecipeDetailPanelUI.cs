@@ -53,13 +53,13 @@ public class RecipeDetailPanelUI : MonoBehaviour
         // 공통: 기본재료
         for (int i = 0; i < _basicIngredientImages.Length; i++)
         {
-            bool hasIng = i < recipe.basicIngredients.Count
-                          && recipe.basicIngredients[i] != null;
+            IngredientSO ing = null;
+            if (i < recipe.basicIngredients.Count)
+                ing = recipe.basicIngredients[i];
+            else if (i == recipe.basicIngredients.Count && !recipe.isSignatureMenu)
+                ing = recipe.normalLast_Ing;
 
-            SetImage(_basicIngredientImages[i], hasIng ? recipe.basicIngredients[i].icon : null, unlocked);
-            //_basicIngredientNames[i].text = hasIng && unlocked
-            //    ? LocalizationManager.GetIngredientName(recipe.basicIngredients[i].id)
-            //    : (hasIng ? "???" : "-");
+            SetImage(_basicIngredientImages[i], ing?.icon, unlocked);
         }
 
         // 전용메뉴 / 기본메뉴 분기
