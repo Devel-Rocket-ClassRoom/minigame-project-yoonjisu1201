@@ -19,6 +19,28 @@
 /[Uu]ser[Ss]ettings/
 *.log
 
+# Firebase SDK
+Assets/Firebase/
+Assets/Firebase.meta
+
+# External Dependency Manager for Unity
+Assets/ExternalDependencyManager/
+Assets/ExternalDependencyManager.meta
+
+# Firebase generated Plugins folder
+Assets/Plugins/
+Assets/Plugins.meta
+
+# Firebase project config
+**/google-services.json
+**/google-services.json.meta
+**/GoogleService-Info.plist
+**/GoogleService-Info.plist.meta
+
+# Firebase ScriptableObject config
+**/SO_FirebaseConfig.asset
+**/SO_FirebaseConfig.asset.meta
+
 # Blender asset imports
 *.blend1
 *.blend1.meta
