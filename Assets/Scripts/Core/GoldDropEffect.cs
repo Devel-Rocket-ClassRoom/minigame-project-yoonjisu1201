@@ -7,14 +7,17 @@ public class GoldDropEffect : MonoBehaviour
     [SerializeField] private TextMeshPro _amountText;
     [SerializeField] private float _liftTime = 2.5f;
 
-    public void Setup(int amount)
+    private System.Action<GoldDropEffect> _onFinished;
+
+    public void Setup(int amount, System.Action<GoldDropEffect> onFinished)
     {
         _amountText.text = $"+{amount}G";
+        _onFinished = onFinished;
         StartCoroutine(CoAutoSetActive());
     }
     private IEnumerator CoAutoSetActive()
     {
         yield return new WaitForSeconds(_liftTime);
-        gameObject.SetActive(false);
+        _onFinished?.Invoke(this);
     }
 }
