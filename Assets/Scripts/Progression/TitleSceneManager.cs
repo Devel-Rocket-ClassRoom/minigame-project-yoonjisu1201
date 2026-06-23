@@ -10,7 +10,7 @@ public class TitleSceneManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.unityLogger.logEnabled = false;
+        //Debug.unityLogger.logEnabled = false;
         _continueButton.interactable = SaveManager.Instance.HasSave();
         AudioManager.instance.PlayBGM(_titleBGM);
     }
@@ -35,4 +35,5 @@ public class TitleSceneManager : MonoBehaviour
     {
         Application.Quit();
     }
+
 }
