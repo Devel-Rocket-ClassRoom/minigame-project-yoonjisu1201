@@ -4,12 +4,18 @@ using System.Collections.Generic;
 [Serializable]
 public class SaveData
 {
+    // 저장 시각 비교용 UTC ticks
+    public long lastSavedAtUtcTicks;
+
     // GoldManager
     public int totalGold;
 
     // TruckRankManager
     public int currentRank;
     public float totalExp;
+
+    // Guide
+    public bool cookingGuideDone;
 
     // UpgradeManager
     public int cookSlotLevel;

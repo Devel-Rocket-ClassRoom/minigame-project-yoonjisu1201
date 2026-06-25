@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 // 첫 영업 한정 튜토리얼 가이드. 6단계: 손님도착 → 주문확인 →
@@ -35,13 +36,34 @@ public class CookingGuideManager : MonoBehaviour
     private System.Action<CookingSlot> _onAnyIngredientAdded;
 
     private const string PREF_KEY = "guide_cooking_done";
+    public static string PrefKey => AuthManager.Instance != null && AuthManager.Instance.IsLoggedIn
+        ? $"{PREF_KEY}_{AuthManager.Instance.UserId}"
+        : PREF_KEY;
+
+    public static bool IsGuideDone()
+    {
+        if (TruckRankManager.instance != null && TruckRankManager.instance.CurrentRank > 1)
+            return true;
+
+        return PlayerPrefs.GetInt(PrefKey, 0) == 1;
+    }
+
+    public static void MarkGuideDone()
+    {
+        PlayerPrefs.SetInt(PrefKey, 1);
+    }
+
+    public static void ResetGuideDone()
+    {
+        PlayerPrefs.DeleteKey(PrefKey);
+    }
     private void Awake()
     {
         instance = this;
     }
     private void Start()
     {
-        if (PlayerPrefs.GetInt(PREF_KEY, 0) == 1) { _guideDone = true; return; }
+        if (IsGuideDone()) { _guideDone = true; return; }
 
         goldUI.SetActive(false);
         timerUI.SetActive(false);
@@ -99,7 +121,8 @@ public class CookingGuideManager : MonoBehaviour
         {
             _guideDone = true;
             guideUI.Hide();
-            PlayerPrefs.SetInt(PREF_KEY, 1);
+            MarkGuideDone();
+            SaveManager.Instance?.SaveWithBackupAsync().Forget();
 
             SessionManager.instance.ResumeTimer();
             _currentGuest?.Resume();
