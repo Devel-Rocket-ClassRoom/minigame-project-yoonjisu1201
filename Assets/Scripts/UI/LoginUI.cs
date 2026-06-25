@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,7 +30,6 @@ public class LoginUI : MonoBehaviour
         _logoutButton.onClick.AddListener(OnLogoutClicked);
 
         SetLoginState(false);
-        SetStatus("로그인해주세요.");
     }
 
     private void SetStatus(string message)
@@ -57,6 +55,7 @@ public class LoginUI : MonoBehaviour
         {
             SetStatus("로그인 성공!");
             SetLoginState(true);
+            RefreshTitleContinueButton();
         }
         else
         {
@@ -79,6 +78,7 @@ public class LoginUI : MonoBehaviour
         {
             SetStatus("회원가입 성공!");
             SetLoginState(true);
+            RefreshTitleContinueButton();
         }
         else
         {
@@ -99,6 +99,7 @@ public class LoginUI : MonoBehaviour
         {
             SetStatus("게스트 로그인 성공!");
             SetLoginState(true);
+            RefreshTitleContinueButton();
         }
         else
         {
@@ -111,11 +112,20 @@ public class LoginUI : MonoBehaviour
 
     private void OnLogoutClicked()
     {
+        bool wasAnonymous = AuthManager.Instance != null && AuthManager.Instance.IsAnonymous;
+
         AuthManager.Instance.SignOut();
 
-        SetStatus("로그아웃되었습니다.");
+        SetStatus(wasAnonymous ? "게스트 계정은 이 기기에 유지됩니다." : "로그아웃되었습니다.");
         SetLoginState(false);
+        RefreshTitleContinueButton();
     }
+    private void RefreshTitleContinueButton()
+    {
+        TitleSceneManager titleSceneManager = FindFirstObjectByType<TitleSceneManager>();
+        titleSceneManager?.RefreshContinueButton();
+    }
+
     private void SetButtonsInteractable(bool interactable)
     {
         if (_loginButton != null)

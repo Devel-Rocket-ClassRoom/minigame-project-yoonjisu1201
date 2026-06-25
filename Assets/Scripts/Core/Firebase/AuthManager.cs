@@ -16,6 +16,7 @@ public class AuthManager : MonoBehaviour
 
     public FirebaseUser CurrentUser => _currentUser;
     public bool IsLoggedIn => _currentUser != null;
+    public bool IsAnonymous => _currentUser?.IsAnonymous ?? false;
     public string UserId => _currentUser?.UserId ?? string.Empty;
     public bool IsInitialized => _isInitialized;
 
@@ -25,7 +26,7 @@ public class AuthManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(gameObject);
+            Destroy(this);
             return;
         }
 
@@ -72,10 +73,19 @@ public class AuthManager : MonoBehaviour
             return (false, error);
         }
 
-        if (IsLoggedIn)
+        if (IsLoggedIn && IsAnonymous)
         {
+            Debug.Log($"[Auth] 기존 게스트 세션 사용: {UserId}");
             return (true, null);
         }
+
+        if (IsLoggedIn && !IsAnonymous)
+        {
+            Debug.Log("[Auth] 이메일 세션 종료 후 게스트 로그인 전환");
+            SignOutCurrentUser();
+            await UniTask.Yield();
+        }
+
         try
         {
             Debug.Log("[Auth] 게스트 로그인 시도");
@@ -102,7 +112,7 @@ public class AuthManager : MonoBehaviour
             return (false, error);
         }
 
-        if (IsLoggedIn)
+        if (IsLoggedIn && !IsAnonymous)
         {
             return (true, null);
         }
@@ -138,7 +148,7 @@ public class AuthManager : MonoBehaviour
             return (false, error);
         }
 
-        if (IsLoggedIn)
+        if (IsLoggedIn && !IsAnonymous)
         {
             return (true, null);
         }
@@ -170,6 +180,17 @@ public class AuthManager : MonoBehaviour
     {
         if (_auth == null) return;
 
+        if (IsAnonymous)
+        {
+            Debug.Log($"[Auth] 게스트 세션 유지: {UserId}");
+            return;
+        }
+
+        SignOutCurrentUser();
+    }
+
+    private void SignOutCurrentUser()
+    {
         Debug.Log("[Auth] 로그아웃");
 
         _auth.SignOut();

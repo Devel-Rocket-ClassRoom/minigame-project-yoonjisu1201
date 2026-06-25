@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -43,7 +44,14 @@ public class SettingsPanelUI : MonoBehaviour
 
     private void GoToTitle()
     {
-        SaveManager.Instance.Save();
+        GoToTitleAsync().Forget();
+    }
+
+    private async UniTaskVoid GoToTitleAsync()
+    {
+        if (SaveManager.Instance != null)
+            await SaveManager.Instance.SaveWithBackupAsync();
+
         SceneManager.LoadScene("Title");
     }
 

@@ -5,12 +5,17 @@ public class RankUnlockHandler : MonoBehaviour
 {
     [SerializeField] private ContentRegistrySO _registry;
 
+    private void Awake()
+    {
+        ApplyUnlocksUpToCurrentRank();
+    }
+
     private void Start()
     {
-        for (int r = 1; r <= TruckRankManager.instance.CurrentRank; r++)
-            UnlockForRank(r);
-        
-        TruckRankManager.instance.OnRankUp += UnlockForRank;
+        ApplyUnlocksUpToCurrentRank();
+
+        if (TruckRankManager.instance != null)
+            TruckRankManager.instance.OnRankUp += UnlockForRank;
     }
     private void OnDestroy()
     {
@@ -19,8 +24,21 @@ public class RankUnlockHandler : MonoBehaviour
             TruckRankManager.instance.OnRankUp -= UnlockForRank;
         }
     }
+
+    public void ApplyUnlocksUpToCurrentRank()
+    {
+        if (_registry == null || TruckRankManager.instance == null || UnlockManager.instance == null)
+            return;
+
+        for (int r = 1; r <= TruckRankManager.instance.CurrentRank; r++)
+            UnlockForRank(r);
+    }
+
     private void UnlockForRank(int rank)
     {
+        if (_registry == null || UnlockManager.instance == null)
+            return;
+
         foreach (var ghost in _registry.GetGhostsForRank(rank))
             UnlockManager.instance.UnlockGhost(ghost);
 

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,7 +55,7 @@ public class UpgradePanelUI : MonoBehaviour
         _upgradeButton.onClick.AddListener(() =>
         {
             if (UpgradeManager.instance.TryUpgrade((UpgradeType)_selectedIndex))
-                SaveManager.Instance.Save(); 
+                SaveManager.Instance.SaveWithBackupAsync().Forget();
             Refresh();
         });
 

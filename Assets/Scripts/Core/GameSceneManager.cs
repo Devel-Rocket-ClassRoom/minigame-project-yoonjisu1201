@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,16 +14,17 @@ public class GameSceneManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    private async UniTaskVoid Start()
     {
         if (SceneManager.GetActiveScene().name != "Lobby") return;
 
         AudioManager.instance.PlayBGM(_lobbyBGM);
 
-        if (SaveManager.Instance.HasSave())
-            SaveManager.Instance.Load();
-        else
+        bool loaded = SaveManager.Instance != null && await SaveManager.Instance.LoadLatestAsync();
+        if (!loaded)
             ResetAllManagers();
+
+        ApplyCurrentRankUnlocks();
     }
 
     public void PlayButtonSFX()
@@ -38,12 +40,26 @@ public class GameSceneManager : MonoBehaviour
         UnlockManager.instance.ResetAll();
         DialogueManager.Instance?.Play("game_start");
     }
+
+    private void ApplyCurrentRankUnlocks()
+    {
+        RankUnlockHandler unlockHandler = FindFirstObjectByType<RankUnlockHandler>();
+        unlockHandler?.ApplyUnlocksUpToCurrentRank();
+    }
     public void GoToLobby()
+    {
+        GoToLobbyAsync().Forget();
+    }
+
+    private async UniTaskVoid GoToLobbyAsync()
     {
         GoldManager.Instance.CommitSession();
         TruckRankManager.instance.CommitSession();
         UnlockManager.instance.CommitSessionArtifacts();
-        SaveManager.Instance.Save();
+
+        if (SaveManager.Instance != null)
+            await SaveManager.Instance.SaveWithBackupAsync();
+
         SceneManager.LoadScene("Lobby");
     }
 

@@ -10,8 +10,18 @@ public class TruckRankUI : MonoBehaviour
 
     private void OnEnable()
     {
+        if (TruckRankManager.instance != null)
+            TruckRankManager.instance.OnRankStateChanged += RefreshRate;
+
         RefreshRate();
     }
+
+    private void OnDisable()
+    {
+        if (TruckRankManager.instance != null)
+            TruckRankManager.instance.OnRankStateChanged -= RefreshRate;
+    }
+
     private void Start()
     {
         RefreshRate(); 

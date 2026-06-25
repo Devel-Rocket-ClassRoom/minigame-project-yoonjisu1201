@@ -94,7 +94,7 @@ public class GuestSpawner : MonoBehaviour
         }
 
         // 가이드 미완료 시 튜토리얼 손님 먼저 스폰
-        if (_tutorialGuestPrefab != null && PlayerPrefs.GetInt("guide_cooking_done", 0) == 0)
+        if (_tutorialGuestPrefab != null && !CookingGuideManager.IsGuideDone())
         {
             SpawnGuest(_tutorialGuestPrefab);
             _currentGuest.SetSessionRecipes(new List<RecipeSO> { _tutorialRecipe });

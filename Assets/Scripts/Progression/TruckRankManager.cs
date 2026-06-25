@@ -20,6 +20,7 @@ public class TruckRankManager : MonoBehaviour
     public int GetRequiredExp(int rank) => _balanceConfig.rankExpThresholds[rank];
     public int PendingRankUp { get; private set; } = 0;
     public event System.Action<int> OnRankUp;
+    public event System.Action OnRankStateChanged;
 
     private void Awake()
     {
@@ -40,17 +41,20 @@ public class TruckRankManager : MonoBehaviour
     public void AddExp(int amount)
     {
         SessionExp += amount;
+        OnRankStateChanged?.Invoke();
     }
 
     public void CommitSession()
     {
         TotalExp += SessionExp;
         CheckRankUp();
+        OnRankStateChanged?.Invoke();
     }
 
     public void ResetSession()
     {
         SessionExp = 0f;
+        OnRankStateChanged?.Invoke();
     }
     private void CheckRankUp()
     {
@@ -69,6 +73,8 @@ public class TruckRankManager : MonoBehaviour
     {
         CurrentRank = data.currentRank;
         TotalExp = data.totalExp;
+        SessionExp = 0f;
+        OnRankStateChanged?.Invoke();
     }
 
     public void ClearPendingRankUp() => PendingRankUp = 0;
@@ -79,5 +85,6 @@ public class TruckRankManager : MonoBehaviour
         TotalExp = 0f;
         SessionExp = 0f;
         PendingRankUp = 0;
+        OnRankStateChanged?.Invoke();
     }
 }
