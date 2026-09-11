@@ -3,7 +3,7 @@
 > 제한된 영업 시간 동안 손님의 주문을 처리하고, 푸드트럭을 성장시키는 캐주얼 타이쿤 게임
 
 <p align="center">
-  <img src="README.assets/title.png" alt="별빛푸드트럭 타이틀 화면" width="100%">
+  <img src="title.png" alt="별빛푸드트럭 타이틀 화면" width="100%">
 </p>
 
 ## 게임 소개
@@ -13,7 +13,7 @@
 한 번의 영업은 기본 **120초** 동안 진행되며, 영업을 반복해 골드와 경험치를 획득하고 새로운 레시피와 손님을 해금합니다. 특정 손님에게서 얻는 유물을 수집하면 영업에 도움이 되는 패시브 능력도 해금할 수 있습니다.
 
 <p align="center">
-  <img src="README.assets/gameplay.png" alt="별빛푸드트럭 플레이 화면" width="100%">
+  <img src="gameplay.png" alt="별빛푸드트럭 플레이 화면" width="100%">
 </p>
 
 ## 플레이 흐름
@@ -23,7 +23,7 @@
 손님이 등장하면 주문과 인내심 게이지가 표시됩니다. 손님마다 인내심 성향이 다르며 일부 손님은 자신의 전용 메뉴를 주문합니다.
 
 <p align="center">
-  <img src="README.assets/order.png" alt="주문 화면" width="80%">
+  <img src="order.png" alt="주문 화면" width="80%">
 </p>
 
 ### 2. 재료 선택과 조리
@@ -31,7 +31,7 @@
 필요한 재료를 조리대에 넣어 음식을 완성합니다. 잘못된 조합은 실패 음식으로 처리되고, 완성된 음식도 오래 방치하면 상합니다.
 
 <p align="center">
-  <img src="README.assets/cooking.gif" alt="조리 과정" width="70%">
+  <img src="cooking.gif" alt="조리 과정" width="70%">
 </p>
 
 ### 3. 음식 서빙
@@ -39,7 +39,7 @@
 완성된 음식을 손님에게 전달하면 골드와 경험치를 획득합니다. 특정 손님은 일정 확률로 유물을 드롭합니다.
 
 <p align="center">
-  <img src="README.assets/serve.gif" alt="음식 서빙" width="80%">
+  <img src="serve.gif" alt="음식 서빙" width="80%">
 </p>
 
 ### 4. 푸드트럭 성장
@@ -47,7 +47,7 @@
 획득한 골드로 푸드트럭을 업그레이드하고, 경험치를 모아 랭크를 올리면 새로운 콘텐츠가 해금됩니다.
 
 <p align="center">
-  <img src="README.assets/upgrade.png" alt="푸드트럭 업그레이드" width="80%">
+  <img src="upgrade.png" alt="푸드트럭 업그레이드" width="80%">
 </p>
 
 ## 주요 구현 기능
